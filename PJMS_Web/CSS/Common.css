@@ -1,0 +1,44 @@
+﻿table thead{
+    text-align:center;
+}
+
+/*table td{
+    padding:0 5px !important;
+    text-align:center;
+}*/
+
+.reducepadding td{
+    padding: 0 5px !important;
+}
+
+.gridbtn{
+    padding: 5px;
+    width:30px;
+    margin-left:2px;
+}
+
+.required {
+    color: red;
+}
+
+.align-right{
+    text-align: right;
+}
+
+.qty {
+    text-align: right;
+}
+
+.align-center{
+    text-align:center;
+}
+
+.LoseBalance {
+    font-weight: bold;
+    color: red;
+}
+
+.WinBalance{
+    font-weight:bold;
+    color:green;
+}
