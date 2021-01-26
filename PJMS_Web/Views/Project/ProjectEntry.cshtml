@@ -1,0 +1,140 @@
+﻿@model PJMS_Model.ProjectModel
+@{
+    ViewBag.Title = "Project Entry";
+    Layout = "~/Views/Shared/_PJMSLayout.cshtml";
+}
+<div class="panel panel-inverse">
+    <div class="panel-heading">
+        <h4 class="panel-title">Project Entry</h4>
+        <div class="panel-heading-btn">
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="container-fluid" id="content_zip">
+            <div class="row">
+                <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
+                    <div class="card" id="border-entry">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-xl-2 col-md-4">
+                                    <label for="ProjectCD">ProjectCD</label><label style="color:red;font-size:20px;">&nbsp;*</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-project-diagram"></i></span>
+                                        </div>
+                                        @Html.HiddenFor(pm => pm.Mode, new { @id = "hfSave_Update" })
+                                        @Html.TextBoxFor(pm => pm.ProjectCD, new
+                                        {
+                                           @class = "form-control input-sm input-integeronly1",
+                                           @tabindex = "1",
+                                           @required = "required",
+                                           @id = "txtProjectCD",
+                                           @autofocus = "autofocus",
+                                           maxlength = "4",
+                                           @onchange = "checkExist(event)"
+                                        })
+                                    </div>
+                                </div>
+                                <div class="form-group col-xl-2 col-md-4">
+                                    <label for="ProjectName">Project Name</label><label style="color: red; font-size: 20px;">&nbsp;*</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-list-ol"></i>yyy</span>
+                                        </div>
+                                        @Html.TextBoxFor(pm => pm.ProjectName, new
+                                        {
+                                           @class = "form-control input-sm",
+                                           @tabindex = "2",
+                                           @required = "required",
+                                           @id = "txtProjectName",
+                                           @autofocus = "autofocus",
+                                           maxlength = "100"
+                                        })
+                                    </div>
+                                </div>
+                                <div class="form-group col-xl-2 col-md-4">
+                                    <label for="CompanyName">Company Name</label><label style="color: red; font-size: 20px;">&nbsp;*</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-building"></i></span>
+                                        </div>
+                                        @Html.TextBoxFor(pm => pm.CompanyName, new
+                                        {
+                                           @class = "form-control input-sm",
+                                           @tabindex = "3",
+                                           @required = "required",
+                                           @id = "txtProjectName",
+                                           @autofocus = "autofocus",
+                                           maxlength = "100"
+                                        })
+                                    </div>
+                                </div>
+                                <div class="form-group col-xl-2 col-md-4">
+                                    <label for="PresonInCharge">Preson In Charge</label><label style="color: red; font-size: 20px;">&nbsp;*</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-signature"></i></span>
+                                        </div>
+                                        @Html.TextBoxFor(pm => pm.PresonInCharge, new
+                                        {
+                                           @class = "form-control input-sm",
+                                           @tabindex = "4",
+                                           @required = "required",
+                                           @id = "txtProjectName",
+                                           @autofocus = "autofocus",
+                                           maxlength = "100"
+                                        })
+                                    </div>
+                                </div>
+                                <div class="form-group col-xl-2 col-md-4">
+                                    <label for="ContractDate">Contract Date</label><label style="color: red; font-size: 20px;">&nbsp;*</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
+                                        </div>
+                                        @Html.TextBoxFor(pm => pm.ContractDate, "{dd-MM-yyyy}", new
+                                        {
+                                           @class = "form-control input-sm",
+                                           placeHolder = "dd/MM/yyyy",
+                                           @required = "required",
+                                           @tabindex = "5",
+                                           @id = "txtContractDate",
+                                           maxlength = "10",
+                                           max = "12-12-2100",
+                                        })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 text-center">
+                    <div class="card border-bottom-success shadow h-100 border-bottom" id="border-entry">
+                        <div class="card-body">
+                            <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
+                                <button id="btnSave" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@section Scripts
+    {
+    <script type="text/javascript">
+            $('#btnSave').click(function () {
+                var obj = {
+                    ProjectCD: $("#txtProjectCD").val(),
+                    ProjectName: $("#txtProjectName").val()
+                };
+
+                CalltoApiController('@Url.Action("InsertProject", "api/ProjectApi")', obj);
+            })
+    </script>
+}*@

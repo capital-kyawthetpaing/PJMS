@@ -18,6 +18,14 @@
                     <th>Command</th>
                     <th>ProjectCD</th>
                     <th>ProjectName</th>
+                    <th>TeamID</th>
+                    <th>CompanyName</th>
+                    <th>PresonInCharge</th>
+                    <th>ContractDate</th>
+                    <th>CreatedBy</th>
+                    <th>CreatedDate</th>
+                    <th>UpdatedBy</th>
+                    <th>UpdatedDate</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -27,65 +35,72 @@
 
 @section Scripts
     {
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var obj = {
-                ProjectCD: ''
-            };
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var obj = {
+                    ProjectCD: ''
+                };
 
-            var response = CalltoApiController('@Url.Action("GetProject", "api/ProjectApi")', obj);
-            BindTable(response);
-        });
-
-
-        function BindTable(response) {
-            table = $('#tblProject').DataTable({
-                responsive: true,
-                dom: 'Bfrtip',
-                data: JSON.parse(response),
-                datasrc:"",
-                destroy: true,
-                "paging":true,
-                "ordering": true,
-                "columns": [
-                    { "data": "ProjectCD", "className": "align-center", "width": "10%" },
-                    { "data": "ProjectCD", "className":"align-center","width": "10%"},
-                    { "data": "ProjectName", "className": "align-center","width": "90%" },
-                ],
-                "buttons": [
-                    {
-                        extend: 'copy'
-                    },
-                    {
-                        extend: 'excel',
-                        className: 'btn-success',
-                        init: function (api, node, config) {
-                            $(node).removeClass("btn-secondary");
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        className: 'btn-danger',
-                        charset: "utf-8",
-                        init: function (api, node, config) {
-                            $(node).removeClass("btn-secondary");
-                        }
-                    },
-                ],
-                "columnDefs": [{
-                    "targets": 0,
-                    "data": "ProjectCD",
-                    "render": function (data) {
-                        return '<input type="button" class="btn btn-info" style="width:70px;margin:3px;" onclick="ProjectEdit(\'' + data + '\',\'Edit\')" value="Edit">';
-                    },
-                }]
+                var response = CalltoApiController('@Url.Action("GetProject", "api/ProjectApi")', obj);
+                BindTable(response);
             });
-        }
 
-        function ProjectEdit(data, mode) {
-           window.location.href = '@Url.Action("ProjectEntry", "Project")?ProjectCD=' + data + "&Mode=" + mode;
-        }
-    </script>
-}
+
+            function BindTable(response) {
+                table = $('#tblProject').DataTable({
+                    responsive: true,
+                    dom: 'Bfrtip',
+                    data: JSON.parse(response),
+                    datasrc:"",
+                    destroy: true,
+                    "paging":true,
+                    "ordering": true,
+                    "columns": [
+                        { "data": "ProjectCD", "className": "align-center", "width": "7%" },
+                        { "data": "ProjectCD", "className":"align-center","width": "2%"},
+                        { "data": "ProjectName", "className": "align-center", "width": "15%" },
+                        { "data": "TeamID", "className": "align-center", "width": "2%" },
+                        { "data": "CompanyName", "className": "align-center", "width": "13%" },
+                        { "data": "PresonInCharge", "className": "align-center", "width": "9%" },
+                        { "data": "ContractDate","className": "align-center", "width": "16%" },
+                        { "data": "CreatedBy", "className": "align-center", "width": "2%" },
+                        { "data": "CreatedDate", "className": "align-center", "width": "17%" },
+                        { "data": "UpdatedBy", "className": "align-center", "width": "2%" },
+                        { "data": "UpdatedDate", "className": "align-center", "width": "15%" }
+                    ],
+                    "buttons": [
+                        {
+                            extend: 'copy'
+                        },
+                        {
+                            extend: 'excel',
+                            className: 'btn-success',
+                            init: function (api, node, config) {
+                                $(node).removeClass("btn-secondary");
+                            }
+                        },
+                        {
+                            extend: 'pdf',
+                            className: 'btn-danger',
+                            charset: "utf-8",
+                            init: function (api, node, config) {
+                                $(node).removeClass("btn-secondary");
+                            }
+                        },
+                    ],
+                    "columnDefs": [{
+                        "targets": 0,
+                        "data": "ProjectCD",
+                        "render": function (data) {
+                            return '<input type="button" class="btn btn-info" style="width:70px;margin:3px;" onclick="ProjectEdit(\'' + data + '\',\'Edit\')" value="Edit">';
+                        },
+                    }]
+                });
+            }
+            function ProjectEdit(data, mode) {
+               window.location.href = '@Url.Action("ProjectEntry", "Project")?ProjectCD=' + data + "&Mode=" + mode;
+            }
+        </script>
+    }
 
 

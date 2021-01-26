@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "EmployeeList";
+    Layout = "~/Views/Shared/_PJMSLayout.cshtml";
+}
+
+<div class="panel panel-inverse">
+    <div class="panel-heading">
+        <h4 class="panel-title">Project List</h4>
+        <div class="panel-heading-btn">
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table id="tblProject" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+            <thead>
+                <tr>
+                    <th>EmployeeCD</th>
+                    <th>EmployeeName</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var obj = {
+                EmployeeCD: ''
+            };
+                var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmpApi")',obj);
+                alert(response);
+                BindTable(response);
+            });
+            function BindTable(response) {
+                table = $('#tblProject').DataTable({
+                    responsive: true,
+                    dom: 'Bfrtip',
+                    data: JSON.parse(response),
+                    datasrc:"",
+                    destroy: true,
+                    "paging":true,
+                    "ordering": true,
+                    "columns": [
+                        { "data": "EmployeeCD", "className":"align-center","width": "50%"},
+                        { "data": "EmployeeName", "className": "align-center", "width": "50%" },
+                    ],
+                    "buttons": [
+                        {
+                            extend: 'copy'
+                        },
+                        {
+                            extend: 'excel',
+                            className: 'btn-success',
+                            init: function (api, node, config) {
+                                $(node).removeClass("btn-secondary");
+                            }
+                        },
+                        {
+                            extend: 'pdf',
+                            className: 'btn-danger',
+                            charset: "utf-8",
+                            init: function (api, node, config) {
+                                $(node).removeClass("btn-secondary");
+                            }
+                        },
+                    ]
+                });
+            }
+    </script>
+}
+
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //Call EmpDetails jsonResult Method
+            $.getJSON("Home/EmpDetails",
+                function (json) {
+                    var tr;
+                    //Append each row to html table
+                    for (var i = 0; i < json.length; i++) {
+                        tr = $('<tr/>');
+                        tr.append("<td>" + json[i].Id + "</td>");
+                        tr.append("<td>" + json[i].Name + "</td>");
+                        tr.append("<td>" + json[i].City + "</td>");
+                        tr.append("<td>" + json[i].Address + "</td>");
+                        $('table').append(tr);
+                    }
+                });
+        });
+    </script>*@
+
+@*@section Scripts
+    {
+    <script type="text/javascript">
+         $(document).ready(function () {
+                var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmpApi")');
+                BindTable(response);
+         });
+        function BindTable()
+        {
+            var row = "";
+            $.ajax({
+                type: "POST",
+                url: "WebService1.asmx/bindtable",
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    var json = JSON.parse(msg.d);
+                    $.each(json, function (index, obj) {
+                        var row = '<tr><td> ' + obj.EmployeeCD + ' </td> <td> ' + obj.EmployeeName + ' </td></tr>'
+                        $("#tblEmployee tbody").append(row);
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            BindTable();
+        });
+    </script>
+    }*@

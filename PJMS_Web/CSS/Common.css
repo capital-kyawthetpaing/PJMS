@@ -42,3 +42,16 @@
     font-weight:bold;
     color:green;
 }
+#border-entry {
+font-weight: bold;
+}
+#btnSave{
+    background-color:lightgreen;
+    font-size: 18px;
+    color: blue;
+}
+#basic-addon1 i{
+    font-size: 18px;
+    color: aquamarine;
+}
+

@@ -14,5 +14,10 @@ namespace PJMS_Web.Controllers
             ProjectBL projectBL = new ProjectBL();
             return Ok(projectBL.GetProject(projectModel));
         }
+       /* public string InsertEmployee([FromBody] ProjectModel projectModel)
+        {
+            ProjectBL projectBL = new ProjectBL();
+            return projectBL.InsertProject(projectModel);
+        }*/
     }
 }

@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <title>PJMS[@ViewBag.Title]</title>
@@ -24,7 +23,6 @@
         {
             Session["UserInfo"] = "sa" + '_' + "Admin";
         }
-
         string obj = Session["UserInfo"].ToString();
         string ID = obj.Split('_')[0];
         string Name = obj.Split('_')[1];
@@ -35,10 +33,8 @@
     <div id="page-loader" class="fade show">
         <span class="spinner"></span>
     </div>
-
     <div id="page-container" class="page-container fade">
         <div id="header" class="header navbar-default">
-
             <div class="navbar-header">
                 <a href="#" class="navbar-brand"><span class="navbar-logo"><i class="ion-ios-cloud"></i></span> <b class="mr-1">OSM</b></a>
                 <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
@@ -51,7 +47,7 @@
             <ul class="navbar-nav navbar-right">
                 <li class="dropdown navbar-user">
                     <a href="page_blank.html#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="@Url.Content("~/SystemImages/LoginUser.png")" alt="" />
+
                         <span class="d-none d-md-inline" style="font-weight:600">@Name</span> <b class="caret"></b>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
@@ -63,24 +59,12 @@
                         <a href="javascript:;" class="dropdown-item">Log Out</a>
                     </div>
                 </li>
-            </ul>
-
+            </ul>          
         </div>
         <div id="sidebar" class="sidebar" style="padding-top:50px;">
 
             <div data-scrollbar="true" data-height="100%">
-                <ul class="nav">
-                    @*<li class="nav-profile">
-                            <a href="javascript:;" data-toggle="nav-profile">
-                                <div class="cover with-shadow"></div>
-                                <div class="image" style="background-color:lightgoldenrodyellow">
-                                    <img src="@Url.Content("~/SystemImages/LoginUser.png")" alt="" />
-                                </div>
-                                <div class="info">
-                                    <b class="caret pull-right"></b>@Name
-                                </div>
-                            </a>
-                        </li>*@
+                <ul class="nav">                   
                     <li>
                         <ul class="nav nav-profile">
                             <li><a href="javascript:;"><i class="fa fa-cog"></i> Settings</a></li>
@@ -96,27 +80,27 @@
                             <i class="ion-ios-pulse"></i>
                             <span>Dashboard</span>
                         </a>
+                    </li>                  
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Project</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="@Url.Action("ProjectList","Project")">Project List</a></li>
+                            <li><a href="@Url.Action("ProjectEntry","Project")">Project Entry</a></li>
+                        </ul>
                     </li>
-                    @*<li class="has-sub">
-                            <a href="javascript:;">
-                                <b class="caret"></b>
-                                <i class="ion-ios-person bg-gradient-aqua"></i>
-                                <span>Users</span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li><a href="@Url.Action("UserList","User")">User List</a></li>
-                                <li><a href="@Url.Action("UserEntry","User")">User Entry</a></li>
-                            </ul>
-                        </li>*@
                     <li class="has-sub">
                         <a href="javascript:;">
                             <b class="caret"></b>
                             <i class="ion-ios-person bg-gradient-aqua"></i>
-                            <span>Customer</span>
+                            <span>Employee</span>
                         </a>
                         <ul class="sub-menu">
-                            <li><a href="@Url.Action("CustomerList","Customer")">Customer List</a></li>
-                            <li><a href="@Url.Action("CustomerEntry","Customer")">Customer Entry</a></li>
+                            <li><a href="@Url.Action("EmployeeList","Employee")">Employee List</a></li>
+                            <li><a href="@Url.Action("EmployeeEntry","Employee")">Employee Entry</a></li>
                         </ul>
                     </li>
                     <li class="has-sub">
@@ -160,6 +144,7 @@
                         </a>
                         <ul class="sub-menu">
                             <li><a href="@Url.Action("OrderList","Order")">Order List</a></li>
+                            <li><a href="@Url.Action("OrderComform","Order")">Order Comform</a></li>
                             <li><a href="@Url.Action("OrderEntry","Order")">Order Entry</a></li>
                             <li><a href="@Url.Action("ShopOrderItemCheck","Order")">Shop Order</a></li>
                         </ul>

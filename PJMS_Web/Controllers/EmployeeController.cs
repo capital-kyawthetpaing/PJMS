@@ -1,25 +1,23 @@
 ﻿using PJMS_Model;
-using Project_BL;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace PJMS_Web.Controllers
 {
-    public class ProjectController : Controller 
+    public class EmployeeController : Controller
     {
-        // GET: Project
-        public ActionResult ProjectList()
+        // GET: Employee
+        public ActionResult EmployeeList()
+        {
+            return View();
+
+        }
+        public ActionResult EmployeeEntry()
         {
             return View();
         }
-        public ActionResult ProjectEntry()
-        {
-            return View();
-        }
-       
     }
 }
