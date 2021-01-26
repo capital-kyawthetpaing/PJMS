@@ -31,7 +31,7 @@
             var obj = {
                 EmployeeCD: ''
             };
-                var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmpApi")',obj);
+                var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeApi")',obj);
                 alert(response);
                 BindTable(response);
             });
