@@ -20,11 +20,10 @@ namespace Project_BL
         {
             projectModel.Sqlprms = new SqlParameter[2];
             projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
-            projectModel.Sqlprms[1] = new SqlParameter("@ProjectName", projectModel.ProjectName);
-            
+            projectModel.Sqlprms[1] = new SqlParameter("@ProjectName", projectModel.ProjectName);        
             return cKMDL.SelectJson("Project_Select", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
         }
-        /*public string InsertProject(ProjectModel projectModel)
+        public string InsertProject(ProjectModel projectModel)
         {
             projectModel.Sqlprms = new SqlParameter[5];
             projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
@@ -33,6 +32,16 @@ namespace Project_BL
             projectModel.Sqlprms[3] = new SqlParameter("@PresonInCharge", projectModel.PresonInCharge);
             projectModel.Sqlprms[4] = new SqlParameter("@ContractDate", projectModel.ContractDate);
             return cKMDL.InsertUpdateDeleteData("Project_Insert", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
-        }*/
+        }
+        public string UpdateProject(ProjectModel projectModel)
+        {
+            projectModel.Sqlprms = new SqlParameter[5];
+            projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
+            projectModel.Sqlprms[1] = new SqlParameter("@ProjectName", projectModel.ProjectName);
+            projectModel.Sqlprms[2] = new SqlParameter("@CompanyName", projectModel.CompanyName);
+            projectModel.Sqlprms[3] = new SqlParameter("@PresonInCharge", projectModel.PresonInCharge);
+            projectModel.Sqlprms[4] = new SqlParameter("@ContractDate", projectModel.ContractDate);
+            return cKMDL.InsertUpdateDeleteData("Project_Update", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
+        }
     }
 }

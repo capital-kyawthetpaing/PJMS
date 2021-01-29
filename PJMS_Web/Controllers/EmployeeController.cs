@@ -9,7 +9,7 @@ namespace PJMS_Web.Controllers
 {
     public class EmployeeController : Controller
     {
-        // GET: Employee
+        // GET: Test
         public ActionResult EmployeeList()
         {
             return View();
@@ -18,6 +18,12 @@ namespace PJMS_Web.Controllers
         public ActionResult EmployeeEntry()
         {
             return View();
+     
+        }
+        [HttpPost]
+        public ActionResult Employee_Save(EmployeeModel employeeModel)
+        {
+            return RedirectToAction("EmployeeList");
         }
     }
 }

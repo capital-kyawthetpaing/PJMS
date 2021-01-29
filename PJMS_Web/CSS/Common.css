@@ -50,6 +50,11 @@ font-weight: bold;
     font-size: 18px;
     color: blue;
 }
+#btnUpdate {
+    background-color: lightgreen;
+    font-size: 18px;
+    color: blue;
+}
 #basic-addon1 i{
     font-size: 18px;
     color: aquamarine;

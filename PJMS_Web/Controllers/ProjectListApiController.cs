@@ -4,7 +4,7 @@ using Project_BL;
 
 namespace PJMS_Web.Controllers
 {
-    public class ProjectApiController : ApiController
+    public class ProjectListApiController : ApiController
     {
         [UserAuthentication]
         [HttpPost]
@@ -14,10 +14,6 @@ namespace PJMS_Web.Controllers
             ProjectBL projectBL = new ProjectBL();
             return Ok(projectBL.GetProject(projectModel));
         }
-       /* public string InsertEmployee([FromBody] ProjectModel projectModel)
-        {
-            ProjectBL projectBL = new ProjectBL();
-            return projectBL.InsertProject(projectModel);
-        }*/
+       
     }
 }

@@ -26,8 +26,15 @@ namespace Employee_BL
         {
             employeeModel.Sqlprms = new SqlParameter[2];
             employeeModel.Sqlprms[0] = new SqlParameter("@EmployeeCD", employeeModel.EmployeeCD);
-           employeeModel.Sqlprms[1] = new SqlParameter("@EmployeeName", employeeModel.EmployeeName);
+            employeeModel.Sqlprms[1] = new SqlParameter("@EmployeeName", employeeModel.EmployeeName);
             return cKMDL.InsertUpdateDeleteData("Employee_Insert", ff.GetConnectionWithDefaultPath("PJMS"), employeeModel.Sqlprms);
+        }
+        public string UpdateEmployee(EmployeeModel employeeModel)
+        {
+            employeeModel.Sqlprms = new SqlParameter[2];
+            employeeModel.Sqlprms[0] = new SqlParameter("@EmployeeCD", employeeModel.EmployeeCD);
+            employeeModel.Sqlprms[1] = new SqlParameter("@EmployeeName", employeeModel.EmployeeName);
+            return cKMDL.InsertUpdateDeleteData("Employee_Update", ff.GetConnectionWithDefaultPath("PJMS"), employeeModel.Sqlprms);
         }
 
     }
