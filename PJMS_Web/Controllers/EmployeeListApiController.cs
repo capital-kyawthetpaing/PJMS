@@ -19,5 +19,15 @@ namespace PJMS_Web.Controllers
             EmployeeBL employeeBL = new EmployeeBL();
             return Ok(employeeBL.GetEmployee(employeeModel));
         }
+
+        [UserAuthentication]
+        [HttpPost]
+        [ActionName("InsertEmployee")]
+        public IHttpActionResult InsertEmployee()
+        {
+            //EmployeeBL employeeBL = new EmployeeBL();
+            //return Ok(employeeBL.InsertEmployee(employeeModel));
+            return Ok(true);
+        }
     }
 }
