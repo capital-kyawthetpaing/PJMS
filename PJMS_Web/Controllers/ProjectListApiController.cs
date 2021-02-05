@@ -8,12 +8,28 @@ namespace PJMS_Web.Controllers
     {
         [UserAuthentication]
         [HttpPost]
-        [ActionName("GetProject")]
+        [ActionName("GetProject")]     
         public IHttpActionResult GetProject([FromBody] ProjectModel projectModel)
         {
             ProjectBL projectBL = new ProjectBL();
             return Ok(projectBL.GetProject(projectModel));
         }
-       
+
+        [UserAuthentication]
+        [HttpPost]
+        [ActionName("InsertProject")]
+        public IHttpActionResult InsertProject()
+        {            
+            return Ok(true);
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        [ActionName("UpdateProject")]
+        public IHttpActionResult UpdateProject()
+        {
+            return Ok(true);
+        }
+
     }
 }

@@ -158,11 +158,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectListApiController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
-    <Compile Include="Controllers\ProjectEntryApiController.cs" />
     <Compile Include="Controllers\EmployeeListApiController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="Controllers\UpdateApiController.cs" />
     <Compile Include="Controllers\UserAuthentication.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">

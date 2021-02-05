@@ -139,7 +139,7 @@
                     PresonInCharge: $("#txtPresonInCharge").val(),
                     ContractDate: $("#txtContractDate").val(),
                 };
-                CalltoApiController('@Url.Action("InsertProject", "api/Test")', obj);
+                CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
 
             });
             $('#btnUpdate').click(function () {
@@ -150,7 +150,7 @@
                     PresonInCharge: $("#txtPresonInCharge").val(),
                     ContractDate: $("#txtContractDate").val(),
                 };
-                CalltoApiController('@Url.Action("UpdateProject", "api/Test")', obj);
+                CalltoApiController('@Url.Action("UpdateProject", "api/ProjectListApi")', obj);
             });
         </script>
     }

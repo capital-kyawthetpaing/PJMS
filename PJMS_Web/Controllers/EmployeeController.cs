@@ -20,7 +20,6 @@ namespace PJMS_Web.Controllers
             return View();
      
         }
-        [HttpPost]
         public ActionResult Employee_Save(EmployeeModel employeeModel)
         {
             return RedirectToAction("EmployeeList");
