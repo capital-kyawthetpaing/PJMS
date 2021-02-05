@@ -161,7 +161,6 @@
     <Compile Include="Controllers\ProjectEntryApiController.cs" />
     <Compile Include="Controllers\EmployeeListApiController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
-    <Compile Include="Controllers\EmployeeEntryApiController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UpdateApiController.cs" />
     <Compile Include="Controllers\UserAuthentication.cs" />

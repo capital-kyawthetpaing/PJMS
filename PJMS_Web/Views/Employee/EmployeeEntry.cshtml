@@ -76,14 +76,14 @@
                 EmployeeCD: $("#txtEmployeeCD").val(),
                 EmployeeName: $("#txtEmployeeName").val()
             };
-            CalltoApiController('@Url.Action("InsertEmployee", "api/EmployeeEntryApi")', obj);
+            CalltoApiController('@Url.Action("InsertEmployee", "api/EmployeeListApi")', obj);
         });
         $('#btnUpdate').click(function () {
             var obj = {
                 EmployeeCD: $("#txtEmployeeCD").val(),
                 EmployeeName: $("#txtEmployeeName").val(),                   
             };
-            CalltoApiController('@Url.Action("UpdateEmployee", "api/UpdateApi")', obj);
+            CalltoApiController('@Url.Action("UpdateEmployee", "api/EmployeeListApi")', obj);
         });
     </script>
 }

@@ -18,12 +18,6 @@ namespace PJMS_Web.Controllers
         {
             ProjectBL projectBL = new ProjectBL();
             return projectBL.UpdateProject(projectModel);
-        }
-        [ActionName("UpdateEmployee")]
-        public string UpdateEmployee([FromBody] EmployeeModel employeeModel)
-        {
-            EmployeeBL employeeBL = new EmployeeBL();
-            return employeeBL.UpdateEmployee(employeeModel);
-        }
+        }       
     }
 }
