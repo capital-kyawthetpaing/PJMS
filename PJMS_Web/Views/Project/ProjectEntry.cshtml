@@ -131,6 +131,28 @@
     @section Scripts
     {
         <script type="text/javascript">
+            $(document).ready(function () {
+            var mode = '@Model.Mode';
+            if (mode == 'Edit') {
+                var obj = {
+                    ProjectCD: '@Model.ProjectCD',
+                    ProjectName: '@Model.ProjectName',
+                    CompanyName: '@Model.CompanyName',
+                    PresonInCharge: '@Model.PresonInCharge',
+                    ContractDate: '@Model.ContractDate',
+                };
+                var data = CalltoApiController('@Url.Action("GetProject", "api/ProjectListApi")', obj);
+                var EData = JSON.parse(data);
+                $("#txtProjectCD").val(EData[0].ProjectCD);
+                $('#txtProjectCD').attr('readonly', false);
+                $("#txtProjectName").val(EData[0].ProjectName);
+                $("#txtCompanyName").val(EData[0].CompanyName);
+                $("#txtPresonInCharge").val(EData[0].PresonInCharge);
+                $("#txtContractDate").val(EData[0].ContractDate);
+                $("#btnSave").css("display", "none");
+                $("#btnUpdate").css("display", "block");
+            }
+        });
             $('#btnSave').click(function () {
                 var obj = {
                     ProjectCD: $("#txtProjectCD").val(),
@@ -142,6 +164,7 @@
                 CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
 
             });
+            $("#btnUpdate").css("display", "none");
             $('#btnUpdate').click(function () {
                 var obj = {
                     ProjectCD: $("#txtProjectCD").val(),

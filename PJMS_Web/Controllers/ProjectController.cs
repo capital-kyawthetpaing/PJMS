@@ -16,12 +16,13 @@ namespace PJMS_Web.Controllers
         {
             return View();
         }
-        public ActionResult ProjectEntry()
+        public ActionResult ProjectEntry(ProjectModel pModel)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(pModel.Mode))
+                pModel.Mode = "New";
+            return View(pModel);
 
         }
-        [HttpPost]
         public ActionResult Project_Save(ProjectModel projectModel)
         {
             return RedirectToAction("ProjectList");

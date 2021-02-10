@@ -19,8 +19,9 @@ namespace PJMS_Web.Controllers
         [HttpPost]
         [ActionName("InsertProject")]
         public IHttpActionResult InsertProject([FromBody] ProjectModel projectModel)
-        {            
-            return Ok(true);
+        {
+            ProjectBL projectBL = new ProjectBL();
+            return Ok(projectBL.InsertProject(projectModel));
         }
 
         [UserAuthentication]
@@ -28,7 +29,8 @@ namespace PJMS_Web.Controllers
         [ActionName("UpdateProject")]
         public IHttpActionResult UpdateProject([FromBody] ProjectModel projectModel)
         {
-            return Ok(true);
+            ProjectBL projectBL = new ProjectBL();
+            return Ok(projectBL.UpdateProject(projectModel));
         }
 
     }

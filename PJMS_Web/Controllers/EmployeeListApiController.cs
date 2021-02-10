@@ -23,20 +23,19 @@ namespace PJMS_Web.Controllers
         [UserAuthentication]
         [HttpPost]
         [ActionName("InsertEmployee")]
-        public IHttpActionResult InsertEmployee()
+        public IHttpActionResult InsertEmployee([FromBody] EmployeeModel employeeModel)
         {
-            //EmployeeBL employeeBL = new EmployeeBL();
-            //return Ok(employeeBL.InsertEmployee(employeeModel));
-            return Ok(true);
+            EmployeeBL employeeBL = new EmployeeBL();
+            return Ok(employeeBL.InsertEmployee(employeeModel));
         }
 
         [UserAuthentication]
         [HttpPost]
         [ActionName("UpdateEmployee")]
-        public IHttpActionResult UpdateEmployee()
+        public IHttpActionResult UpdateEmployee([FromBody] EmployeeModel employeeModel)
         {
-            //EmployeeBL employeeBL = new EmployeeBL();
-            return Ok(true);
+            EmployeeBL employeeBL = new EmployeeBL();
+            return Ok(employeeBL.UpdateEmployee(employeeModel));
         }
     }
 }

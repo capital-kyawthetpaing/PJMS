@@ -20,7 +20,6 @@ namespace Employee_BL
             employeeModel.Sqlprms[0] = new SqlParameter("@EmployeeCD", employeeModel.EmployeeCD);
             employeeModel.Sqlprms[1] = new SqlParameter("@EmployeeName", employeeModel.EmployeeName);
             return cKMDL.SelectJson("Employee_Select", ff.GetConnectionWithDefaultPath("PJMS"), employeeModel.Sqlprms);
-
         }
         public string InsertEmployee(EmployeeModel employeeModel)
         {
@@ -35,7 +34,6 @@ namespace Employee_BL
             employeeModel.Sqlprms[0] = new SqlParameter("@EmployeeCD", employeeModel.EmployeeCD);
             employeeModel.Sqlprms[1] = new SqlParameter("@EmployeeName", employeeModel.EmployeeName);
             return cKMDL.InsertUpdateDeleteData("Employee_Update", ff.GetConnectionWithDefaultPath("PJMS"), employeeModel.Sqlprms);
-        }
-
+        }      
     }
 }

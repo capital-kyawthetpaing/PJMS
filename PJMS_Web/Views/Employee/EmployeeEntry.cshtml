@@ -71,6 +71,23 @@
 @section Scripts
     {
     <script type="text/javascript">
+        $(document).ready(function () {
+            var mode = '@Model.Mode';
+            if (mode == 'Edit') {
+                var obj = {
+                    EmployeeCD: '@Model.EmployeeCD',
+                    EmployeeName: '@Model.EmployeeName',
+                };
+                var data = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeListApi")', obj);
+                var EData = JSON.parse(data);
+                $("#txtEmployeeCD").val(EData[0].EmployeeCD);
+                $('#txtEmployeeCD').attr('readonly', false);
+                $("#txtEmployeeName").val(EData[0].EmployeeName);
+                $("#btnSave").css("display", "none");
+                $("#btnUpdate").css("display", "block");
+            }
+        });
+
         $('#btnSave').click(function () {
             var obj = {
                 EmployeeCD: $("#txtEmployeeCD").val(),
@@ -78,11 +95,12 @@
             };
             CalltoApiController('@Url.Action("InsertEmployee", "api/EmployeeListApi")', obj);
         });
+        $("#btnUpdate").css("display", "none");
         $('#btnUpdate').click(function () {
             var obj = {
                 EmployeeCD: $("#txtEmployeeCD").val(),
-                EmployeeName: $("#txtEmployeeName").val(),                   
-            };
+                EmployeeName: $("#txtEmployeeName").val(),
+            }; 
             CalltoApiController('@Url.Action("UpdateEmployee", "api/EmployeeListApi")', obj);
         });
     </script>

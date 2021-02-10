@@ -20,12 +20,7 @@
                         <th>ProjectName</th>
                         <th>TeamID</th>
                         <th>CompanyName</th>
-                        <th>PresonInCharge</th>
-                        <th>ContractDate</th>
-                        <th>CreatedBy</th>
-                        <th>CreatedDate</th>
-                        <th>UpdatedBy</th>
-                        <th>UpdatedDate</th>
+                        <th>PresonInCharge</th>                        
                     </tr>
                 </thead>
                 <tbody>
@@ -64,12 +59,7 @@
                         { "data": "ProjectName", "className": "align-center", "width": "15%" },
                         { "data": "TeamID", "className": "align-center", "width": "2%" },
                         { "data": "CompanyName", "className": "align-center", "width": "13%" },
-                        { "data": "PresonInCharge", "className": "align-center", "width": "9%" },
-                        { "data": "ContractDate","className": "align-center", "width": "16%" },
-                        { "data": "CreatedBy", "className": "align-center", "width": "2%" },
-                        { "data": "CreatedDate", "className": "align-center", "width": "17%" },
-                        { "data": "UpdatedBy", "className": "align-center", "width": "2%" },
-                        { "data": "UpdatedDate", "className": "align-center", "width": "15%" }
+                        { "data": "PresonInCharge", "className": "align-center", "width": "9%" }                       
                     ],
                     "buttons": [
                         {
@@ -95,16 +85,13 @@
                         "targets": 0,
                         "data": "ProjectCD",
                         "render": function (data) {
-                            return '<input type="button" class="btn btn-info" style="width:70px;margin:3px;" onclick="ProjectEdit(\'' + data + '\',\'Edit\')" value="Update">';
+                            return '<input type="button" class="btn btn-info" style="width:70px;margin:3px;" onclick="ProjectEdit(\'' + data + '\',\'Edit\')" value="Edit">';
                        },
                     }]
                 });
             }
-
-            //today
             function ProjectEdit(data, mode) {
                 window.location.href = '@Url.Action("ProjectEntry", "Project")?ProjectCD=' + data + "&Mode=" + mode;
-                alert(data);
             }
            
         </script>

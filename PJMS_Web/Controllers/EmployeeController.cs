@@ -15,9 +15,11 @@ namespace PJMS_Web.Controllers
             return View();
 
         }
-        public ActionResult EmployeeEntry()
+        public ActionResult EmployeeEntry(EmployeeModel eModel)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(eModel.Mode))
+                eModel.Mode = "New";
+            return View(eModel);
      
         }
         public ActionResult Employee_Save(EmployeeModel employeeModel)
