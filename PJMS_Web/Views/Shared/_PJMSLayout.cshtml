@@ -105,68 +105,24 @@
                     <li class="has-sub">
                         <a href="javascript:;">
                             <b class="caret"></b>
-                            <i class="ion-ios-world bg-green-lighter"></i>
-                            <span>Shop</span>
+                            <i class="ion-ios-person bg-gradient-aqua"></i>
+                            <span>Project Team</span>
                         </a>
                         <ul class="sub-menu">
-                            <li><a href="@Url.Action("ShopList","Shop")">Shop List</a></li>
-                            <li><a href="@Url.Action("ShopEntry","Shop")">Shop Entry</a></li>
+                            <li><a href="@Url.Action("ProjectTeamSetup","Project")">ProjectTeamSetup</a></li>
                         </ul>
                     </li>
-                    <li class="has-sub">
-                        <a href="javascript:;">
-                            <b class="caret"></b>
-                            <i class="ion-ios-book bg-yellow-lighter"></i>
-                            <span>Brand</span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li><a href="@Url.Action("BrandList","Brand")">Brand List</a></li>
-                            <li><a href="@Url.Action("BrandEntry","Brand")">Brand Entry</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-sub">
-                        <a href="javascript:;">
-                            <b class="caret"></b>
-                            <i class="ion-ios-briefcase bg-gradient-orange"></i>
-                            <span>Item</span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li><a href="@Url.Action("ItemList","Item")">Item List</a></li>
-                            <li><a href="@Url.Action("ItemEntry","Item")">Item Entry</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-sub">
-                        <a href="javascript:;">
-                            <b class="caret"></b>
-                            <i class="ion-ios-list bg-gradient-pink"></i>
-                            <span>Order</span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li><a href="@Url.Action("OrderList","Order")">Order List</a></li>
-                            <li><a href="@Url.Action("OrderComform","Order")">Order Comform</a></li>
-                            <li><a href="@Url.Action("OrderEntry","Order")">Order Entry</a></li>
-                            <li><a href="@Url.Action("ShopOrderItemCheck","Order")">Shop Order</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="ion-ios-arrow-back"></i></a></li>
-
+                   <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="ion-ios-arrow-back"></i></a></li>
                 </ul>
-
             </div>
-
         </div>
         <div class="sidebar-bg"></div>
-
-
         <div id="content" class="content">
             @RenderBody()
         </div>
     </div>
-
-
     <script src="@Url.Content("~/JS/app.min.js")"></script>
     <script src="@Url.Content("~/JS/apple.min.js")"></script>
-
     <script src="@Url.Content("~/JS/jquery.dataTables.min.js")"></script>
     <script src="@Url.Content("~/JS/dataTables.bootstrap4.min.js")"></script>
     <script src="@Url.Content("~/JS/dataTables.responsive.min.js")"></script>

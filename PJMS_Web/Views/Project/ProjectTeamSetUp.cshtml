@@ -1,0 +1,130 @@
+﻿@model PJMS_Model.ProjectModel
+
+@{
+    ViewBag.Title = "ProjectTeamSetUp";
+    Layout = "~/Views/Shared/_PJMSLayout.cshtml";
+}
+<div class="panel-body">
+    <div class="container-fluid" id="content_zip">
+        <div class="row">
+            <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
+                <div class="card" id="border-entry">
+                    <div class="card-body">
+                        <h2>Project's Team Setup</h2>
+                        <div>
+                            @Html.LabelFor(model => model.Teams, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.RadioButton("Teams", "SystemTeam", new { @checked = true })SystemTeams
+                            @Html.RadioButton("Teams", "SeisakuTeam")SeisakuTeams
+                        </div>
+                        <div>
+                            @Html.LabelFor(model => model.Projects, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @*<input type="button" id="btn" value=" Selected Project">*@
+                            <select id="btn">
+                                <option></option>
+                            </select>
+                        </div>
+                        @*<div class="form-group row">
+                            <label class="col-lg-2 control-label" for="hobies">Dropdown List using DropdownListFor:</label>
+                        @Html.DropDownListFor(model => model.ProjectName, ViewBag.pjs as SelectList,"Select")
+                            <div class="col-lg-10">
+                                @Html.DropDownListFor(model => model.ProjectName, Model.M_Project, "--Select Employee--", new { @class = "form-control" })
+                            </div>
+                        </div>*@
+                        <div>
+                            @Html.LabelFor(model => model.ProjectLeaders, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <a href="" class="trigger-custom">Add Leader</a>
+                            <div class="iziModal-wrap" style="height: auto;">
+                                <div class="iziModal-content" style="padding: 0px;">
+                                    <div class="sections">
+                                        <section>
+                                            <input type="text" placeholder="ID"><br />
+                                            <input type="text" placeholder="Name"><br />
+                                            <input type="text" placeholder="Team"><br />
+                                            <label for="check"><input type="checkbox" name="checkbox" id="check" value="1"> I agree to the <u>Terms</u>.</label>
+                                            <footer>
+                                                <button data-izimodal-close="" data-izimodal-transitionout="bounceOutDown">Cancel</button>
+                                                <button class="submit">Add Leader</button>
+                                            </footer>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            @Html.LabelFor(model => model.ProjectMembers, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <a href="" class="trigger-custom">Add Member</a>
+                            <div class="iziModal-wrap" style="height: auto;">
+                                <div class="iziModal-content" style="padding: 0px;">
+                                    <div class="sections">
+                                        <section>
+                                            <input type="text" placeholder="ID"><br />
+                                            <input type="text" placeholder="Name"><br />
+                                            <input type="text" placeholder="Team"><br />
+                                            <label for="check"><input type="checkbox" name="checkbox" id="check" value="1"> I agree to the <u>Terms</u>.</label>
+                                            <footer>
+                                                <button data-izimodal-close="" data-izimodal-transitionout="bounceOutDown" id="">Cancel</button>
+                                                <button class="submit">Add Leader</button>
+                                            </footer>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 text-center">
+
+                            <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
+                                <button id="btnSave" class="btn col-xl-2">Save / Update</button>
+                                <button id="btnCancel" class="btn col-xl-2">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+            const btn = document.querySelector('#btn');
+            btn.onclick = function () {
+                const teams = document.querySelectorAll('input[name="Teams"]');
+                let selectedProject;
+                for (const team of teams) {
+                    if (team.checked) {
+                        selectedProject = team.value;
+                        if (selectedProject == 'SystemTeam') {
+                            $(document).ready(function () {
+                                let obj = {
+                                    ProjectCD: ''
+                                };
+                                let r = JSON.parse(CalltoApiController('@Url.Action("GetProject1", "api/ProjectListApi")', obj));
+                                $("#btn").empty();
+                                $("#btn").prepend("<option value='' selected='selected'></option>");
+                                for (var i = 0; i < r.length; i++)
+                                {
+                                   $("#btn").append('<option value ="' + r[i].ProjectCD + '">' + r[i].ProjectName + '</option>');
+                                }
+                            });
+                        }
+                        else {
+                            $(document).ready(function () {
+                                let obj = {
+                                    ProjectCD: ''
+                                };
+                                let r = JSON.parse(CalltoApiController('@Url.Action("GetProject2", "api/ProjectListApi")', obj));
+                                $("#btn").empty();
+                                $("#btn").prepend("<option value='' selected='selected'></option>");
+                                for (var i = 0; i < r.length; i++)
+                                {
+                                    $("#btn").append('<option value ="' + r[i].ProjectCD + '">' + r[i].ProjectName + '</option>');
+                                }
+                            });
+                        }
+                        break;
+                    }
+                }
+            };
+    </script>
+}

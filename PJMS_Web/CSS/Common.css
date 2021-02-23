@@ -45,19 +45,62 @@
 #border-entry {
 font-weight: bold;
 }
-#btnSave{
-    background-color:lightgreen;
+#btnSave {
+    background-color: lightgreen;
     font-size: 18px;
     color: blue;
+    margin-top: 5px;
 }
 #btnUpdate {
     background-color: lightgreen;
     font-size: 18px;
     color: blue;
-    margin-left:450px;
+    margin-left: 450px;
+    margin-top: 5px;
 }
 #basic-addon1 i{
     font-size: 18px;
     color: aquamarine;
+}
+#btnCancel {
+    background-color: lightcoral;
+    font-size: 18px;
+    color: blue;
+    margin-top: 5px;
+}
+#btn{
+    color:red;
+}
+/*iziMoal*/
+.iziModal.hasScroll .iziModal-wrap {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.iziModal .iziModal-wrap {
+    width: 100%;
+    position: relative;
+}
+.iziModal * {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+#modalcancel {
+    border-radius: 3px 0 0 3px;
+    background: red;
+}
+#modal-custom section button:nth-child(2) {
+    /* border-radius: 0 3px 3px 0; */
+}
+.sections submit {
+    background: #28CA97;
+    color: white;
+    margin: 0;
+    border: 0;
+    cursor: pointer;
+    width: 50%;
+    float: left;
+    height: 46px;
+    padding: 0;
+
 }
 

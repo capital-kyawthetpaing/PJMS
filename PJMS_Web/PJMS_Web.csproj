@@ -286,6 +286,7 @@
     <Content Include="Views\Project\ProjectEntry.cshtml" />
     <Content Include="Views\Employee\EmployeeList.cshtml" />
     <Content Include="Views\Employee\EmployeeEntry.cshtml" />
+    <Content Include="Views\Project\ProjectTeamSetUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
