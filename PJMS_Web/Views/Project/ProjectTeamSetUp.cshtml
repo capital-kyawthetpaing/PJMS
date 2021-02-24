@@ -20,58 +20,46 @@
                             @Html.LabelFor(model => model.Projects, htmlAttributes: new { @class = "control-label col-md-2" })
                             @*<input type="button" id="btn" value=" Selected Project">*@
                             <select id="btn">
-                                <option></option>
+                                <option>Select Project</option>
                             </select>
                         </div>
-                        @*<div class="form-group row">
-                            <label class="col-lg-2 control-label" for="hobies">Dropdown List using DropdownListFor:</label>
-                        @Html.DropDownListFor(model => model.ProjectName, ViewBag.pjs as SelectList,"Select")
-                            <div class="col-lg-10">
-                                @Html.DropDownListFor(model => model.ProjectName, Model.M_Project, "--Select Employee--", new { @class = "form-control" })
-                            </div>
-                        </div>*@
                         <div>
                             @Html.LabelFor(model => model.ProjectLeaders, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <a href="" class="trigger-custom">Add Leader</a>
-                            <div class="iziModal-wrap" style="height: auto;">
-                                <div class="iziModal-content" style="padding: 0px;">
-                                    <div class="sections">
-                                        <section>
-                                            <input type="text" placeholder="ID"><br />
-                                            <input type="text" placeholder="Name"><br />
-                                            <input type="text" placeholder="Team"><br />
-                                            <label for="check"><input type="checkbox" name="checkbox" id="check" value="1"> I agree to the <u>Terms</u>.</label>
-                                            <footer>
-                                                <button data-izimodal-close="" data-izimodal-transitionout="bounceOutDown">Cancel</button>
-                                                <button class="submit">Add Leader</button>
-                                            </footer>
-                                        </section>
-                                    </div>
+                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight">Add Leader</a>
+                            <div class="modal" id="modal" style="height: auto; color: red">
+                                <div class="sections">
+                                    <section>
+                                        <input type="text" placeholder="ID"><br />
+                                        <input type="text" placeholder="Name"><br />
+                                        <input type="text" placeholder="Team"><br />
+                                        <label for="check"><input type="checkbox" name="checkbox" id="check" value="1"> I agree to the <u>Terms</u>.</label>
+                                        <footer>
+                                            <button data-izimodal-close="" data-izimodal-transitionout="bounceOutDown" id="">Cancel</button>
+                                            <button class="submit">Add</button>
+                                        </footer>
+                                    </section>
                                 </div>
                             </div>
                         </div>
                         <div>
                             @Html.LabelFor(model => model.ProjectMembers, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <a href="" class="trigger-custom">Add Member</a>
-                            <div class="iziModal-wrap" style="height: auto;">
-                                <div class="iziModal-content" style="padding: 0px;">
-                                    <div class="sections">
-                                        <section>
-                                            <input type="text" placeholder="ID"><br />
-                                            <input type="text" placeholder="Name"><br />
-                                            <input type="text" placeholder="Team"><br />
-                                            <label for="check"><input type="checkbox" name="checkbox" id="check" value="1"> I agree to the <u>Terms</u>.</label>
-                                            <footer>
-                                                <button data-izimodal-close="" data-izimodal-transitionout="bounceOutDown" id="">Cancel</button>
-                                                <button class="submit">Add Leader</button>
-                                            </footer>
-                                        </section>
-                                    </div>
+                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight">Add Member</a>
+                            <div class="modal" id="modal" style="height: auto;">
+                                <div class="sections">
+                                    <section>
+                                        <input type="text" placeholder="ID"><br />
+                                        <input type="text" placeholder="Name"><br />
+                                        <input type="text" placeholder="Team"><br />
+                                        <label for="check"><input type="checkbox" name="checkbox" id="check" value="1"> I agree to the <u>Terms</u>.</label>
+                                        <footer>
+                                            <button data-izimodal-close="" data-izimodal-transitionout="bounceOutDown" id="">Cancel</button>
+                                            <button class="submit">Add</button>
+                                        </footer>
+                                    </section>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-12 text-center">
-
                             <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
                                 <button id="btnSave" class="btn col-xl-2">Save / Update</button>
                                 <button id="btnCancel" class="btn col-xl-2">Cancel</button>
@@ -122,9 +110,15 @@
                                 }
                             });
                         }
-                        break;
+                        //break;
                     }
                 }
             };
+        $(".modal").iziModal({
+            title: "Add Leader or Member",
+            padding: 10,
+            TransitionIn: 'FadeInRight',
+            background: 'whitesmoke',
+        });
     </script>
 }

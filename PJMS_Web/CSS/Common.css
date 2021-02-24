@@ -72,35 +72,3 @@ font-weight: bold;
     color:red;
 }
 /*iziMoal*/
-.iziModal.hasScroll .iziModal-wrap {
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-.iziModal .iziModal-wrap {
-    width: 100%;
-    position: relative;
-}
-.iziModal * {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-}
-#modalcancel {
-    border-radius: 3px 0 0 3px;
-    background: red;
-}
-#modal-custom section button:nth-child(2) {
-    /* border-radius: 0 3px 3px 0; */
-}
-.sections submit {
-    background: #28CA97;
-    color: white;
-    margin: 0;
-    border: 0;
-    cursor: pointer;
-    width: 50%;
-    float: left;
-    height: 46px;
-    padding: 0;
-
-}
-
