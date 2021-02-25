@@ -11,55 +11,55 @@
                 <div class="card" id="border-entry">
                     <div class="card-body">
                         <h2>Project's Team Setup</h2>
-                        <div>
+                        <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
                             @Html.LabelFor(model => model.Teams, htmlAttributes: new { @class = "control-label col-md-2" })
                             @Html.RadioButton("Teams", "SystemTeam", new { @checked = true })SystemTeams
                             @Html.RadioButton("Teams", "SeisakuTeam")SeisakuTeams
                         </div>
                         <div>
                             @Html.LabelFor(model => model.Projects, htmlAttributes: new { @class = "control-label col-md-2" })
-                            @*<input type="button" id="btn" value=" Selected Project">*@
                             <select id="btn">
-                                <option>Select Project</option>
+                                <option value="" selected Disabled>--Select Project--</option>
                             </select>
                         </div>
-                        <div>
+                        <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
                             @Html.LabelFor(model => model.ProjectLeaders, htmlAttributes: new { @class = "control-label col-md-2" })
                             <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight">Add Leader</a>
                             <div class="modal" id="modal" style="height: auto; color: red">
                                 <div class="sections">
                                     <section>
-                                        <input type="text" placeholder="ID"><br />
-                                        <input type="text" placeholder="Name"><br />
-                                        <input type="text" placeholder="Team"><br />
+                                        <input type="text" placeholder="ID" id="LId"><br />
+                                        <input type="text" placeholder="Name" id="LName"><br />
+                                        <input type="text" placeholder="Team" id="LTeam"><br />
                                         <label for="check"><input type="checkbox" name="checkbox" id="check" value="1"> I agree to the <u>Terms</u>.</label>
                                         <footer>
-                                            <button data-izimodal-close="" data-izimodal-transitionout="bounceOutDown" id="">Cancel</button>
-                                            <button class="submit">Add</button>
+                                            <input type="submit" value="Clear" name="submit" onclick="Clear();">
+                                            @*//<button data-izimodal-close="" data-izimodal-transitionout="bounceOutDown" onclick="Clear();">Clear</button>*@
+                                            <button class="submit">Add Leader</button>
                                         </footer>
                                     </section>
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
                             @Html.LabelFor(model => model.ProjectMembers, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight">Add Member</a>
-                            <div class="modal" id="modal" style="height: auto;">
+                            <a href="#" data-izimodal-open="#modal1" data-izimodal-transitionin="fadeInRight">Add Member</a>
+                            <div class="modal1" id="modal1" style="height: auto; color:red;">
                                 <div class="sections">
                                     <section>
-                                        <input type="text" placeholder="ID"><br />
-                                        <input type="text" placeholder="Name"><br />
-                                        <input type="text" placeholder="Team"><br />
+                                        <input type="text" placeholder="ID" id="MId"><br />
+                                        <input type="text" placeholder="Name" id="MName"><br />
+                                        <input type="text" placeholder="Team" id="MTeam"><br />
                                         <label for="check"><input type="checkbox" name="checkbox" id="check" value="1"> I agree to the <u>Terms</u>.</label>
                                         <footer>
-                                            <button data-izimodal-close="" data-izimodal-transitionout="bounceOutDown" id="">Cancel</button>
-                                            <button class="submit">Add</button>
+                                            <input type="submit" value="Clear" name="submit" onclick="Clear();">
+                                            <button class="submit">Add Member</button>
                                         </footer>
                                     </section>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-12 text-center">
+                        <div class="col-xl-12 col-md-12 col-sm-12 mb-2 text-center">
                             <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
                                 <button id="btnSave" class="btn col-xl-2">Save / Update</button>
                                 <button id="btnCancel" class="btn col-xl-2">Cancel</button>
@@ -75,8 +75,8 @@
 @section Scripts
     {
     <script type="text/javascript">
-            const btn = document.querySelector('#btn');
-            btn.onclick = function () {
+        const btn = document.querySelector('#btn');
+        btn.onclick = function () {
                 const teams = document.querySelectorAll('input[name="Teams"]');
                 let selectedProject;
                 for (const team of teams) {
@@ -115,10 +115,26 @@
                 }
             };
         $(".modal").iziModal({
-            title: "Add Leader or Member",
+            title: "Add Leader",
             padding: 10,
             TransitionIn: 'FadeInRight',
-            background: 'whitesmoke',
+            theme: 'light',
+            headerColor: 'deepskyblue',
         });
+        $(".modal1").iziModal({
+            title: "Add Member",
+            padding: 10,
+            TransitionIn: 'FadeInRight',
+            theme: 'light',
+            headerColor: 'cadetblue',
+        });
+        function Clear() {
+            document.getElementById("LId").value = '';
+            document.getElementById("LName").value = '';
+            document.getElementById("LTeam").value = '';
+            document.getElementById("MId").value = '';
+            document.getElementById("MName").value = '';
+            document.getElementById("MTeam").value = '';
+        }
     </script>
 }
