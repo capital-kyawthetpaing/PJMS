@@ -1,13 +1,45 @@
 ﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <meta charset="utf-8" />
-    <title>Javascript in HTML File</title>
+    <title>Title of the Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <style>
+        .table{
+            border:dashed;
+        }
+    </style>
 </head>
+
 <body>
-    <script type="text/javascript">
-        
+    <form>
+        <select class="selectVal">
+            <option value="1">Tom</option>
+            <option value="2">John</option>
+            <option value="3">James</option>
+            <option value="4">Ann</option>
+            <option value="5">Maria</option>
+        </select>
+        <table class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>EmployeeCD</th>
+                    <th>EmployeeName</th>
+                    <th>ProjectName</th>
+                    <th id="p">Position</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </form>
+    <script>
+        $(document).ready(function () {
+            $("select.selectVal").change(function () {
+                let selectedItem = $(this).children("option:selected").text();
+                let t = document.getElementById('#p');
+                t.innerHTML = selectedItem;
+            });
+        });
     </script>
 </body>
 </html>

@@ -19,14 +19,14 @@
                         <div>
                             @Html.LabelFor(model => model.Projects, htmlAttributes: new { @class = "control-label col-md-2" })
                             <select id="btn">
-                                <option value="" selected Disabled>--Select Project--</option>
+                                <option value = ''>--Select Project--</option>
                             </select>
                         </div>
-                        <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
-                            @Html.LabelFor(model => model.ProjectLeaders, htmlAttributes: new { @class = "control-label col-md-2 " })
-                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight">Add Leader</a><br />
-                            @Html.LabelFor(model => model.ProjectMembers, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight">Add Member</a>
+                        <div class="col-xl-12 col-md-12 col-sm-12 mb-2" id="position">
+                            @Html.LabelFor(model => model.ProjectLeaders, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" class="leader">Add Leader</a><br />
+                            @Html.LabelFor(model => model.ProjectMembers, htmlAttributes: new { @class = "control-label col-md-2 ",})
+                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" id="member">Add Member</a>
                             <div class="modal" id="modal" style="height: auto">
                                 <div class="sections">
                                     <section>
@@ -40,8 +40,8 @@
                                             </thead>
                                             <tbody></tbody>
                                         </table>
-                                        <button type="button" id="btncancel" class="btn btn-dark col-md-4"><i class="fa fa-window-close"></i>&nbsp; Close</button>
-                                        <button type="button" id="btnadd" class="btn btn-dark col-md-4"><i class="fa fa-window-close"></i>&nbsp; Add Employee</button>
+                                        <button type="button" id="btnRemove" class="btn btn-dark col-md-4"><i class="fa fa-window-close"></i>&nbsp; Close</button>
+                                        <button type="button" id="btnAdd" class="btn btn-dark col-md-4"><i class="fa fa-window-close"></i>&nbsp; Add Employee</button>
                                     </section>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
 
 
 @section Scripts
-    {
+{
     <script type="text/javascript">
         const btn = document.querySelector('#btn');
         btn.onclick = function () {
@@ -77,11 +77,18 @@
                                 };
                                 let r = JSON.parse(CalltoApiController('@Url.Action("GetProject1", "api/ProjectListApi")', obj));
                                 $("#btn").empty();
-                                $("#btn").prepend("<option value='' selected='selected'></option>");
-                                for (var i = 0; i < r.length; i++)
-                                {
-                                   $("#btn").append('<option value ="' + r[i].ProjectCD + '">' + r[i].ProjectName + '</option>');
+                                $("#btn").prepend("<option value=''selected='selected'></option>");
+                                for (var i = 0; i < r.length; i++) {
+                                    $("#btn").append('<option value ="' + r[i].ProjectName + '">' + r[i].ProjectName + '</option>');
                                 }
+                               @* function getSelectedValue() {
+                                    var selectedValue = document.getElementById("btn").text;
+                                    alert(selectedValue);
+                                }*@
+                                @*$("select.btn").change(function () {
+                                    let selectedItem = $(this).children("option:selected").text();
+                                    alert(selectedItem);
+                                });*@
                             });
                         }
                         else {
@@ -94,11 +101,10 @@
                                 $("#btn").prepend("<option value='' selected='selected'></option>");
                                 for (var i = 0; i < r.length; i++)
                                 {
-                                    $("#btn").append('<option value ="' + r[i].ProjectCD + '">' + r[i].ProjectName + '</option>');
+                                    $("#btn").append('<option value ="' + r[i].ProjectName + '">' + r[i].ProjectName + '</option>');
                                 }
                             });
                         }
-                        //break;
                     }
                 }
             };
@@ -109,19 +115,25 @@
             theme: 'light',
             headerColor: 'deepskyblue',
         });
-        $('#btncancel').on('click', function (e) {
-            $('#modal').remove("");
+        $('#btnRemove').on('click', function (e) {
+            $('#modal').remove();
         });
+        $('#btnAdd').click(function () {
+            //$('#modal.leader').click(function () {
+            alert("Position");
+            //});
+        });
+        
         $(document).ready(function () {
             var obj = {
                 EmployeeCD: ''
             };
-                var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeListApi")',obj);
-                BindTable(response);
+            var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeListApi")', obj);
+            BindTable(response);
         });
         function BindTable(response) {
             table = $('#tblEmployee1').DataTable({
-                responsive: true,
+                resSelectListItemelectListItemelectListelectListonsive: true,
                 data: JSON.parse(response),
                 datasrc: "",
                 destroy: true,
@@ -136,10 +148,15 @@
                     "targets": 0,
                     "data": "EmployeeCD",
                     "render": function (data) {
-                        return '<input type="checkbox" data-val="true" data-val-required="The IsChecked field is required." id="IsChecked" name="IsChecked" value="true">';
+                        return '<input type="checkbox" data-val="true" data-val-required="The IsChecked field is required." name="IsChecked"  class="chkStatus" onchange="EditUser(this)">';
                     },
                 }],
             });
+        }
+        function EditUser(Item) {
+            if (Item.checked) {
+                $('input.chkStatus').not(Item).prop('checked', false);
+            }
         }
     </script>
 }
