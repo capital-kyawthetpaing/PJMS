@@ -16,7 +16,7 @@
                             @Html.RadioButton("Teams", "SystemTeam", new { @checked = true })SystemTeams
                             @Html.RadioButton("Teams", "SeisakuTeam")SeisakuTeams
                         </div>
-                        <div>
+                        <div class="col-xl-12 col-md-12 col-sm-12 mb-2" >
                             @Html.LabelFor(model => model.Projects, htmlAttributes: new { @class = "control-label col-md-2" })
                             <select id="btn">
                                 <option value = ''>--Select Project--</option>
@@ -120,7 +120,7 @@
         });
         $('#btnAdd').click(function () {
             //$('#modal.leader').click(function () {
-            alert("Position");
+            alert("Leader");
             //});
         });
         
