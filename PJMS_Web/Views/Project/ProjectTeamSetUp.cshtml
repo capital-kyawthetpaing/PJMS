@@ -10,7 +10,7 @@
             <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
                 <div class="card" id="border-entry">
                     <div class="card-body">
-                        <h2>Project's Team Setup</h2>
+                        <h2 class="mb-3">Project's Team Setup</h2>
                         <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
                             @Html.LabelFor(model => model.Teams, htmlAttributes: new { @class = "control-label col-md-2" })
                             @Html.RadioButton("Teams", "SystemTeam", new { @checked = true})SystemTeams
@@ -18,8 +18,8 @@
                         </div>
                         <div class="col-xl-12 col-md-12 col-sm-12 mb-2" >
                             @Html.LabelFor(model => model.Projects, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <select id="btn">
-                                <option value = ''>--Select Project--</option>
+                            <select id="selectProject">
+                                <option value = ''>---Select Project---</option>
                             </select>
                         </div>
                         <div class="col-xl-12 col-md-12 col-sm-12 mb-2" id="position">
@@ -58,12 +58,10 @@
         </div>
     </div>
 </div>
-
-
 @section Scripts
 {
     <script type="text/javascript">
-        const btn = document.querySelector('#btn');
+        const btn = document.querySelector('#selectProject');
         btn.onclick = function () {
                 const teams = document.querySelectorAll('input[name="Teams"]');
                 let selectedProject;
@@ -76,10 +74,10 @@
                                     ProjectCD: ''
                                 };
                                 let r = JSON.parse(CalltoApiController('@Url.Action("GetProject1", "api/ProjectListApi")', obj));
-                                $("#btn").empty();
-                                $("#btn").prepend("<option value=''selected='selected'></option>");
+                                $("#selectProject").empty();
+                                $("#selectProject").prepend("<option value=''selected='selected'></option>");
                                 for (var i = 0; i < r.length; i++) {
-                                    $("#btn").append('<option value ="' + r[i].ProjectName + '">' + r[i].ProjectName + '</option>');
+                                    $("#selectProject").append('<option value ="' + r[i].ProjectName + '">' + r[i].ProjectName + '</option>');
                                 }
                                @* function getSelectedValue() {
                                     var selectedValue = document.getElementById("btn").text;
@@ -97,11 +95,11 @@
                                     ProjectCD: ''
                                 };
                                 let r = JSON.parse(CalltoApiController('@Url.Action("GetProject2", "api/ProjectListApi")', obj));
-                                $("#btn").empty();
-                                $("#btn").prepend("<option value='' selected='selected'></option>");
+                                $("#selectProject").empty();
+                                $("#selectProject").prepend("<option value='' selected='selected'></option>");
                                 for (var i = 0; i < r.length; i++)
                                 {
-                                    $("#btn").append('<option value ="' + r[i].ProjectName + '">' + r[i].ProjectName + '</option>');
+                                    $("#selectProject").append('<option value ="' + r[i].ProjectName + '">' + r[i].ProjectName + '</option>');
                                 }
                             });
                         }
