@@ -27,7 +27,7 @@
                             <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" class="leader">Add Leader</a><br />
                             @Html.LabelFor(model => model.ProjectMembers, htmlAttributes: new { @class = "control-label col-md-2 ",})
                             <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" id="member">Add Member</a>
-                            <div class="modal" id="modal" style="height: auto">
+                            <div class="modal" id="modal" @*style="height: auto"*@>
                                 <div class="sections">
                                     <section>
                                         <table id="tblEmployee1" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
@@ -79,14 +79,6 @@
                                 for (var i = 0; i < r.length; i++) {
                                     $("#selectProject").append('<option value ="' + r[i].ProjectName + '">' + r[i].ProjectName + '</option>');
                                 }
-                               @* function getSelectedValue() {
-                                    var selectedValue = document.getElementById("btn").text;
-                                    alert(selectedValue);
-                                }*@
-                                @*$("select.btn").change(function () {
-                                    let selectedItem = $(this).children("option:selected").text();
-                                    alert(selectedItem);
-                                });*@
                             });
                         }
                         else {
@@ -111,6 +103,8 @@
             padding: 10,
             TransitionIn: 'FadeInRight',
             theme: 'light',
+            width: '700px',
+            height: '700px',
             headerColor: 'deepskyblue',
         });
         $('#btnRemove').on('click', function (e) {
