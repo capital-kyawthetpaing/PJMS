@@ -20,9 +20,10 @@ namespace Project_BL
         }
         public string GetProject(ProjectModel projectModel)
         {
-            projectModel.Sqlprms = new SqlParameter[2];
+            projectModel.Sqlprms = new SqlParameter[3];
             projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
-            projectModel.Sqlprms[1] = new SqlParameter("@ProjectName", projectModel.ProjectName);        
+            projectModel.Sqlprms[1] = new SqlParameter("@ProjectName", projectModel.ProjectName);
+            projectModel.Sqlprms[2] = new SqlParameter("@TeamID", projectModel.TeamID);
             return cKMDL.SelectJson("Project_Select", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
         }
         public string InsertProject(ProjectModel projectModel)
@@ -45,20 +46,6 @@ namespace Project_BL
             projectModel.Sqlprms[3] = new SqlParameter("@PresonInCharge", projectModel.PresonInCharge);
             projectModel.Sqlprms[4] = new SqlParameter("@ContractDate", projectModel.ContractDate);
             return cKMDL.InsertUpdateDeleteData("Project_Update", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
-        }
-        public string GetProject1(ProjectModel projectModel)
-        {
-            projectModel.Sqlprms = new SqlParameter[2];
-            projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
-            projectModel.Sqlprms[1] = new SqlParameter("@ProjectName", projectModel.ProjectName);
-            return cKMDL.SelectJson("Project_Select1", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
-        }
-        public string GetProject2(ProjectModel projectModel)
-        {
-            projectModel.Sqlprms = new SqlParameter[2];
-            projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
-            projectModel.Sqlprms[1] = new SqlParameter("@ProjectName", projectModel.ProjectName);
-            return cKMDL.SelectJson("Project_Select2", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
         }
     }
 }

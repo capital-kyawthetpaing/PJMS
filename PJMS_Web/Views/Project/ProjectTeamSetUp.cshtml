@@ -13,8 +13,8 @@
                         <h2 class="mb-3">Project's Team Setup</h2>
                         <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
                             @Html.LabelFor(model => model.Teams, htmlAttributes: new { @class = "control-label col-md-2" })
-                            @Html.RadioButton("Teams", "SystemTeam", new { @checked = true})SystemTeams
-                            @Html.RadioButton("Teams", "SeisakuTeam")SeisakuTeams
+                            @Html.RadioButton("Teams", "1", new {@id="rdoSystem", @checked = true})<label for="rdoSystem">System Teams</label>
+                            @Html.RadioButton("Teams", "2",new {@id="rdoSeisaku",  @class = "ml-3" })<label for="rdoSeisaku">Seisaku Teams</label>
                         </div>
                         <div class="col-xl-12 col-md-12 col-sm-12 mb-2" >
                             @Html.LabelFor(model => model.Projects, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -24,10 +24,10 @@
                         </div>
                         <div class="col-xl-12 col-md-12 col-sm-12 mb-2" id="position">
                             @Html.LabelFor(model => model.ProjectLeaders, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" class="leader">Add Leader</a><br />
+                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" onchange="myFunction(x)" class="leader">Add Leader</a><br />
                             @Html.LabelFor(model => model.ProjectMembers, htmlAttributes: new { @class = "control-label col-md-2 ",})
-                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" id="member">Add Member</a>
-                            <div class="modal" id="modal" @*style="height: auto"*@>
+                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" onchange="myFunction(y)">Add Member</a>
+                            <div class="modal" id="modal" style="height: auto">
                                 <div class="sections">
                                     <section>
                                         <table id="tblEmployee1" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
@@ -40,16 +40,10 @@
                                             </thead>
                                             <tbody></tbody>
                                         </table>
-                                        <button type="button" id="btnRemove" class="btn btn-dark col-md-4"><i class="fa fa-window-close"></i>&nbsp; Close</button>
-                                        <button type="button" id="btnAdd" class="btn btn-dark col-md-4"><i class="fa fa-window-close"></i>&nbsp; Add Employee</button>
+                                        <button type="button" id="btnRemove" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-window-close"></i>&nbsp; Close</button>
+                                        <button type="button" id="btnAdd" class="btn btn-dark col-md-4 mt-3"><i class="fa fa-window-close"></i>&nbsp; Add Employee</button>
                                     </section>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-md-12 col-sm-12 mb-2 text-center">
-                            <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
-                                <button id="btnSave" class="btn col-xl-2">Save / Update</button>
-                                <button id="btnCancel" class="btn col-xl-2">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -61,61 +55,44 @@
 @section Scripts
 {
     <script type="text/javascript">
-        const btn = document.querySelector('#selectProject');
-        btn.onclick = function () {
-                const teams = document.querySelectorAll('input[name="Teams"]');
-                let selectedProject;
-                for (const team of teams) {
-                    if (team.checked) {
-                        selectedProject = team.value;
-                        if (selectedProject == 'SystemTeam') {
-                            $(document).ready(function () {
-                                let obj = {
-                                    ProjectCD: ''
-                                };
-                                let r = JSON.parse(CalltoApiController('@Url.Action("GetProject1", "api/ProjectListApi")', obj));
-                                $("#selectProject").empty();
-                                $("#selectProject").prepend("<option value=''selected='selected'></option>");
-                                for (var i = 0; i < r.length; i++) {
-                                    $("#selectProject").append('<option value ="' + r[i].ProjectName + '">' + r[i].ProjectName + '</option>');
-                                }
-                            });
-                        }
-                        else {
-                            $(document).ready(function () {
-                                let obj = {
-                                    ProjectCD: ''
-                                };
-                                let r = JSON.parse(CalltoApiController('@Url.Action("GetProject2", "api/ProjectListApi")', obj));
-                                $("#selectProject").empty();
-                                $("#selectProject").prepend("<option value='' selected='selected'></option>");
-                                for (var i = 0; i < r.length; i++)
-                                {
-                                    $("#selectProject").append('<option value ="' + r[i].ProjectName + '">' + r[i].ProjectName + '</option>');
-                                }
-                            });
-                        }
-                    }
-                }
-            };
+
+        $(document).ready(function () {
+            BindProject();
+        });
+
+        $('input[type=radio][name=Teams]').change(function () {
+            BindProject();
+        });
+
+        function BindProject() {
+            let obj = {
+                    TeamID: $('input[name="Teams"]:checked').val(),
+                };
+            let r = JSON.parse(CalltoApiController('@Url.Action("GetProject", "api/ProjectListApi")', obj));
+            $("#selectProject").empty();
+            $("#selectProject").prepend("<option value='' selected='selected'></option>");
+            for (var i = 0; i < r.length; i++)
+            {
+                $("#selectProject").append('<option value ="' + r[i].ProjectName + '">' + r[i].ProjectName + '</option>');
+            }
+        }
+
         $(".modal").iziModal({
             title: "Employee List",
             padding: 10,
             TransitionIn: 'FadeInRight',
             theme: 'light',
             width: '700px',
-            height: '700px',
             headerColor: 'deepskyblue',
         });
         $('#btnRemove').on('click', function (e) {
             $('#modal').remove();
         });
         $('#btnAdd').click(function () {
-            //$('#modal.leader').click(function () {
-            alert("Leader");
-            //});
+                    alert(1);
+
         });
-        
+
         $(document).ready(function () {
             var obj = {
                 EmployeeCD: ''
@@ -140,7 +117,7 @@
                     "targets": 0,
                     "data": "EmployeeCD",
                     "render": function (data) {
-                        return '<input type="checkbox" data-val="true" data-val-required="The IsChecked field is required." name="IsChecked"  class="chkStatus" onchange="EditUser(this)">';
+                        return '<input type="checkbox" @*data-val="true" data-val-required="The IsChecked field is required."*@ name="IsChecked"  class="chkStatus" onchange="EditUser(this)">';
                     },
                 }],
             });
