@@ -13,7 +13,7 @@ namespace PJMS_Model
         public string SeisakuTeam { get; set; }
         public string ProjectCD { get; set; }
         public string ProjectName { get; set; }
-        public int TeamID { get; set; }
+        public string TeamID { get; set; }
         public string CompanyName { get; set; }
         public string PresonInCharge { get; set; }
         public string Photo { get; set; }
