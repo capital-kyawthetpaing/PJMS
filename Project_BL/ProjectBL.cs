@@ -47,5 +47,14 @@ namespace Project_BL
             projectModel.Sqlprms[4] = new SqlParameter("@ContractDate", projectModel.ContractDate);
             return cKMDL.InsertUpdateDeleteData("Project_Update", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
         }
+
+        public string GetProjectDetail(ProjectModel projectModel)
+        {
+            projectModel.Sqlprms = new SqlParameter[3];
+            projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
+            projectModel.Sqlprms[1] = new SqlParameter("@EmployeeCD", projectModel.EmployeeCD);
+            projectModel.Sqlprms[2] = new SqlParameter("@Role", projectModel.Role);
+            return cKMDL.SelectJson("Project_SelectDetail", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
+        }
     }
 }

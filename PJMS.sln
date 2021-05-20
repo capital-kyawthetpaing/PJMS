@@ -13,6 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Employee_BL", "Employee_BL\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{87E7FA86-1B04-4419-B3D1-5278679FD263}"
 	ProjectSection(SolutionItems) = preProject
+		Employee_BL\EmployeeBL.cs = Employee_BL\EmployeeBL.cs
 		HTMLPage1.html = HTMLPage1.html
 	EndProjectSection
 EndProject
