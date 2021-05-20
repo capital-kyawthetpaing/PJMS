@@ -13,20 +13,19 @@
                         <h2 class="mb-3">Project's Team Setup</h2>
                         <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
                             @Html.LabelFor(model => model.Teams, htmlAttributes: new { @class = "control-label col-md-2" })
-                            @Html.RadioButton("Teams", "1", new {@id="rdoSystem", @checked = true})<label for="rdoSystem">System Teams</label>
-                            @Html.RadioButton("Teams", "2",new {@id="rdoSeisaku",  @class = "ml-3" })<label for="rdoSeisaku">Seisaku Teams</label>
+                            @Html.RadioButton("Teams", "1", new { @id = "rdoSystem", @checked = true })<label for="rdoSystem">System Teams</label>
+                            @Html.RadioButton("Teams", "2", new { @id = "rdoSeisaku", @class = "ml-3" })<label for="rdoSeisaku">Seisaku Teams</label>
                         </div>
-                        <div class="col-xl-12 col-md-12 col-sm-12 mb-2" >
+                        <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
                             @Html.LabelFor(model => model.Projects, htmlAttributes: new { @class = "control-label col-md-2" })
                             <select id="selectProject">
-                                <option value = ''>---Select Project---</option>
-                            </select>  
+                            </select>
                         </div>
-                        <div class="col-xl-12 col-md-12 col-sm-12 mb-2" id="position">
+                        <div class="col-xl-12 col-md-12 col-sm-12 mb-5">
                             @Html.LabelFor(model => model.ProjectLeaders, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" onchange="myFunction(x)" class="leader">Add Leader</a><br />
-                            @Html.LabelFor(model => model.ProjectMembers, htmlAttributes: new { @class = "control-label col-md-2 ",})
-                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" onchange="myFunction(y)">Add Member</a>
+                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" name="case" data-value="1">Add Leader</a><br />
+                            @Html.LabelFor(model => model.ProjectMembers, htmlAttributes: new { @class = "control-label col-md-2 ", })
+                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" name="case1" data-value="2">Add Member</a>
                             <div class="modal" id="modal" style="height: auto">
                                 <div class="sections">
                                     <section>
@@ -46,6 +45,16 @@
                                 </div>
                             </div>
                         </div>
+                        <table id="selectedProjectDetail" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>ProjectCD</th>
+                                    <th>EmployeeCD</th>
+                                    <th>Role</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody"></tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -55,28 +64,26 @@
 @section Scripts
 {
     <script type="text/javascript">
-
         $(document).ready(function () {
             BindProject();
         });
-
         $('input[type=radio][name=Teams]').change(function () {
             BindProject();
         });
-
         function BindProject() {
             let obj = {
                     TeamID: $('input[name="Teams"]:checked').val(),
                 };
             let r = JSON.parse(CalltoApiController('@Url.Action("GetProject", "api/ProjectListApi")', obj));
             $("#selectProject").empty();
-            $("#selectProject").prepend("<option value='' selected='selected'></option>");
+            $("#selectProject").prepend("<option value='' selected='selected'>--Select Project--</option>");
             for (var i = 0; i < r.length; i++)
             {
-                $("#selectProject").append('<option value ="' + r[i].ProjectName + '">' + r[i].ProjectName + '</option>');
+                 $("#selectProject").append('<option value ="' + r[i].ProjectCD + '">' + r[i].ProjectName + '</option>');
+
             }
         }
-
+        //izi modal
         $(".modal").iziModal({
             title: "Employee List",
             padding: 10,
@@ -88,11 +95,6 @@
         $('#btnRemove').on('click', function (e) {
             $('#modal').remove();
         });
-        $('#btnAdd').click(function () {
-                    alert(1);
-
-        });
-
         $(document).ready(function () {
             var obj = {
                 EmployeeCD: ''
@@ -117,15 +119,99 @@
                     "targets": 0,
                     "data": "EmployeeCD",
                     "render": function (data) {
-                        return '<input type="checkbox" @*data-val="true" data-val-required="The IsChecked field is required."*@ name="IsChecked"  class="chkStatus" onchange="EditUser(this)">';
+                        return '<input type="checkbox" data-val="true" data-val-required="The IsChecked field is required." name="IsChecked" id="checkID" class="chkStatus">';
                     },
                 }],
             });
         }
-        function EditUser(Item) {
-            if (Item.checked) {
-                $('input.chkStatus').not(Item).prop('checked', false);
-            }
+        //Today
+        $("a").click(function () {
+            i = $(this).data("value");
+            if (i == 1) {
+                $('.chkStatus').on('change', function () {
+                    $('.chkStatus').not(this).prop('checked', false);
+                });
+            } $(i).empty();
+        });
+        
+        $(".chkStatus").empty();
+        $(document).ready(function () {
+            BindProjectDetail();
+        });
+        function BindProjectDetail() {
+            $('#btnAdd').click(function () {
+                var message = '';
+                $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
+                    var row = $(this).closest("tr")[0];
+                    message += "  " + row.cells[1].innerHTML;
+                });
+                let data = "<tr><td class='text-center'>" + $("#selectProject").val() + "</td><td class='text-center'>" + message + "</td><td class='text-center'>" + i + "</td></tr>";
+                    $("#selectedProjectDetail tbody").append(data);
+            });
         }
+         $(document).ready(function () {
+                var obj = {
+                    Role: ''
+                };
+                var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
+             BindTable1(response);
+         });
+         function BindTable1(response) {
+                table = $('#selectedProjectDetail').DataTable({
+                    responsive: true,
+                    dom: 'Bfrtip',
+                    data: JSON.parse(response),
+                    datasrc:"",
+                    destroy: true,
+                    "paging":true,
+                    "ordering": true,
+                    "columns": [
+                        { "data": "ProjectCD", "className":"align-center","width": "35%"},
+                        { "data": "EmployeeCD", "className": "align-center", "width": "35%" },
+                        { "data": "Role", "className": "align-center", "width": "30%" }
+                    ],
+                    "buttons": [
+                        {
+                            extend: 'copy'
+                        },
+                        {
+                            extend: 'excel',
+                            className: 'btn-success',
+                            init: function (api, node, config) {
+                                $(node).removeClass("btn-secondary");
+                            }
+                        },
+                        {
+                            extend: 'pdf',
+                            className: 'btn-danger',
+                            charset: "utf-8",
+                            init: function (api, node, config) {
+                                $(node).removeClass("btn-secondary");
+                            }
+                        },
+                    ],
+                });
+         }
+       @* $('#btnAdd').click(function () {
+            var message = '';
+            $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
+                var row = $(this).closest("tr")[0];
+                message = row.cells[1].innerHTML;
+            });*@
+            @*var obj = {
+                ProjectCD: $("#selectProject").val(),
+                EmployeeCD: message,
+                Role: '',
+            };*@
+            @*alert($("#selectProject").val());
+            alert(message);
+            alert($("a").data("value"));*@
+            //alert($('input[name="case"]:checked').val());
+             //CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
+       // });
+       @* $("a").click(function () {
+            i = $(this).data("value");
+                alert(i);
+        });*@
     </script>
 }

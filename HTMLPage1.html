@@ -1,45 +1,40 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Title of the Document</title>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-    <style>
-        .table{
-            border:dashed;
-        }
-    </style>
+    <title>Tooltip Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-    <form>
-        <select class="selectVal">
-            <option value="1">Tom</option>
-            <option value="2">John</option>
-            <option value="3">James</option>
-            <option value="4">Ann</option>
-            <option value="5">Maria</option>
-        </select>
-        <table class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+
+    <div class="container">
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <th></th>
-                    <th>EmployeeCD</th>
-                    <th>EmployeeName</th>
-                    <th>ProjectName</th>
-                    <th id="p">Position</th>
-                </tr>
+                    <th>Sl.No</th>
+                    <th>Byke Name</th>
+                <tr>
             </thead>
-            <tbody></tbody>
+            <tbody id="tblBykeLists">
+            <tbody>
         </table>
-    </form>
+
+    </div>
+
     <script>
         $(document).ready(function () {
-            $("select.selectVal").change(function () {
-                let selectedItem = $(this).children("option:selected").text();
-                let t = document.getElementById('#p');
-                t.innerHTML = selectedItem;
-            });
+            var bykeList = ["0000", "0001", "0002"];
+            if (bykeList.length > 0) {
+                for (i = 0; i < bykeList.length; i++) {
+                    var html = "<tr><td>" + Number(1 + i) + "</td><td>" + bykeList[i] + "</td></tr>";
+                    $("#tblBykeLists").append(html);
+                }
+            }
         });
     </script>
+
 </body>
-</html>
+</html>   
