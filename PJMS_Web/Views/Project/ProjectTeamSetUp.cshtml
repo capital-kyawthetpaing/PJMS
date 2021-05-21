@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
                             @Html.LabelFor(model => model.Projects, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <select id="selectProject">
+                            <select id="selectProject" name="select_Project">
                             </select>
                         </div>
                         <div class="col-xl-12 col-md-12 col-sm-12 mb-5">
@@ -49,7 +49,9 @@
                             <thead>
                                 <tr>
                                     <th>ProjectCD</th>
+                                    <th>ProjectName</th>
                                     <th>EmployeeCD</th>
+                                    <th>EmployeeName</th>
                                     <th>Role</th>
                                 </tr>
                             </thead>
@@ -73,14 +75,13 @@
         function BindProject() {
             let obj = {
                     TeamID: $('input[name="Teams"]:checked').val(),
-                };
+            };
             let r = JSON.parse(CalltoApiController('@Url.Action("GetProject", "api/ProjectListApi")', obj));
             $("#selectProject").empty();
-            $("#selectProject").prepend("<option value='' selected='selected'>--Select Project--</option>");
+            $("#selectProject").prepend("<option value='' selected='selected'></option>");
             for (var i = 0; i < r.length; i++)
             {
                  $("#selectProject").append('<option value ="' + r[i].ProjectCD + '">' + r[i].ProjectName + '</option>');
-
             }
         }
         //izi modal
@@ -124,31 +125,7 @@
                 }],
             });
         }
-        //Today
-        $("a").click(function () {
-            i = $(this).data("value");
-            if (i == 1) {
-                $('.chkStatus').on('change', function () {
-                    $('.chkStatus').not(this).prop('checked', false);
-                });
-            } $(i).empty();
-        });
-        
-        $(".chkStatus").empty();
-        $(document).ready(function () {
-            BindProjectDetail();
-        });
-        function BindProjectDetail() {
-            $('#btnAdd').click(function () {
-                var message = '';
-                $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
-                    var row = $(this).closest("tr")[0];
-                    message += "  " + row.cells[1].innerHTML;
-                });
-                let data = "<tr><td class='text-center'>" + $("#selectProject").val() + "</td><td class='text-center'>" + message + "</td><td class='text-center'>" + i + "</td></tr>";
-                    $("#selectedProjectDetail tbody").append(data);
-            });
-        }
+
          $(document).ready(function () {
                 var obj = {
                     Role: ''
@@ -166,9 +143,11 @@
                     "paging":true,
                     "ordering": true,
                     "columns": [
-                        { "data": "ProjectCD", "className":"align-center","width": "35%"},
-                        { "data": "EmployeeCD", "className": "align-center", "width": "35%" },
-                        { "data": "Role", "className": "align-center", "width": "30%" }
+                        { "data": "ProjectCD", "className": "align-center", "width": "10%" },
+                        { "data": "ProjectName", "className": "align-center", "width": "30%" },
+                        { "data": "EmployeeCD", "className": "align-center", "width": "10%" },
+                        { "data": "EmployeeName", "className": "align-center", "width": "30%" },
+                        { "data": "Role", "className": "align-center", "width": "20%" }
                     ],
                     "buttons": [
                         {
@@ -191,27 +170,31 @@
                         },
                     ],
                 });
-         }
-       @* $('#btnAdd').click(function () {
-            var message = '';
-            $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
-                var row = $(this).closest("tr")[0];
-                message = row.cells[1].innerHTML;
-            });*@
-            @*var obj = {
-                ProjectCD: $("#selectProject").val(),
-                EmployeeCD: message,
-                Role: '',
-            };*@
-            @*alert($("#selectProject").val());
-            alert(message);
-            alert($("a").data("value"));*@
-            //alert($('input[name="case"]:checked').val());
-             //CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
-       // });
-       @* $("a").click(function () {
-            i = $(this).data("value");
-                alert(i);
-        });*@
+        }
+        $('#btnAdd').click(function () {
+            var obj = {
+                ProjectCD: $("#selectedProject").val(),
+                ProjectName: $("#selectProject").val(),
+                EmployeeCD: $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
+                    var row = $(this).closest("tr")[0];
+                    var message = '';
+                    message += "  " + row.cells[1].innerHTML;
+                }),
+                EmployeeName: $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
+                    var row = $(this).closest("tr")[0];
+                    var message1 = '';
+                    message1 += "  " + row.cells[2].innerHTML;
+                }),
+                Role: $("a").click(function () {
+                    i = $(this).data("value");
+                    if (i == 1) {
+                        $('.chkStatus').on('change', function () {
+                            $('.chkStatus').not(this).prop('checked', false);
+                        });
+                    }
+                }),
+            }
+                CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);
+            });
     </script>
 }

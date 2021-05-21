@@ -50,11 +50,23 @@ namespace Project_BL
 
         public string GetProjectDetail(ProjectModel projectModel)
         {
-            projectModel.Sqlprms = new SqlParameter[3];
+            projectModel.Sqlprms = new SqlParameter[5];
             projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
-            projectModel.Sqlprms[1] = new SqlParameter("@EmployeeCD", projectModel.EmployeeCD);
-            projectModel.Sqlprms[2] = new SqlParameter("@Role", projectModel.Role);
+            projectModel.Sqlprms[1] = new SqlParameter("@ProjectName", projectModel.ProjectName);
+            projectModel.Sqlprms[2] = new SqlParameter("@EmployeeCD", projectModel.EmployeeCD);
+            projectModel.Sqlprms[3] = new SqlParameter("@EmployeeName", projectModel.EmployeeName);
+            projectModel.Sqlprms[4] = new SqlParameter("@Role", projectModel.Role);
             return cKMDL.SelectJson("Project_SelectDetail", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
+        }
+        public string InsertProjectDetail(ProjectModel projectModel)
+        {
+            projectModel.Sqlprms = new SqlParameter[5];
+            projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
+            projectModel.Sqlprms[1] = new SqlParameter("@ProjectName", projectModel.ProjectName);
+            projectModel.Sqlprms[2] = new SqlParameter("@EmployeeCD", projectModel.EmployeeCD);
+            projectModel.Sqlprms[3] = new SqlParameter("@EmployeeName", projectModel.EmployeeName);
+            projectModel.Sqlprms[4] = new SqlParameter("@Role", projectModel.Role);
+            return cKMDL.SelectJson("Project_InsertDetail", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
         }
     }
 }
