@@ -49,7 +49,9 @@
                             <thead>
                                 <tr>
                                     <th>ProjectCD</th>
-                                    <th>ProjectDetailJson</th>
+                                    <th>ProjectName</th>
+                                    <th>EmployeeCD</th>
+                                    <th>EmployeeName</th>
                                     <th>Role</th>
                                 </tr>
                             </thead>
@@ -124,13 +126,24 @@
             });
         }
 
-         $(document).ready(function () {
+        @*$(document).ready(function () {
                 var obj = {
-                    Role: ''
+                    ProjectCD: ''
                 };
                 var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
-             BindTable1(response);
-         });
+                BindTable1(response);
+        });*@
+        $(document).ready(function () {
+            $('#selectProject').change(function () {
+                var show = this.options[this.selectedIndex];
+                var value1 = show.value;
+                var obj = {
+                    ProjectCD: value1,
+                };
+                var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
+                BindTable1(response);
+            });
+        });
          function BindTable1(response) {
                 table = $('#selectedProjectDetail').DataTable({
                     responsive: true,
@@ -141,9 +154,11 @@
                     "paging":true,
                     "ordering": true,
                     "columns": [
-                        { "data": "ProjectCD", "className": "align-center", "width": "30%" },
-                        { "data": "ProjectDetailJson", "className": "align-center", "width": "40%" },
-                        { "data": "Role", "className": "align-center", "width": "30%" }
+                        { "data": "ProjectCD", "className": "align-center", "width": "20%" },
+                        { "data": "ProjectName", "className": "align-center", "width": "20%" },
+                        { "data": "EmployeeCD", "className": "align-center", "width": "20%" },
+                        { "data": "EmployeeName", "className": "align-center", "width": "20%" },
+                        { "data": "Role", "className": "align-center", "width": "20%" }
                     ],
                     "buttons": [
                         {
@@ -166,21 +181,16 @@
                         },
                     ],
                 });
-        }        
+        }
         $("a").click(function () {
             i = $(this).data("value");
-            if (i == 1) {
-                $('.chkStatus').on('change', function () {
-                    $('.chkStatus').not(this).prop('checked', false);
-                });
-            }
         });
         $('#btnAdd').click(function () {
-            
+
            jsonObj = [];
             $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
                 var row = $(this).closest("tr")[0];
-                item = {};
+                 item = {};
                 item["EmployeeCD"] = row.cells[1].innerHTML;
                 item["EmployeeName"] = row.cells[2].innerHTML;
                 jsonObj.push(item);
