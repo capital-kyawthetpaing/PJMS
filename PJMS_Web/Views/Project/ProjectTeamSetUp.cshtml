@@ -23,9 +23,9 @@
                         </div>
                         <div class="col-xl-12 col-md-12 col-sm-12 mb-5">
                             @Html.LabelFor(model => model.ProjectLeaders, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" name="case" data-value="1">Add Leader</a><br />
-                            @Html.LabelFor(model => model.ProjectMembers, htmlAttributes: new { @class = "control-label col-md-2 ", })
-                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" name="case1" data-value="2">Add Member</a>
+                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" data-value="1">Add Leader</a><br />
+                            @Html.LabelFor(model => model.ProjectMembers, htmlAttributes: new { @class = "control-label col-md-2 " })
+                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" data-value="2">Add Member</a>
                             <div class="modal" id="modal" style="height: auto">
                                 <div class="sections">
                                     <section>
@@ -94,7 +94,7 @@
             headerColor: 'deepskyblue',
         });
         $('#btnRemove').on('click', function (e) {
-            $('#modal').remove();
+           $('#modal').remove();
         });
         $(document).ready(function () {
             var obj = {
@@ -126,13 +126,24 @@
             });
         }
 
-         $(document).ready(function () {
+        @*$(document).ready(function () {
                 var obj = {
-                    Role: ''
+                    ProjectCD: ''
                 };
                 var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
-             BindTable1(response);
-         });
+                BindTable1(response);
+        });*@
+        $(document).ready(function () {
+            $('#selectProject').change(function () {
+                var show = this.options[this.selectedIndex];
+                var value1 = show.value;
+                var obj = {
+                    ProjectCD: value1,
+                };
+                var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
+                BindTable1(response);
+            });
+        });
          function BindTable1(response) {
                 table = $('#selectedProjectDetail').DataTable({
                     responsive: true,
@@ -143,10 +154,10 @@
                     "paging":true,
                     "ordering": true,
                     "columns": [
-                        { "data": "ProjectCD", "className": "align-center", "width": "10%" },
-                        { "data": "ProjectName", "className": "align-center", "width": "30%" },
-                        { "data": "EmployeeCD", "className": "align-center", "width": "10%" },
-                        { "data": "EmployeeName", "className": "align-center", "width": "30%" },
+                        { "data": "ProjectCD", "className": "align-center", "width": "20%" },
+                        { "data": "ProjectName", "className": "align-center", "width": "20%" },
+                        { "data": "EmployeeCD", "className": "align-center", "width": "20%" },
+                        { "data": "EmployeeName", "className": "align-center", "width": "20%" },
                         { "data": "Role", "className": "align-center", "width": "20%" }
                     ],
                     "buttons": [
@@ -171,30 +182,25 @@
                     ],
                 });
         }
+        $("a").click(function () {
+            i = $(this).data("value");
+        });
         $('#btnAdd').click(function () {
-            var obj = {
-                ProjectCD: $("#selectedProject").val(),
-                ProjectName: $("#selectProject").val(),
-                EmployeeCD: $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
-                    var row = $(this).closest("tr")[0];
-                    var message = '';
-                    message += "  " + row.cells[1].innerHTML;
-                }),
-                EmployeeName: $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
-                    var row = $(this).closest("tr")[0];
-                    var message1 = '';
-                    message1 += "  " + row.cells[2].innerHTML;
-                }),
-                Role: $("a").click(function () {
-                    i = $(this).data("value");
-                    if (i == 1) {
-                        $('.chkStatus').on('change', function () {
-                            $('.chkStatus').not(this).prop('checked', false);
-                        });
-                    }
-                }),
-            }
-                CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);
+
+           jsonObj = [];
+            $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
+                var row = $(this).closest("tr")[0];
+                 item = {};
+                item["EmployeeCD"] = row.cells[1].innerHTML;
+                item["EmployeeName"] = row.cells[2].innerHTML;
+                jsonObj.push(item);
             });
+            var obj = {
+                ProjectCD: $("#selectProject").val(),
+                ProjectDetailJson: JSON.stringify(jsonObj),
+                Role: i,
+            };
+            CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);
+        });
     </script>
 }

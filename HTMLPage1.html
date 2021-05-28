@@ -1,40 +1,39 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Tooltip Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 </head>
 <body>
+    <p>
+        <input type="button" value="Fill SELECT Dropdown List with JSON" id="bt" />
+    </p>
 
-    <div class="container">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Sl.No</th>
-                    <th>Byke Name</th>
-                <tr>
-            </thead>
-            <tbody id="tblBykeLists">
-            <tbody>
-        </table>
+    <select id="sel">
+        <option value="">-- Select --</option>
+    </select>
 
-    </div>
+    <p id="msg"></p>
+
 
     <script>
         $(document).ready(function () {
-            var bykeList = ["0000", "0001", "0002"];
-            if (bykeList.length > 0) {
-                for (i = 0; i < bykeList.length; i++) {
-                    var html = "<tr><td>" + Number(1 + i) + "</td><td>" + bykeList[i] + "</td></tr>";
-                    $("#tblBykeLists").append(html);
-                }
-            }
+            $('#bt').click(function () {
+
+                var url = "https://www.encodedna.com/library/sample.json";
+
+                $.getJSON(url, function (data) {
+                    $.each(data, function (index, value) {
+                        // APPEND OR INSERT DATA TO SELECT ELEMENT.
+                        $('#sel').append('<option value="' + value.ID + '">' + value.Name + '</option>');
+                    });
+                });
+            });
+
+            // SHOW SELECTED VALUE.
+            $('#sel').change(function () {
+                $('#msg').text('Selected Item: ' + this.options[this.selectedIndex].text);
+            });
         });
     </script>
-
 </body>
-</html>   
+</html>

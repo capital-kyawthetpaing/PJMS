@@ -23,5 +23,6 @@ namespace PJMS_Model
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public string Role { get; set; }
+        public string ProjectDetailJson { get; set; }
     }
 }
