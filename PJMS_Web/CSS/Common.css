@@ -75,5 +75,9 @@ font-weight: bold;
     margin-left: 55px;
 }
 #btnRemove, #btnAdd{
-    color: violet;
+
+    background-color: slategray;
+    font-size: 18px;
+    color: blue;
+    margin-top: 5px;
 }
