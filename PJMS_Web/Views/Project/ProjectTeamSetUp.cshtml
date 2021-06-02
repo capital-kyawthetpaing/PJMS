@@ -18,14 +18,18 @@
                         </div>
                         <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
                             @Html.LabelFor(model => model.Projects, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <select id="selectProject" name="select_Project">
+                            <select id="selectProject">
                             </select>
                         </div>
-                        <div class="col-xl-12 col-md-12 col-sm-12 mb-5">
-                            @Html.LabelFor(model => model.ProjectLeaders, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" data-value="1">Add Leader</a><br />
-                            @Html.LabelFor(model => model.ProjectMembers, htmlAttributes: new { @class = "control-label col-md-2 " })
-                            <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight" data-value="2">Add Member</a>
+                        <div class="col-xl-12 col-md-12 col-sm-12 mb-5 p">
+                            <div id="leader">
+                                @Html.LabelFor(model => model.ProjectLeaders, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <a href="#add" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight">Add Leader</a><br />
+                            </div>
+                            <div id="member">
+                                @Html.LabelFor(model => model.ProjectMembers, htmlAttributes: new { @class = "control-label col-md-2 " })
+                                <a href="#" data-izimodal-open="#modal" data-izimodal-transitionin="fadeInRight">Add Member</a>
+                            </div>
                             <div class="modal" id="modal" style="height: auto">
                                 <div class="sections">
                                     <section>
@@ -39,25 +43,23 @@
                                             </thead>
                                             <tbody></tbody>
                                         </table>
-                                        <button type="button" id="btnRemove" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-window-close"></i>&nbsp; Close</button>
-                                        <button type="button" id="btnAdd" class="btn btn-dark col-md-4 mt-3"><i class="fa fa-window-close"></i>&nbsp; Add Employee</button>
+                                        <button id="btnRemove" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-window-close"></i>&nbsp; Close</button>
+                                        <button id="btnAdd" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-save"></i>&nbsp; Add Employee</button>
                                     </section>
                                 </div>
                             </div>
+                           </div>
+                            <table id="selectedProjectDetail" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>EmployeeCD</th>
+                                        <th>EmployeeName</th>
+                                        <th>Role</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody"></tbody>
+                            </table>
                         </div>
-                        <table id="selectedProjectDetail" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>ProjectCD</th>
-                                    <th>ProjectName</th>
-                                    <th>EmployeeCD</th>
-                                    <th>EmployeeName</th>
-                                    <th>Role</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbody"></tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
         </div>
@@ -68,9 +70,31 @@
     <script type="text/javascript">
         $(document).ready(function () {
             BindProject();
+
+            var obj = {
+                EmployeeCD: ''
+            };
+            var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeListApi")', obj);
+            BindTable(response);
+
+            $('#selectProject').change(function () {
+                BindDetail();
+            });
+            BindDetail();
         });
+
+        function BindDetail() {
+            var show = $('#selectProject')[0].options[$('#selectProject')[0].selectedIndex];
+            var value1 = show.value;
+            var obj = {
+                ProjectCD: value1,
+            };
+            var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
+            BindTable1(response);
+        }
+
         $('input[type=radio][name=Teams]').change(function () {
-            BindProject();
+            BindProject(); BindDetail();
         });
         function BindProject() {
             let obj = {
@@ -78,13 +102,11 @@
             };
             let r = JSON.parse(CalltoApiController('@Url.Action("GetProject", "api/ProjectListApi")', obj));
             $("#selectProject").empty();
-            $("#selectProject").prepend("<option value='' selected='selected'></option>");
             for (var i = 0; i < r.length; i++)
             {
-                 $("#selectProject").append('<option value ="' + r[i].ProjectCD + '">' + r[i].ProjectName + '</option>');
+                $("#selectProject").append('<option value ="' + r[i].ProjectCD + '">' + r[i].ProjectName + '</option>');
             }
         }
-        //izi modal
         $(".modal").iziModal({
             title: "Employee List",
             padding: 10,
@@ -95,13 +117,6 @@
         });
         $('#btnRemove').on('click', function (e) {
            $('#modal').remove();
-        });
-        $(document).ready(function () {
-            var obj = {
-                EmployeeCD: ''
-            };
-            var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeListApi")', obj);
-            BindTable(response);
         });
         function BindTable(response) {
             table = $('#tblEmployee1').DataTable({
@@ -125,25 +140,6 @@
                 }],
             });
         }
-
-        @*$(document).ready(function () {
-                var obj = {
-                    ProjectCD: ''
-                };
-                var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
-                BindTable1(response);
-        });*@
-        $(document).ready(function () {
-            $('#selectProject').change(function () {
-                var show = this.options[this.selectedIndex];
-                var value1 = show.value;
-                var obj = {
-                    ProjectCD: value1,
-                };
-                var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
-                BindTable1(response);
-            });
-        });
          function BindTable1(response) {
                 table = $('#selectedProjectDetail').DataTable({
                     responsive: true,
@@ -154,11 +150,9 @@
                     "paging":true,
                     "ordering": true,
                     "columns": [
-                        { "data": "ProjectCD", "className": "align-center", "width": "20%" },
-                        { "data": "ProjectName", "className": "align-center", "width": "20%" },
-                        { "data": "EmployeeCD", "className": "align-center", "width": "20%" },
-                        { "data": "EmployeeName", "className": "align-center", "width": "20%" },
-                        { "data": "Role", "className": "align-center", "width": "20%" }
+                        { "data": "EmployeeCD", "className": "align-center", "width": "30%" },
+                        { "data": "EmployeeName", "className": "align-center", "width": "40%" },
+                        { "data": "Role", "className": "align-center", "width": "30%" }
                     ],
                     "buttons": [
                         {
@@ -182,15 +176,46 @@
                     ],
                 });
         }
-        $("a").click(function () {
-            i = $(this).data("value");
-        });
-        $('#btnAdd').click(function () {
+        //$("a").click(function () {
+            //$('#btnAdd').click(function () {
+            //     AddEmployee();
+            //});
+            //var p = document.getElementById("leader");
+            //alert(1);
+            //if (p == "leader") {
+            //    $('.chkStatus').on('change', function () {
+            //        $('.chkStatus').not(this).prop('checked', false);
+            //    });
+            //    $('#btnAdd').click(function () {
+            //        AddEmployee();
+            //    });
+            //}
+            //else {
+            //    $('#btnAdd').click(function () {
+            //        AddEmployee();
+            //    });
+            //}
+        //});
 
-           jsonObj = [];
+        function Position(a,b) {
+            if (document.getElementById("leader").getElementsByTagName("a")) {
+                return a;
+            }
+            else
+                return b;
+
+             //return b;
+            //if (anchor == add) {
+            //    return a;
+            //}
+            //else
+            //    return b;
+        }
+        $('#btnAdd').click(function () {
+            jsonObj = [];
             $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
                 var row = $(this).closest("tr")[0];
-                 item = {};
+                item = {};
                 item["EmployeeCD"] = row.cells[1].innerHTML;
                 item["EmployeeName"] = row.cells[2].innerHTML;
                 jsonObj.push(item);
@@ -198,7 +223,7 @@
             var obj = {
                 ProjectCD: $("#selectProject").val(),
                 ProjectDetailJson: JSON.stringify(jsonObj),
-                Role: i,
+                Role: Position("Leader","Member"),
             };
             CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);
         });
