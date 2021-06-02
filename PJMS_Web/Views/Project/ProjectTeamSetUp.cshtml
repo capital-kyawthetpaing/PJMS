@@ -30,7 +30,7 @@
                             </div>
                             <div id="member">
                                 @Html.LabelFor(model => model.ProjectMembers, htmlAttributes: new { @class = "control-label col-md-2 " })
-                                <a href="javascript:;" onclick="ShowModal('1')">Add Member</a>
+                                <a href="javascript:;" onclick="ShowModal('2')">Add Member</a>
                             </div>
                             <div class="modal" id="modal" style="height: auto">
                                 <div class="sections">
@@ -46,7 +46,7 @@
                                             <tbody></tbody>
                                         </table>
                                         <button id="btnRemove" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-window-close"></i>&nbsp; Close</button>
-                                        <button id="btnAdd" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-save"></i>&nbsp; Add Employee</button>
+                                        <button id="btnAdd" onclick="AddEmployee()" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-save"></i>&nbsp; Add Employee</button>
                                     </section>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
 
 
         function ShowModal(role) {
-            $("hRole").val(role);
+            $("#hRole").val(role);
             $('#modal').iziModal('open');
         }
 
@@ -127,7 +127,7 @@
                 $("#selectProject").append('<option value ="' + r[i].ProjectCD + '">' + r[i].ProjectName + '</option>');
             }
         }
-        
+
         function BindTable(response) {
             table = $('#tblEmployee1').DataTable({
                 resSelectListItemelectListItemelectListelectListonsive: true,
@@ -186,42 +186,8 @@
                     ],
                 });
         }
-        //$("a").click(function () {
-            //$('#btnAdd').click(function () {
-            //     AddEmployee();
-            //});
-            //var p = document.getElementById("leader");
-            //alert(1);
-            //if (p == "leader") {
-            //    $('.chkStatus').on('change', function () {
-            //        $('.chkStatus').not(this).prop('checked', false);
-            //    });
-            //    $('#btnAdd').click(function () {
-            //        AddEmployee();
-            //    });
-            //}
-            //else {
-            //    $('#btnAdd').click(function () {
-            //        AddEmployee();
-            //    });
-            //}
-        //});
 
-        function Position(a,b) {
-            if (document.getElementById("leader").getElementsByTagName("a")) {
-                return a;
-            }
-            else
-                return b;
-
-             //return b;
-            //if (anchor == add) {
-            //    return a;
-            //}
-            //else
-            //    return b;
-        }
-        $('#btnAdd').click(function () {
+        function AddEmployee() {
             var role = $("#hRole").val();
 
             jsonObj = [];
@@ -238,6 +204,8 @@
                 Role: role,
             };
             CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);
-        });
+
+            $('#modal').iziModal('close');
+        }
     </script>
 }
