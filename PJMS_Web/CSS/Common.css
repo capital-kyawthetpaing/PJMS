@@ -62,21 +62,20 @@ font-weight: bold;
     font-size: 18px;
     color: aquamarine;
 }
-#btnCancel {
+/*#btnCancel {
     background-color: lightcoral;
     font-size: 18px;
     color: blue;
     margin-top: 5px;
-}
+}*/
 /*iziMoal*/
-#btncancel,#btnadd {
+/*#btncancel,#btnadd {
     margin-top: 10px;
     font-size: 16px;
     margin-left: 55px;
-}
-#btnRemove, #btnAdd{
-
-    background-color: slategray;
+}*/
+#btnRemove, #btnAdd {
+    background-color: lightgreen;
     font-size: 18px;
     color: blue;
     margin-top: 5px;
