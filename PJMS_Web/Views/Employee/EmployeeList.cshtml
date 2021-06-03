@@ -34,7 +34,7 @@
             };
                 var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeListApi")',obj);
                 BindTable(response);
-            });
+        });
             function BindTable(response) {
                 table = $('#tblEmployee').DataTable({
                     responsive: true,
@@ -78,7 +78,7 @@
                         },
                     }]
                 });
-        }
+            }
         function EmployeeEdit(data, mode) {
             window.location.href = '@Url.Action("EmployeeEntry", "Employee")?EmployeeCD=' + data + '&Mode=' + mode;
         }

@@ -4,7 +4,7 @@
     ViewBag.Title = "ProjectTeamSetUp";
     Layout = "~/Views/Shared/_PJMSLayout.cshtml";
 }
-<input type="hidden" id="hRole" value="0" />
+<input type="hidden" id="hRole" />
 <div class="panel-body">
     <div class="container-fluid" id="content_zip">
         <div class="row">
@@ -25,7 +25,7 @@
                         <div class="col-xl-12 col-md-12 col-sm-12 mb-5 p">
                             <div id="leader">
                                 @Html.LabelFor(model => model.ProjectLeaders, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <a href="javascript:;" onclick="ShowModal('1')">Add Leader</a><br />
+                                <a href="javascript:ShowModal('1');">Add Leader</a><br />
                             </div>
                             <div id="member">
                                 @Html.LabelFor(model => model.ProjectMembers, htmlAttributes: new { @class = "control-label col-md-2 " })
@@ -71,13 +71,14 @@
     <script type="text/javascript">
         $(document).ready(function () {
             BindProject();
-
             var obj = {
                 EmployeeCD: ''
             };
             var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeListApi")', obj);
             BindTable(response);
-
+            var obj = {
+                ProjectCD: $("#selectProject").val(),
+            };
             $('#selectProject').change(function () {
                 BindDetail();
             });
@@ -104,23 +105,24 @@
                 Role: $("#hRole").val(),
             };
             CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);
-
             $('#modal').iziModal('close');
+            BindDetail();
         }
 
-        function BindDetail() {
-            var show = $('#selectProject')[0].options[$('#selectProject')[0].selectedIndex];
-            var value1 = show.value;
-            var obj = {
-                ProjectCD: value1,
-            };
-            var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
-            BindTable1(response);
-        }
 
         $('input[type=radio][name=Teams]').change(function () {
-            BindProject(); BindDetail();
+            BindProject();
+            BindDetail();
         });
+        function BindDetail() {
+                var show = $('#selectProject')[0].options[$('#selectProject')[0].selectedIndex];
+                var value1 = show.value;
+                var obj = {
+                    ProjectCD: value1,
+                };
+                var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
+                BindTable1(response);
+            }
         function BindProject() {
             let obj = {
                     TeamID: $('input[name="Teams"]:checked').val(),
@@ -162,14 +164,14 @@
                     "render": function (data) {
                         return '<input type="checkbox" data-val="true" data-val-required="The IsChecked field is required." name="IsChecked" id="checkID" class="chkStatus">';
                     },
-                }],
+                }]
             });
         }
-         function BindTable1(response) {
+        function BindTable1(response1) {
                 table = $('#selectedProjectDetail').DataTable({
                     responsive: true,
                     dom: 'Bfrtip',
-                    data: JSON.parse(response),
+                    data: JSON.parse(response1),
                     datasrc:"",
                     destroy: true,
                     "paging":true,
@@ -198,7 +200,7 @@
                                 $(node).removeClass("btn-secondary");
                             }
                         },
-                    ],
+                    ]
                 });
         }
 
