@@ -83,6 +83,6 @@ font-weight: bold;
 #btnRemove {
     background-color: red;
     font-size: 18px;
-    color: blue;
+    color: #000000;
     margin-top: 5px;
 }
