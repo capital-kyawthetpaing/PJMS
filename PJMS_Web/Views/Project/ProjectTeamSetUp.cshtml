@@ -88,6 +88,11 @@
             };
             var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeListApi")', obj);
             BindTable(response);
+            if (role == 1) {
+                $('.chkStatus').on('change', function () {
+                    $('.chkStatus').not(this).prop('checked', false);
+                });
+            }
         }
 
         function btnAddClick() {
@@ -155,7 +160,7 @@
                 "columns": [
                     { "data": "EmployeeCD", "className": "align-center", "width": "20%" },
                     { "data": "EmployeeCD", "className": "align-center", "width": "40%" },
-                    { "data": "EmployeeName", "className": "align-center", "width": "40%" },
+                    { "data": "EmployeeName", "className": "align-center", "width": "40%" }
                 ],
                 "columnDefs": [{
                     "targets": 0,
