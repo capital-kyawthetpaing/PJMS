@@ -24,7 +24,7 @@ namespace Employee_BL
         public string GetProjectEmployee(EmployeeModel employeeModel)
         {
             employeeModel.Sqlprms = new SqlParameter[1];
-            employeeModel.Sqlprms[0] = new SqlParameter("@ProjectCD", employeeModel.EmployeeCD);
+            employeeModel.Sqlprms[0] = new SqlParameter("@TeamID", employeeModel.TeamID);
             return cKMDL.SelectJson("ProjectEmployee_Select", ff.GetConnectionWithDefaultPath("PJMS"), employeeModel.Sqlprms);
         }
         public string InsertEmployee(EmployeeModel employeeModel)

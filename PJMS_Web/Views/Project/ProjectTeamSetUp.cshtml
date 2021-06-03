@@ -84,9 +84,9 @@
             $("#hRole").val(role);
             $('#modal').iziModal('open');
             var obj = {
-                EmployeeCD: ''
+                TeamID: $("input[name='Teams']:checked").val(),
             };
-            var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeListApi")', obj);
+            var response = CalltoApiController('@Url.Action("GetProjectEmployee", "api/EmployeeListApi")', obj);
             BindTable(response);
         }
 
