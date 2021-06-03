@@ -88,6 +88,11 @@
             };
             var response = CalltoApiController('@Url.Action("GetProjectEmployee", "api/EmployeeListApi")', obj);
             BindTable(response);
+            if (role == 1) {
+                $('.chkStatus').on('change', function () {
+                    $('.chkStatus').not(this).prop('checked', false);
+                });
+            }
         }
 
         function btnAddClick() {
@@ -155,13 +160,13 @@
                 "columns": [
                     { "data": "EmployeeCD", "className": "align-center", "width": "20%" },
                     { "data": "EmployeeCD", "className": "align-center", "width": "40%" },
-                    { "data": "EmployeeName", "className": "align-center", "width": "40%" },
+                    { "data": "EmployeeName", "className": "align-center", "width": "40%" }
                 ],
                 "columnDefs": [{
                     "targets": 0,
                     "data": "EmployeeCD",
                     "render": function (data) {
-                        return '<input type="checkbox" data-val="true" data-val-required="The IsChecked field is required." name="IsChecked" id="checkID" class="chkStatus">';
+                        return '<input type="checkbox" data-val="true" data-val-required="The IsChecked field is required." class="chkStatus">';
                     },
                 }]
             });
