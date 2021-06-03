@@ -19,7 +19,7 @@
                         </div>
                         <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
                             @Html.LabelFor(model => model.Projects, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <select id="selectProject">
+                            <select id="selectProject" style='width: 350px;'>
                             </select>
                         </div>
                         <div class="col-xl-12 col-md-12 col-sm-12 mb-5 p">
@@ -88,7 +88,7 @@
             };
             var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeListApi")', obj);
             BindTable(response);
-            if (role == 1) {
+            if (document.getElementById("hRole").value == 1) {
                 $('.chkStatus').on('change', function () {
                     $('.chkStatus').not(this).prop('checked', false);
                 });
