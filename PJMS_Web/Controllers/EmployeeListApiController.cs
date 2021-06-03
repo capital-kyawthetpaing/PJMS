@@ -26,7 +26,7 @@ namespace PJMS_Web.Controllers
         public IHttpActionResult GetProjectEmployee([FromBody] EmployeeModel employeeModel)
         {
             EmployeeBL employeeBL = new EmployeeBL();
-            return Ok(employeeBL.GetEmployee(employeeModel));
+            return Ok(employeeBL.GetProjectEmployee(employeeModel));
         }
 
         [UserAuthentication]
