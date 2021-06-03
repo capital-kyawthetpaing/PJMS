@@ -74,8 +74,14 @@ font-weight: bold;
     font-size: 16px;
     margin-left: 55px;
 }*/
-#btnRemove, #btnAdd {
+ #btnAdd {
     background-color: lightgreen;
+    font-size: 18px;
+    color: blue;
+    margin-top: 5px;
+}
+#btnRemove {
+    background-color: red;
     font-size: 18px;
     color: blue;
     margin-top: 5px;

@@ -14,7 +14,6 @@
         <table id="tblEmployee" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
             <thead>
                 <tr>
-                    <th>Command</th>
                     <th>EmployeeCD</th>
                     <th>EmployeeName</th>
                     <th>EmployeePhoto</th>
@@ -45,8 +44,7 @@
                     "paging":true,
                     "ordering": true,
                     "columns": [
-                        { "data": "EmployeeCD", "className": "align-center", "width": "10%" },
-                        { "data": "EmployeeCD", "className": "align-center", "width": "10%" },
+                        { "data": "EmployeeCD", "className": "align-center", "width": "20%" },
                         { "data": "EmployeeName", "className": "align-center", "width": "40%" },
                         { "data": "EmployeePhoto", "className": "align-center", "width": "40%" }
                     ],
@@ -69,18 +67,18 @@
                                 $(node).removeClass("btn-secondary");
                             }
                         },
-                    ],
-                    "columnDefs": [{
-                        "targets": 0,
-                        "data": "EmployeeCD",
-                        "render": function (data) {
-                            return '<input type="button" class="btn btn-info" style="width:70px;margin:3px;" onclick="EmployeeEdit(\'' + data + '\',\'Edit\')" value="Edit">'; 
-                        },
-                    }]
+                    ]
+                    //"columnDefs": [{
+                    //    "targets": 0,
+                    //    "data": "EmployeeCD",
+                    //    "render": function (data) {
+                    //        return '<input type="button" class="btn btn-info" style="width:70px;margin:3px;" onclick="EmployeeEdit(\'' + data + '\',\'Edit\')" value="Edit">'; 
+                    //    },
+                    //}]
                 });
             }
-        function EmployeeEdit(data, mode) {
+        @*function EmployeeEdit(data, mode) {
             window.location.href = '@Url.Action("EmployeeEntry", "Employee")?EmployeeCD=' + data + '&Mode=' + mode;
-        }
+        }*@
     </script>
 } 

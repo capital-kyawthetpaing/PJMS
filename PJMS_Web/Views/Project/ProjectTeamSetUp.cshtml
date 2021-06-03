@@ -72,11 +72,6 @@
         $(document).ready(function () {
             BindProject();
             var obj = {
-                EmployeeCD: ''
-            };
-            var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeListApi")', obj);
-            BindTable(response);
-            var obj = {
                 ProjectCD: $("#selectProject").val(),
             };
             $('#selectProject').change(function () {
@@ -88,6 +83,11 @@
         function ShowModal(role) {
             $("#hRole").val(role);
             $('#modal').iziModal('open');
+            var obj = {
+                EmployeeCD: ''
+            };
+            var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeListApi")', obj);
+            BindTable(response);
         }
 
         function btnAddClick() {
@@ -108,7 +108,6 @@
             $('#modal').iziModal('close');
             BindDetail();
         }
-
 
         $('input[type=radio][name=Teams]').change(function () {
             BindProject();
