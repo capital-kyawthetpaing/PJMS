@@ -225,20 +225,6 @@
                 }]
             });
         }
-        @*function ShowModal(role) {
-                $("#hRole").val(role);
-                var obj = {
-                    TeamID: $("input[name='Teams']:checked").val(),
-                };
-                var response = CalltoApiController('@Url.Action("GetProjectEmployee", "api/EmployeeListApi")', obj);
-                BindTable(response);
-            $(".showEmployee").css("display", "block");
-                if (document.getElementById("hRole").value == 1) {
-                    $('.chkStatus').on('change', function () {
-                        $('.chkStatus').not(this).prop('checked', false);
-                    });
-                }
-        }*@
         function ShowModal(role) {
             $("#hRole").val(role);
             $('#modal').iziModal('open');
