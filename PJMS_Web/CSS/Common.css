@@ -42,39 +42,33 @@
     font-weight:bold;
     color:green;
 }
-#border-entry {
-font-weight: bold;
-}
-#btnSave {
+#btnSave, #btnUpdate {
     background-color: lightgreen;
     font-size: 18px;
     color: blue;
-    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 400px;
 }
-#btnUpdate {
-    background-color: lightgreen;
-    font-size: 18px;
-    color: blue;
-    margin-left: 450px;
-    margin-top: 5px;
-}
-#basic-addon1 i{
+
+    #basic-addon1 i{
     font-size: 18px;
     color: aquamarine;
 }
-/*#btnCancel {
+
+
+    /*#btnCancel {
     background-color: lightcoral;
     font-size: 18px;
     color: blue;
     margin-top: 5px;
 }*/
-/*iziMoal*/
-/*#btncancel,#btnadd {
+    /*iziMoal*/
+    /*#btncancel,#btnadd {
     margin-top: 10px;
     font-size: 16px;
     margin-left: 55px;
 }*/
- #btnAdd {
+    #btnAdd {
     background-color: lightgreen;
     font-size: 18px;
     color: blue;
@@ -85,4 +79,11 @@ font-weight: bold;
     font-size: 18px;
     color: white;
     margin-top: 5px;
+}
+#addLeader, #addMember {
+    background-color: lightskyblue ;
+    font-size: 15px;
+    color: black;
+    margin-top: 5px;
+    margin-right: 2px;
 }

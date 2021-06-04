@@ -3,6 +3,7 @@
     ViewBag.Title = "Project Entry";
     Layout = "~/Views/Shared/_PJMSLayout.cshtml";
 }
+<input type="hidden" id="hRole" />
 @using (Html.BeginForm("Project_Save", "Project", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
 {
     <div class="panel panel-inverse">
@@ -16,122 +17,145 @@
             <div class="container-fluid" id="content_zip">
                 <div class="row">
                     <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
-                        <div class="card" id="border-entry">
-                            <div class="card-body">
-                                <div class="form-row">
-                                    <div class="form-group col-xl-2 col-md-4">
-                                        <label for="ProjectCD">ProjectCD</label><label style="color:red;font-size:20px;">&nbsp;*</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-project-diagram"></i></span>
-                                            </div>
-                                            @Html.HiddenFor(pm => pm.Mode, new { @id = "hfSave_Update" })
-                                            @Html.TextBoxFor(pm => pm.ProjectCD, new
-                                           {
-                                               @class = "form-control input-sm input-integeronly1",
-                                               @tabindex = "1",
-                                               @required = "required",
-                                               @id = "txtProjectCD",
-                                               @autofocus = "autofocus",
-                                               maxlength = "4",
-                                           })
-                                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-xl-1.2 col-md-1.2">
+                                <label for="ProjectCD">ProjectCD</label><label style="color:red;font-size:20px;">&nbsp;*</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-project-diagram"></i></span>
                                     </div>
-                                    <div class="form-group col-xl-2 col-md-4.5">
-                                        <label for="ProjectName">Project Name</label><label style="color: red; font-size: 20px;">&nbsp;*</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-list-ol"></i></span>
-                                            </div>
-                                            @Html.TextBoxFor(pm => pm.ProjectName, new
-                                           {
-                                               @class = "form-control input-sm",
-                                               @tabindex = "2",
-                                               @required = "required",
-                                               @id = "txtProjectName",
-                                               @autofocus = "autofocus",
-                                               maxlength = "100"
-                                           })
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-xl-2 col-md-4.5">
-                                        <label for="CompanyName">Company Name</label><label style="color: red; font-size: 20px;">&nbsp;*</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-building"></i></span>
-                                            </div>
-                                            @Html.TextBoxFor(pm => pm.CompanyName, new
-                                       {
-                                           @class = "form-control input-sm",
-                                           @tabindex = "3",
-                                           @required = "required",
-                                           @id = "txtCompanyName",
-                                           @autofocus = "autofocus",
-                                           maxlength = "100"
-                                       })
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-xl-2 col-md-4">
-                                        <label for="PresonInCharge">Preson In Charge</label><label style="color: red; font-size: 20px;">&nbsp;*</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-signature"></i></span>
-                                            </div>
-                                            @Html.TextBoxFor(pm => pm.PresonInCharge, new
-                                       {
-                                           @class = "form-control input-sm",
-                                           @tabindex = "4",
-                                           @required = "required",
-                                           @id = "txtPresonInCharge",
-                                           @autofocus = "autofocus",
-                                           maxlength = "100"
-                                       })
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-xl-2 col-md-4">
-                                        <label for="ContractDate">Contract Date</label><label style="color: red; font-size: 20px;">&nbsp;*</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
-                                            </div>
-                                            @Html.TextBoxFor(pm => pm.ContractDate, "{dd-MM-yyyy}", new
-                                       {
-                                           @class = "form-control input-sm",
-                                           placeHolder = "dd/MM/yyyy",
-                                           @required = "required",
-                                           @tabindex = "5",
-                                           @id = "txtContractDate",
-                                           maxlength = "10",
-                                           max = "12-12-2100",
-                                       })
-                                        </div>
-                                    </div>
+                                    @Html.HiddenFor(pm => pm.Mode, new { @id = "hfSave_Update" })
+                                    @Html.TextBoxFor(pm => pm.ProjectCD, new
+                                   {
+                                       @class = "form-control input-sm input-integeronly1",
+                                       @tabindex = "1",
+                                       @required = "required",
+                                       @id = "txtProjectCD",
+                                       @autofocus = "autofocus",
+                                       maxlength = "4",
+                                   })
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-12 text-center">
-                        <div class="card border-bottom-success shadow h-100 border-bottom" id="border-entry">
-                            <div class="card-body">
-                                <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
-                                    <button id="btnSave" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; Save</button>
-                                    <button id="btnUpdate" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; Update</button>
-                               </div>             
+                            <div class="form-group col-xl-3 col-md-3">
+                                <label for="ProjectName">Project Name</label><label style="color: red; font-size: 20px;">&nbsp;*</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-list-ol"></i></span>
+                                    </div>
+                                    @Html.TextBoxFor(pm => pm.ProjectName, new
+                                   {
+                                       @class = "form-control input-sm",
+                                       @tabindex = "2",
+                                       @required = "required",
+                                       @id = "txtProjectName",
+                                       @autofocus = "autofocus",
+                                       maxlength = "100"
+                                   })
+                                </div>
+                            </div>
+                            <div class="form-group col-xl-3 col-md-3">
+                                <label for="CompanyName">Company Name</label><label style="color: red; font-size: 20px;">&nbsp;*</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-building"></i></span>
+                                    </div>
+                                    @Html.TextBoxFor(pm => pm.CompanyName, new
+                               {
+                                   @class = "form-control input-sm",
+                                   @tabindex = "3",
+                                   @required = "required",
+                                   @id = "txtCompanyName",
+                                   @autofocus = "autofocus",
+                                   maxlength = "100"
+                               })
+                                </div>
+                            </div>
+                            <div class="form-group col-xl-3 col-md-3">
+                                <label for="PresonInCharge">Preson In Charge</label><label style="color: red; font-size: 20px;">&nbsp;*</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-signature"></i></span>
+                                    </div>
+                                    @Html.TextBoxFor(pm => pm.PresonInCharge, new
+                               {
+                                   @class = "form-control input-sm",
+                                   @tabindex = "4",
+                                   @required = "required",
+                                   @id = "txtPresonInCharge",
+                                   @autofocus = "autofocus",
+                                   maxlength = "100"
+                               })
+                                </div>
+                            </div>
+                            <div class="form-group col-xl-1.2 col-md-1.2">
+                                <label for="ContractDate">Contract Date</label><label style="color: red; font-size: 20px;">&nbsp;*</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
+                                    </div>
+                                    @Html.TextBoxFor(pm => pm.ContractDate, "{dd-MM-yyyy}", new
+                               {
+                                   @class = "form-control input-sm",
+                                   placeHolder = "dd/MM/yyyy",
+                                   @required = "required",
+                                   @tabindex = "5",
+                                   @id = "txtContractDate",
+                                   maxlength = "10",
+                                   max = "12-12-2100",
+                               })
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-md-12 col-sm-12" style="font-size: 16px; font-weight: bold">
+                                @Html.LabelFor(model => model.Teams, htmlAttributes: new { @class = "control-label mr-5" })
+                                @Html.RadioButton("Teams", "1", new { @id = "rdoSystem", @checked = true })<label for="rdoSystem">System</label>
+                                @Html.RadioButton("Teams", "2", new { @id = "rdoSeisaku", @class = "ml-3" })<label for="rdoSeisaku">Seisaku</label>
                             </div>
                         </div>
+                        <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
+                            <button id="addLeader" onclick="ShowModal('1')" class="btn col-xl-2"><i class="fas fa-users text-white"></i>&nbsp; Add Leader</button>
+                            <button id="addMember" onclick="ShowModal('2')" class="btn col-xl-2"><i class="fas fa-users text-white"></i>&nbsp; Add Member</button>
+                        </div>
                     </div>
                 </div>
-
+                <table id="selectedProjectDetail" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%;">
+                    <thead>
+                        <tr>
+                            <th>EmployeeCD</th>
+                            <th>EmployeeName</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+                <button id="btnSave" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; Save</button>
+                <button id="btnUpdate" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; Update</button>
+                <div class="modal" id="modal" style="height: auto">
+                    <div class="sections">
+                        <section>
+                            <table id="tblEmployee1" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>EmployeeCD</th>
+                                        <th>EmployeeName</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <button id="btnRemove" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-window-close"></i>&nbsp; Close</button>
+                            <button id="btnAdd" onclick="btnAddClick();" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-save"></i>&nbsp; Add Employee</button>
+                        </section>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 }
-    @section Scripts
+@section Scripts
     {
-        <script type="text/javascript">
-            $(document).ready(function () {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
             var mode = '@Model.Mode';
             if (mode == 'Edit') {
                 var obj = {
@@ -151,29 +175,123 @@
                 $("#txtContractDate").val(EData[0].ContractDate);
                 $("#btnSave").css("display", "none");
                 $("#btnUpdate").css("display", "block");
+                var obj = {
+                    ProjectCD: '@Model.ProjectCD'
+                };
+            var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
+            BindTable1(response);
             }
         });
-            $('#btnSave').click(function () {
+        $('#btnSave').click(function () {
+            var obj = {
+                ProjectCD: $("#txtProjectCD").val(),
+                ProjectName: $("#txtProjectName").val(),
+                CompanyName: $("#txtCompanyName").val(),
+                PresonInCharge: $("#txtPresonInCharge").val(),
+                ContractDate: $("#txtContractDate").val(),
+            };
+            CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
+        });
+        $("#btnUpdate").css("display", "none");
+        $('#btnUpdate').click(function () {
+            var obj = {
+                ProjectCD: $("#txtProjectCD").val(),
+                ProjectName: $("#txtProjectName").val(),
+                CompanyName: $("#txtCompanyName").val(),
+                PresonInCharge: $("#txtPresonInCharge").val(),
+                ContractDate: $("#txtContractDate").val(),
+            };
+            CalltoApiController('@Url.Action("UpdateProject", "api/ProjectListApi")', obj);
+        });
+        function BindTable(response) {
+            table = $('#tblEmployee1').DataTable({
+                resSelectListItemelectListItemelectListelectListonsive: true,
+                data: JSON.parse(response),
+                datasrc: "",
+                destroy: true,
+                "paging": true,
+                "ordering": true,
+                "columns": [
+                    { "data": "EmployeeCD", "className": "align-center", "width": "20%" },
+                    { "data": "EmployeeCD", "className": "align-center", "width": "40%" },
+                    { "data": "EmployeeName", "className": "align-center", "width": "40%" }
+                ],
+                "columnDefs": [{
+                    "targets": 0,
+                    "data": "EmployeeCD",
+                    "render": function (data) {
+                        return '<input type="checkbox" data-val="true" data-val-required="The IsChecked field is required." class="chkStatus">';
+                    },
+                }]
+            });
+        }
+        @*function ShowModal(role) {
+                $("#hRole").val(role);
                 var obj = {
-                    ProjectCD: $("#txtProjectCD").val(),
-                    ProjectName: $("#txtProjectName").val(),
-                    CompanyName: $("#txtCompanyName").val(),
-                    PresonInCharge: $("#txtPresonInCharge").val(),
-                    ContractDate: $("#txtContractDate").val(),
+                    TeamID: $("input[name='Teams']:checked").val(),
                 };
-                CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
+                var response = CalltoApiController('@Url.Action("GetProjectEmployee", "api/EmployeeListApi")', obj);
+                BindTable(response);
+            $(".showEmployee").css("display", "block");
+                if (document.getElementById("hRole").value == 1) {
+                    $('.chkStatus').on('change', function () {
+                        $('.chkStatus').not(this).prop('checked', false);
+                    });
+                }
+        }*@
+        function ShowModal(role) {
+            $("#hRole").val(role);
+            $('#modal').iziModal('open');
+            var obj = {
+                TeamID: $("input[name='Teams']:checked").val(),
+            };
+            var response = CalltoApiController('@Url.Action("GetProjectEmployee", "api/EmployeeListApi")', obj);
+            BindTable(response);
+            if (document.getElementById("hRole").value == 1) {
+                $('.chkStatus').on('change', function () {
+                    $('.chkStatus').not(this).prop('checked', false);
+                });
+            }
+        }
+        $(".modal").iziModal({
+            title: "Employee List",
+            padding: 10,
+            TransitionIn: 'FadeInRight',
+            theme: 'light',
+            width: '700px',
+            headerColor: 'deepskyblue',
+        });
+        $('#btnRemove').on('click', function (e) {
+            $('#modal').iziModal('close');
+        });
 
+        function BindTable1(response1) {
+            table = $('#selectedProjectDetail').DataTable({
+                responsive: true,
+                dom: 'Bfrtip',
+                data: JSON.parse(response1),
+                datasrc: "",
+                destroy: true,
+                "paging": true,
+                "ordering": true,
+                "columns": [
+                    { "data": "EmployeeCD", "className": "align-center", "width": "30%" },
+                    { "data": "EmployeeName", "className": "align-center", "width": "40%" },
+                    { "data": "Role", "className": "align-center", "width": "30%" }
+                ],
             });
-            $("#btnUpdate").css("display", "none");
-            $('#btnUpdate').click(function () {
-                var obj = {
-                    ProjectCD: $("#txtProjectCD").val(),
-                    ProjectName: $("#txtProjectName").val(),
-                    CompanyName: $("#txtCompanyName").val(),
-                    PresonInCharge: $("#txtPresonInCharge").val(),
-                    ContractDate: $("#txtContractDate").val(),
-                };
-                CalltoApiController('@Url.Action("UpdateProject", "api/ProjectListApi")', obj);
+        }
+        function btnAddClick() {
+            jsonObj = [];
+            $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
+                var row = $(this).closest("tr")[0];
+                item = {};
+                item["EmployeeCD"] = row.cells[1].innerHTML;
+                item["EmployeeName"] = row.cells[2].innerHTML;
+                jsonObj.push(item);
             });
-        </script>
-    }
+            $('#selectedProjectDetail').append('<tr><td>' + $("#txtProjectCD").val() + '</td><td>' + JSON.stringify(jsonObj) + '</td><td>' + $("#hRole").val() + '</td></tr>');
+            $('#modal').iziModal('close');
+        } 
+    </script>
+}
