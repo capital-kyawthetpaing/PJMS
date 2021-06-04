@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_PJMSLayout.cshtml";
 }
 <input type="hidden" id="hRole" />
-@using (Html.BeginForm("Project_Save", "Project", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
-{
     <div class="panel panel-inverse">
         <div class="panel-heading">
             <h4 class="panel-title">Project Entry</h4>
@@ -150,7 +148,6 @@
             </div>
         </div>
     </div>
-}
 @section Scripts
     {
     <script type="text/javascript">
