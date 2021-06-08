@@ -141,7 +141,7 @@
                                 <tbody></tbody>
                             </table>
                             <button id="btnRemove" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-window-close"></i>&nbsp; Close</button>
-                            <button id="btnAdd" onclick="btnAddClick();" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-save"></i>&nbsp; Add Employee</button>
+                            <button id="btnAdd" onclick="btnAddClick();" value="Save" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-save"></i>&nbsp; Add Employee</button>
                         </section>
                     </div>
                 </div>
@@ -152,7 +152,6 @@
     {
     <script type="text/javascript">
         $(document).ready(function () {
-
             var mode = '@Model.Mode';
             if (mode == 'Edit') {
                 var obj = {
@@ -164,41 +163,38 @@
                 };
                 var data = CalltoApiController('@Url.Action("GetProject", "api/ProjectListApi")', obj);
                 var EData = JSON.parse(data);
+                var obj = {
+                    ProjectCD: '@Model.ProjectCD'
+                };
+                var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
+                BindTable1(response);
                 $("#txtProjectCD").val(EData[0].ProjectCD);
-                $('#txtProjectCD').attr('readonly', false);
+                $('#txtProjectCD').attr('readonly', true);
                 $("#txtProjectName").val(EData[0].ProjectName);
                 $("#txtCompanyName").val(EData[0].CompanyName);
                 $("#txtPresonInCharge").val(EData[0].PresonInCharge);
                 $("#txtContractDate").val(EData[0].ContractDate);
                 $("#btnSave").css("display", "none");
                 $("#btnUpdate").css("display", "block");
-                var obj = {
-                    ProjectCD: '@Model.ProjectCD'
-                };
-            var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
-            BindTable1(response);
             }
-        });
-        $('#btnSave').click(function () {
-            var obj = {
-                ProjectCD: $("#txtProjectCD").val(),
-                ProjectName: $("#txtProjectName").val(),
-                CompanyName: $("#txtCompanyName").val(),
-                PresonInCharge: $("#txtPresonInCharge").val(),
-                ContractDate: $("#txtContractDate").val(),
-            };
-            CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
         });
         $("#btnUpdate").css("display", "none");
         $('#btnUpdate').click(function () {
             var obj = {
                 ProjectCD: $("#txtProjectCD").val(),
                 ProjectName: $("#txtProjectName").val(),
+                TeamID: $("input[name='Teams']:checked").val(),
                 CompanyName: $("#txtCompanyName").val(),
                 PresonInCharge: $("#txtPresonInCharge").val(),
                 ContractDate: $("#txtContractDate").val(),
             };
             CalltoApiController('@Url.Action("UpdateProject", "api/ProjectListApi")', obj);
+            var obj = {
+                projectCD: $("#txtProjectCD").val(),
+                ProjectDetailJson: JSON.stringify(jsonObj),
+                Role: $("#hRole").val(),
+            };
+            CalltoApiController('@Url.Action("UpdateProjectDetail", "api/ProjectListApi")', obj);
         });
         function BindTable(response) {
             table = $('#tblEmployee1').DataTable({
@@ -217,7 +213,7 @@
                     "targets": 0,
                     "data": "EmployeeCD",
                     "render": function (data) {
-                        return '<input type="checkbox" data-val="true" data-val-required="The IsChecked field is required." class="chkStatus">';
+                        return '<input type="checkbox" class="chkStatus" name="check">';
                     },
                 }]
             });
@@ -235,6 +231,12 @@
                     $('.chkStatus').not(this).prop('checked', false);
                 });
             }
+            //$(".chkStatus").click(function () {
+            //    $("input:not(:checked)").each((i, el) => {
+            //        $(".chkStatus").hide();
+            //    });
+
+            //});
         }
         $(".modal").iziModal({
             title: "Employee List",
@@ -273,8 +275,26 @@
                 item["EmployeeName"] = row.cells[2].innerHTML;
                 jsonObj.push(item);
             });
-            $('#selectedProjectDetail').append('<tr><td>' + $("#txtProjectCD").val() + '</td><td>' + JSON.stringify(jsonObj) + '</td><td>' + $("#hRole").val() + '</td></tr>');
             $('#modal').iziModal('close');
-        } 
+            //$('#selectedProjectDetail').append('<tr><td>' + EmployeeCD + '</td><td>' + EmployeeName + '</td><td>' + $("#hRole").val() + '</td></tr>');
+        }
+        $('#btnSave').click(function () {
+            var obj = {
+                ProjectCD: $("#txtProjectCD").val(),
+                ProjectName: $("#txtProjectName").val(),
+                TeamID: $("input[name='Teams']:checked").val(),
+                CompanyName: $("#txtCompanyName").val(),
+                PresonInCharge: $("#txtPresonInCharge").val(),
+                ContractDate: $("#txtContractDate").val(),
+            };
+            CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
+            var obj = {
+                ProjectCD: $("#txtProjectCD").val(),
+                ProjectDetailJson: JSON.stringify(jsonObj),
+                Role: $("#hRole").val(),
+            };
+            CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);
+        });
+
     </script>
 }

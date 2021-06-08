@@ -50,5 +50,15 @@ namespace PJMS_Web.Controllers
             ProjectBL projectBL = new ProjectBL();
             return Ok(projectBL.InsertProjectDetail(projectModel));
         }
+
+        [UserAuthentication]
+        [HttpPost]
+        [ActionName("UpdateProjectDetail")]
+        public IHttpActionResult UpdateProjectDetail([FromBody] ProjectModel projectModel)
+        {
+            ProjectBL projectBL = new ProjectBL();
+            return Ok(projectBL.UpdateProjectDetail(projectModel));
+        }
+
     }
 }
