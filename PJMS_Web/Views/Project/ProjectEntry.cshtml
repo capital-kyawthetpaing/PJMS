@@ -213,7 +213,8 @@
                     "targets": 0,
                     "data": "EmployeeCD",
                     "render": function (data) {
-                        return '<input type="checkbox" class="chkStatus" name="check">';
+                        return '<input type="checkbox" class="chkStatus" />';
+                        //<input type="checkbox" class="chkStatus"/>
                     },
                 }]
             });
@@ -231,12 +232,6 @@
                     $('.chkStatus').not(this).prop('checked', false);
                 });
             }
-            //$(".chkStatus").click(function () {
-            //    $("input:not(:checked)").each((i, el) => {
-            //        $(".chkStatus").hide();
-            //    });
-
-            //});
         }
         $(".modal").iziModal({
             title: "Employee List",
@@ -249,15 +244,14 @@
         $('#btnRemove').on('click', function (e) {
             $('#modal').iziModal('close');
         });
-
         function BindTable1(response1) {
             table = $('#selectedProjectDetail').DataTable({
                 responsive: true,
-                dom: 'Bfrtip',
                 data: JSON.parse(response1),
                 datasrc: "",
                 destroy: true,
-                "paging": true,
+                "paging": false,
+                "searching": false,
                 "ordering": true,
                 "columns": [
                     { "data": "EmployeeCD", "className": "align-center", "width": "30%" },
@@ -274,9 +268,9 @@
                 item["EmployeeCD"] = row.cells[1].innerHTML;
                 item["EmployeeName"] = row.cells[2].innerHTML;
                 jsonObj.push(item);
+                $('#selectedProjectDetail').append('<tr><td>' + item["EmployeeCD"] + '</td><td>' + item["EmployeeName"] + '</td><td>' + $("#hRole").val() + '</td></tr>');
             });
             $('#modal').iziModal('close');
-            //$('#selectedProjectDetail').append('<tr><td>' + EmployeeCD + '</td><td>' + EmployeeName + '</td><td>' + $("#hRole").val() + '</td></tr>');
         }
         $('#btnSave').click(function () {
             var obj = {
@@ -295,6 +289,5 @@
             };
             CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);
         });
-
     </script>
 }
