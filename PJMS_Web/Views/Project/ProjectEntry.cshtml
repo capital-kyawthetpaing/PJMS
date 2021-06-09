@@ -118,6 +118,7 @@
                 <table id="selectedProjectDetail" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%;">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>EmployeeCD</th>
                             <th>EmployeeName</th>
                             <th>Role</th>
@@ -150,7 +151,6 @@
     </div>
 @section Scripts
     {
-    <div>
         <script type="text/javascript">
         $(document).ready(function () {
             var mode = '@Model.Mode';
@@ -220,21 +220,19 @@
                     "data": "EmployeeCD",
                     "render": function (data) {
                         return '<input type="checkbox" class="chkStatus" />';
-                        //<input type="checkbox" class="chkStatus"/>
                     },
                 }]
             });
         }
         function ShowModal(role) {
             jsonObj = [];
-            $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
+            $('#selectedProjectDetail > tbody  > tr').each(function (index, tr) { 
                 var row = $(this).closest("tr")[0];
                 item = {};
-                item["EmployeeCD"] = row.cells[1].innerHTML;
-                item["EmployeeName"] = row.cells[2].innerHTML;
+                item["EmployeeCD"] = row.cells[0].innerHTML;
+                item["EmployeeName"] = row.cells[1].innerHTML;
                 jsonObj.push(item);
             });
-
 
             $("#hRole").val(role);
             $('#modal').iziModal('open');
@@ -271,10 +269,18 @@
                 "searching": false,
                 "ordering": true,
                 "columns": [
+                    { "data": "EmployeeCD", "className": "align-center", "width": "10%" },
                     { "data": "EmployeeCD", "className": "align-center", "width": "30%" },
-                    { "data": "EmployeeName", "className": "align-center", "width": "40%" },
+                    { "data": "EmployeeName", "className": "align-center", "width": "30%" },
                     { "data": "Role", "className": "align-center", "width": "30%" }
                 ],
+                "columnDefs": [{
+                    "targets": 0,
+                    "data": "EmployeeCD",
+                    "render": function (data) {
+                        return "<button type='button' onclick='EmployeeDelete(this);' class='btn btn-danger'>Delete</button>";
+                    },
+                }]
             });
         }
         function btnAddClick() {
@@ -291,9 +297,12 @@
                 } else {
                     value = "Member"
                 }
-                $('#selectedProjectDetail').append('<tr><td>' + item["EmployeeCD"] + '</td><td>' + item["EmployeeName"] + '</td><td>' + value + '</td></tr>');
+                $('#selectedProjectDetail').append('<tr><td>' + "<button type='button' onclick='EmployeeDelete(this);' class='btn btn-danger'>Delete</button>" + '</td><td>' + item["EmployeeCD"] + '</td><td>'  + item["EmployeeName"] + '</td><td>' + value + '</td></tr>');
             });
             $('#modal').iziModal('close');
+        }
+        function EmployeeDelete(e) {
+            $(e).parents("tr").remove();
         }
         $('#btnSave').click(function () {
             var obj = {
@@ -317,5 +326,4 @@
             CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);*@
         });
         </script>
-    </div>
 }

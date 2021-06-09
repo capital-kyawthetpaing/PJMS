@@ -42,15 +42,23 @@ namespace PJMS_Web.Controllers
             return Ok(projectBL.GetProjectDetail(projectModel));
         }
 
-        //ssa CHG 09/06/2021
-        //[UserAuthentication]
-        //[HttpPost]
-        //[ActionName("InsertProjectDetail")]
-        //public IHttpActionResult InsertProjectDetail([FromBody] ProjectModel projectModel)
-        //{
-        //    ProjectBL projectBL = new ProjectBL();
-        //    return Ok(projectBL.InsertProjectDetail(projectModel));
-        //}
+        [UserAuthentication]
+        [HttpPost]
+        [ActionName("GetProjectView")]
+        public IHttpActionResult GetProjectView([FromBody] ProjectModel projectModel)
+        {
+            ProjectBL projectBL = new ProjectBL();
+            return Ok(projectBL.GetProjectView(projectModel));
+        }
+
+        [UserAuthentication]
+        [HttpPost]
+        [ActionName("InsertProjectDetail")]
+        public IHttpActionResult InsertProjectDetail([FromBody] ProjectModel projectModel)
+        {
+            ProjectBL projectBL = new ProjectBL();
+            return Ok(projectBL.InsertProjectDetail(projectModel));
+        }
 
         //ssa CHG 09/06/2021
         //[UserAuthentication]
