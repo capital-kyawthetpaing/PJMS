@@ -150,7 +150,8 @@
     </div>
 @section Scripts
     {
-    <script type="text/javascript">
+    <div>
+        <script type="text/javascript">
         $(document).ready(function () {
             var mode = '@Model.Mode';
             if (mode == 'Edit') {
@@ -220,10 +221,22 @@
             });
         }
         function ShowModal(role) {
+            jsonObj = [];
+            $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
+                var row = $(this).closest("tr")[0];
+                item = {};
+                item["EmployeeCD"] = row.cells[1].innerHTML;
+                item["EmployeeName"] = row.cells[2].innerHTML;
+                jsonObj.push(item);
+                $('#selectedProjectDetail').append('<tr><td>' + item["EmployeeCD"] + '</td><td>' + item["EmployeeName"] + '</td><td>' + $("#hRole").val() + '</td></tr>');
+            });
+
+
             $("#hRole").val(role);
             $('#modal').iziModal('open');
             var obj = {
                 TeamID: $("input[name='Teams']:checked").val(),
+                EmployeeJson: JSON.stringify(jsonObj),
             };
             var response = CalltoApiController('@Url.Action("GetProjectEmployee", "api/EmployeeListApi")', obj);
             BindTable(response);
@@ -289,5 +302,6 @@
             };
             CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);
         });
-    </script>
+        </script>
+    </div>
 }
