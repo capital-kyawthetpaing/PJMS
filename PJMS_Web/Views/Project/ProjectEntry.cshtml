@@ -118,6 +118,7 @@
                 <table id="selectedProjectDetail" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%;">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>EmployeeCD</th>
                             <th>EmployeeName</th>
                             <th>Role</th>
@@ -215,7 +216,6 @@
                     "data": "EmployeeCD",
                     "render": function (data) {
                         return '<input type="checkbox" class="chkStatus" />';
-                        //<input type="checkbox" class="chkStatus"/>
                     },
                 }]
             });
@@ -229,7 +229,6 @@
                 item["EmployeeName"] = row.cells[1].innerHTML;
                 jsonObj.push(item);
             });
-
 
             $("#hRole").val(role);
             $('#modal').iziModal('open');
@@ -266,10 +265,18 @@
                 "searching": false,
                 "ordering": true,
                 "columns": [
+                    { "data": "EmployeeCD", "className": "align-center", "width": "10%" },
                     { "data": "EmployeeCD", "className": "align-center", "width": "30%" },
-                    { "data": "EmployeeName", "className": "align-center", "width": "40%" },
+                    { "data": "EmployeeName", "className": "align-center", "width": "30%" },
                     { "data": "Role", "className": "align-center", "width": "30%" }
                 ],
+                "columnDefs": [{
+                    "targets": 0,
+                    "data": "EmployeeCD",
+                    "render": function (data) {
+                        return "<button type='button' onclick='EmployeeDelete(this);' class='btn btn-danger'>Delete</button>";
+                    },
+                }]
             });
         }
         function btnAddClick() {
@@ -286,9 +293,12 @@
                 } else {
                     value = "Member"
                 }
-                $('#selectedProjectDetail').append('<tr><td>' + item["EmployeeCD"] + '</td><td>' + item["EmployeeName"] + '</td><td>' + value + '</td></tr>');
+                $('#selectedProjectDetail').append('<tr><td>' + "<button type='button' onclick='EmployeeDelete(this);' class='btn btn-danger'>Delete</button>" + '</td><td>' + item["EmployeeCD"] + '</td><td>'  + item["EmployeeName"] + '</td><td>' + value + '</td></tr>');
             });
             $('#modal').iziModal('close');
+        }
+        function EmployeeDelete(e) {
+            $(e).parents("tr").remove();
         }
         $('#btnSave').click(function () {
             var obj = {
