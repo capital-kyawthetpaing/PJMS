@@ -43,15 +43,16 @@
     color:green;
 }
 #btnSave, #btnUpdate {
-    background-color: lightgreen;
-    font-size: 18px;
-    color: blue;
+    background-color: lightcyan;
+    border:1px solid black;
+    font-size: 15px;
+    color: black;
     margin-bottom: 5px;
     margin-left: 400px;
 }
 
     #basic-addon1 i{
-    font-size: 18px;
+    font-size: 15px;
     color: aquamarine;
 }
 
@@ -69,19 +70,20 @@
     margin-left: 55px;
 }*/
     #btnAdd {
-    background-color: lightgreen;
-    font-size: 18px;
-    color: blue;
+    background-color: lightcyan;
+    font-size: 15px;
+    color: black;
     margin-top: 5px;
 }
 #btnRemove {
     background-color: red;
-    font-size: 18px;
+    font-size: 15px;
     color: white;
     margin-top: 5px;
 }
 #addLeader, #addMember {
-    background-color: lightskyblue ;
+    background-color: lightcyan;
+    border: 1px solid black;
     font-size: 15px;
     color: black;
     margin-top: 5px;
