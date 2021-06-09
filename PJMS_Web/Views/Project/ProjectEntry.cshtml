@@ -222,13 +222,12 @@
         }
         function ShowModal(role) {
             jsonObj = [];
-            $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
+            $('#selectedProjectDetail > tbody  > tr').each(function (index, tr) { 
                 var row = $(this).closest("tr")[0];
                 item = {};
-                item["EmployeeCD"] = row.cells[1].innerHTML;
-                item["EmployeeName"] = row.cells[2].innerHTML;
+                item["EmployeeCD"] = row.cells[0].innerHTML;
+                item["EmployeeName"] = row.cells[1].innerHTML;
                 jsonObj.push(item);
-                $('#selectedProjectDetail').append('<tr><td>' + item["EmployeeCD"] + '</td><td>' + item["EmployeeName"] + '</td><td>' + $("#hRole").val() + '</td></tr>');
             });
 
 
