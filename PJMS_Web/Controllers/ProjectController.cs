@@ -18,6 +18,10 @@ namespace PJMS_Web.Controllers
             return View(pModel);
 
         }
+        public ActionResult ProjectView(ProjectModel projectModel)
+        {
+            return View();
+        }
         public ActionResult Project_Save(ProjectModel projectModel)
         {
             return RedirectToAction("ProjectList");
