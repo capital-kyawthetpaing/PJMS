@@ -44,6 +44,15 @@ namespace PJMS_Web.Controllers
 
         [UserAuthentication]
         [HttpPost]
+        [ActionName("GetProjectView")]
+        public IHttpActionResult GetProjectView([FromBody] ProjectModel projectModel)
+        {
+            ProjectBL projectBL = new ProjectBL();
+            return Ok(projectBL.GetProjectView(projectModel));
+        }
+
+        [UserAuthentication]
+        [HttpPost]
         [ActionName("InsertProjectDetail")]
         public IHttpActionResult InsertProjectDetail([FromBody] ProjectModel projectModel)
         {

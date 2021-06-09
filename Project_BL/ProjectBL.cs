@@ -60,6 +60,12 @@ namespace Project_BL
             projectModel.Sqlprms[4] = new SqlParameter("@Role", projectModel.Role);
             return cKMDL.SelectJson("Project_SelectDetail", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
         }
+        public string GetProjectView(ProjectModel projectModel)
+        {
+            projectModel.Sqlprms = new SqlParameter[1];
+            projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
+            return cKMDL.SelectJson("ProjectView_Select", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
+        }
         public string InsertProjectDetail(ProjectModel projectModel)
         {
             projectModel.Sqlprms = new SqlParameter[3];
