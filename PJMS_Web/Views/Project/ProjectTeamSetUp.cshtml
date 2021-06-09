@@ -79,7 +79,6 @@
             });
             BindDetail();
         });
-
         function ShowModal(role) {
             $("#hRole").val(role);
             $('#modal').iziModal('open');
@@ -94,7 +93,6 @@
                 });
             }
         }
-
         function btnAddClick() {
             jsonObj = [];
             $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
@@ -113,7 +111,6 @@
             $('#modal').iziModal('close');
             BindDetail();
         }
-
         $('input[type=radio][name=Teams]').change(function () {
             BindProject();
             BindDetail();
@@ -207,6 +204,5 @@
                     ]
                 });
         }
-
     </script>
 }
