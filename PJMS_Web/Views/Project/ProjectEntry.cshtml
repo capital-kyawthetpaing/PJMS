@@ -188,14 +188,19 @@
                 CompanyName: $("#txtCompanyName").val(),
                 PresonInCharge: $("#txtPresonInCharge").val(),
                 ContractDate: $("#txtContractDate").val(),
+                //SSA chg 09_06_2021
+                ProjectDetailJson: JSON.stringify(jsonObj),
+                Role: $("#hRole").val(),
             };
             CalltoApiController('@Url.Action("UpdateProject", "api/ProjectListApi")', obj);
-            var obj = {
+
+            //ssa CHG 09 / 06 / 2021
+            @*var obj = {
                 projectCD: $("#txtProjectCD").val(),
                 ProjectDetailJson: JSON.stringify(jsonObj),
                 Role: $("#hRole").val(),
             };
-            CalltoApiController('@Url.Action("UpdateProjectDetail", "api/ProjectListApi")', obj);
+            CalltoApiController('@Url.Action("UpdateProjectDetail", "api/ProjectListApi")', obj);*@
         });
         function BindTable(response) {
             table = $('#tblEmployee1').DataTable({
@@ -298,14 +303,18 @@
                 CompanyName: $("#txtCompanyName").val(),
                 PresonInCharge: $("#txtPresonInCharge").val(),
                 ContractDate: $("#txtContractDate").val(),
+                ProjectDetailJson: JSON.stringify(jsonObj),
+                Role: $("#hRole").val(),
             };
             CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
-            var obj = {
+
+            //ssa CHG 09 / 06 / 2021
+            @*var obj = {
                 ProjectCD: $("#txtProjectCD").val(),
                 ProjectDetailJson: JSON.stringify(jsonObj),
                 Role: $("#hRole").val(),
             };
-            CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);
+            CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);*@
         });
         </script>
     </div>
