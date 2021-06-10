@@ -182,7 +182,7 @@
         $("#btnUpdate").css("display", "none");
         $('#btnUpdate').click(function () {
             jsonObj = getTableJson();
-           
+
             var obj = {
                 ProjectCD: $("#txtProjectCD").val(),
                 ProjectName: $("#txtProjectName").val(),
@@ -193,8 +193,9 @@
                 //SSA chg 09_06_2021
                 ProjectDetailJson: JSON.stringify(jsonObj),
             };
-            
+
             CalltoApiController('@Url.Action("UpdateProject", "api/ProjectListApi")', obj);
+            ShowMessage('I101');
             //ssa CHG 09 / 06 / 2021
             @*var obj = {
                 projectCD: $("#txtProjectCD").val(),
@@ -301,19 +302,23 @@
         }
 
         $('#btnSave').click(function () {
-            jsonObj = getTableJson();
-            
-            var obj = {
-                ProjectCD: $("#txtProjectCD").val(),
-                ProjectName: $("#txtProjectName").val(),
-                ProjectType: $("input[name='Teams']:checked").val(),
-                CompanyName: $("#txtCompanyName").val(),
-                PresonInCharge: $("#txtPresonInCharge").val(),
-                ContractDate: $("#txtContractDate").val(),
-                ProjectDetailJson: JSON.stringify(jsonObj),
-            };
-            CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
-            ShowMessage('I101');//SSA chg [20210610]
+
+            if (ErrorCheck()) {
+                jsonObj = getTableJson();
+
+                var obj = {
+                    ProjectCD: $("#txtProjectCD").val(),
+                    ProjectName: $("#txtProjectName").val(),
+                    ProjectType: $("input[name='Teams']:checked").val(),
+                    CompanyName: $("#txtCompanyName").val(),
+                    PresonInCharge: $("#txtPresonInCharge").val(),
+                    ContractDate: $("#txtContractDate").val(),
+                    ProjectDetailJson: JSON.stringify(jsonObj),
+                };
+                CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
+                ShowMessage('I101');//SSA chg [20210610]
+            }
+
             //ssa CHG 09 / 06 / 2021
             @*var obj = {
                 ProjectCD: $("#txtProjectCD").val(),
@@ -337,6 +342,16 @@
             });
 
             return jsonObj;
+        }
+
+        function ErrorCheck() {
+            if (!$("#txtProjectCD").val()) {
+                ShowMessage("E102");
+                $("#txtProjectCD").focus();
+                return false;
+            }
+
+            return true;
         }
     </script>
 }
