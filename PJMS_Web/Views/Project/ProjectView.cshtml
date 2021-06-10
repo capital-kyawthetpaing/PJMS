@@ -4,7 +4,11 @@
     Layout = "~/Views/Shared/_PJMSLayout.cshtml";
 }
 
-<div class="panel panel-inverse">
+<div id="divMain">
+
+</div>
+
+@*<div class="panel panel-inverse">
     <div class="panel-heading">
         <h4 class="panel-title">Project View</h4>
         <div class="panel-heading-btn">
@@ -12,9 +16,30 @@
         </div>
     </div>
     <div class="panel-body">
-
+        <div class="row">
+            <div class="col-md-4 col-sm-6 col-xl-3 col-lg-3 media" style="margin-top:0">
+                <div class="media-left">
+                    <img src="http://163.43.113.92/HR_Management/Photo/149.jpg" style="max-width:50px; max-height:70px;float:left" />
+                </div>
+                <div class="media-body">
+                    <h6 class="media-heading"><label id="lblName">Swe Swe Aung</label></h6>
+                    <p class="StaffInfoLabel" id="lblPosition">Member</p>
+                    <p class="StaffInfoLabel" id="lblAge">35years</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xl-3 col-lg-3 media" style="margin-top:0">
+                <div class="media-left">
+                    <img src="http://163.43.113.92/HR_Management/Photo/149.jpg" style="max-width:50px; max-height:70px;float:left" />
+                </div>
+                <div class="media-body">
+                    <h6 class="media-heading"><label id="lblName">Swe Swe Aung</label></h6>
+                    <p class="StaffInfoLabel" id="lblPosition">Member</p>
+                    <p class="StaffInfoLabel" id="lblAge">35years</p>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</div>*@
 
 @section Scripts
 {
@@ -24,7 +49,66 @@
         });
 
         function BindProjectView(pcd) {
+            var obj = {
+                ProjectCD: pcd,
+            };
+            var response = CalltoApiController('@Url.Action("GetProjectView", "api/ProjectListApi")', obj);
+            var data = JSON.parse(response);
+            var projectCD = '';
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].ProjectCD != projectCD) {
+                    var v1 = '<div id=' + data[i].ProjectCD +' class="panel panel-inverse">' +
+                        '<div class="panel-heading">' +
+                        '<h4 class="panel-title">' + data[i].ProjectName + '</h4>' +
+                        '<div class="panel-heading-btn">' +
+                        '<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand">' + '<i class="fa fa-expand">' + '</i>' + '</a>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="panel-body">' +
+                        '<div class="row" id="div' + data[i].ProjectCD +'row">' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
 
+                    $("#divMain").append(v1);
+                }
+
+                if (data[i].Role == '1') {
+
+                    var r1 = data[i].EmployeeCD.split('-');
+
+                    var v2 = 
+                        '<div class="col-md-12 col-sm-12 col-xl-12 col-lg-12 media" style="margin-top:0">' +
+                        '<div class="media-left">' +
+                        '<img src="http://163.43.113.92/HR_Management/Photo/' + r1[1] + '.jpg" style="max-width:50px; max-height:70px;float:left" />' +
+                        '</div>' +
+                        '<div class="media-body">' +
+                        '<h6 class="media-heading"><label id="lblName">' + data[i].EmployeeName + '</label></h6>' +
+                        '<p class="StaffInfoLabel" id="lblPosition">Leader</p>' +
+                        '<p class="StaffInfoLabel" id="lblAge"></p>' +
+                        ' </div>' +
+                        '</div>';
+
+                    $("#div" + data[i].ProjectCD + "row").append(v2);
+                }
+                else {
+                    var v3 =
+                        '<div class="col-md-4 col-sm-12 col-xl-4 col-lg-4 media" style="margin-top:0">' +
+                        '<div class="media-left">' +
+                        '<img src="http://163.43.113.92/HR_Management/Photo/' + r1[1] + '.jpg" style="max-width:50px; max-height:70px;float:left" />' +
+                        '</div>' +
+                        '<div class="media-body">' +
+                        '<h6 class="media-heading"><label id="lblName">' + data[i].EmployeeName + '</label></h6>' +
+                        '<p class="StaffInfoLabel" id="lblPosition">Member</p>' +
+                        '<p class="StaffInfoLabel" id="lblAge"></p>' +
+                        ' </div>' +
+                        '</div>';
+
+                    $("#div" + data[i].ProjectCD + "row").append(v3);
+                }
+                
+                projectCD = data[i].projectCD;
+            }
         }
     </script>
 }

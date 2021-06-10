@@ -91,3 +91,7 @@
 #selectedProjectDetail tr{
     text-align: center;
 }
+
+.StaffInfoLabel{
+    margin-bottom:5px;
+}
