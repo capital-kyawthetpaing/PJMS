@@ -181,6 +181,8 @@
         });
         $("#btnUpdate").css("display", "none");
         $('#btnUpdate').click(function () {
+            jsonObj = getTableJson();
+           
             var obj = {
                 ProjectCD: $("#txtProjectCD").val(),
                 ProjectName: $("#txtProjectName").val(),
@@ -190,7 +192,6 @@
                 ContractDate: $("#txtContractDate").val(),
                 //SSA chg 09_06_2021
                 ProjectDetailJson: JSON.stringify(jsonObj),
-                Role: $("#hRole").val(),
             };
             
             CalltoApiController('@Url.Action("UpdateProject", "api/ProjectListApi")', obj);
@@ -225,14 +226,7 @@
             });
         }
         function ShowModal(role) {
-            jsonObj = [];
-            $('#selectedProjectDetail > tbody  > tr').each(function (index, tr) {
-                var row = $(this).closest("tr")[0];
-                item = {};
-                item["EmployeeCD"] = row.cells[1].innerHTML;
-                item["EmployeeName"] = row.cells[2].innerHTML;
-                jsonObj.push(item);
-            });
+            jsonObj = getTableJson();
 
             $("#hRole").val(role);
             $('#modal').iziModal('open');
@@ -307,16 +301,8 @@
         }
 
         $('#btnSave').click(function () {
-            jsonObj = [];
-            $('#selectedProjectDetail > tbody  > tr').each(function (index, tr) {
-                var row = $(this).closest("tr")[0];
-                item = {};
-                item["EmployeeCD"] = row.cells[1].innerHTML;
-                item["EmployeeName"] = row.cells[2].innerHTML;
-                item["Role"] = row.cells[3].innerHTML;
-                jsonObj.push(item);
-            });
-
+            jsonObj = getTableJson();
+            
             var obj = {
                 ProjectCD: $("#txtProjectCD").val(),
                 ProjectName: $("#txtProjectName").val(),
@@ -336,5 +322,21 @@
             };
             CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);*@
         });
+
+        function getTableJson() {
+            jsonObj = [];
+            $('#selectedProjectDetail > tbody  > tr').each(function (index, tr) {
+                var row = $(this).closest("tr")[0];
+                item = {};
+                if (row.cells.length > 3) {
+                    item["EmployeeCD"] = row.cells[1].innerHTML;
+                    item["EmployeeName"] = row.cells[2].innerHTML;
+                    item["Role"] = row.cells[3].innerHTML;
+                    jsonObj.push(item);
+                }
+            });
+
+            return jsonObj;
+        }
     </script>
 }
