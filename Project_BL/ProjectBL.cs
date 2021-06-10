@@ -29,7 +29,7 @@ namespace Project_BL
         public string InsertProject(ProjectModel projectModel)
         {
             cKMDL.UseTran = true;//ssa chg 09_06_2021
-            projectModel.Sqlprms = new SqlParameter[8];
+            projectModel.Sqlprms = new SqlParameter[7];
             projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
             projectModel.Sqlprms[1] = new SqlParameter("@ProjectName", projectModel.ProjectName);
             projectModel.Sqlprms[2] = new SqlParameter("@ProjectType", projectModel.ProjectType);
