@@ -289,6 +289,7 @@
                 item = {};
                 item["EmployeeCD"] = row.cells[1].innerHTML;
                 item["EmployeeName"] = row.cells[2].innerHTML;
+                item["Role"] = $("#hRole").val();
                 jsonObj.push(item);
                 let value = $("#hRole").val();
                 if (value == 1) {
@@ -303,19 +304,29 @@
         function EmployeeDelete(e) {
             $(e).parents("tr").remove();
         }
+
         $('#btnSave').click(function () {
+            jsonObj = [];
+            $('#selectedProjectDetail > tbody  > tr').each(function (index, tr) {
+                var row = $(this).closest("tr")[0];
+                item = {};
+                item["EmployeeCD"] = row.cells[1].innerHTML;
+                item["EmployeeName"] = row.cells[2].innerHTML;
+                item["Role"] = row.cells[3].innerHTML;
+                jsonObj.push(item);
+            });
+
             var obj = {
                 ProjectCD: $("#txtProjectCD").val(),
                 ProjectName: $("#txtProjectName").val(),
-                TeamID: $("input[name='Teams']:checked").val(),
+                ProjectType: $("input[name='Teams']:checked").val(),
                 CompanyName: $("#txtCompanyName").val(),
                 PresonInCharge: $("#txtPresonInCharge").val(),
                 ContractDate: $("#txtContractDate").val(),
                 ProjectDetailJson: JSON.stringify(jsonObj),
-                Role: $("#hRole").val(),
             };
             CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
-            ShowMessage("I101", 'txtProjectCD', "");//SSA chg [20210610]
+            ShowMessage('I101');//SSA chg [20210610]
             //ssa CHG 09 / 06 / 2021
             @*var obj = {
                 ProjectCD: $("#txtProjectCD").val(),

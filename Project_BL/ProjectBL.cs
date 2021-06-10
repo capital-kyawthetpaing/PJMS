@@ -29,15 +29,14 @@ namespace Project_BL
         public string InsertProject(ProjectModel projectModel)
         {
             cKMDL.UseTran = true;//ssa chg 09_06_2021
-            projectModel.Sqlprms = new SqlParameter[8];
+            projectModel.Sqlprms = new SqlParameter[7];
             projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
             projectModel.Sqlprms[1] = new SqlParameter("@ProjectName", projectModel.ProjectName);
-            projectModel.Sqlprms[2] = new SqlParameter("@TeamID", projectModel.TeamID);
-            projectModel.Sqlprms[3] = new SqlParameter("@CompanyName", projectModel.CompanyName);
-            projectModel.Sqlprms[4] = new SqlParameter("@PresonInCharge", projectModel.PresonInCharge);
-            projectModel.Sqlprms[5] = new SqlParameter("@ContractDate", projectModel.ContractDate);
-            projectModel.Sqlprms[6] = new SqlParameter("@ProjectDetailJson", projectModel.ProjectDetailJson);
-            projectModel.Sqlprms[7] = new SqlParameter("@Role", projectModel.Role);
+            projectModel.Sqlprms[2] = new SqlParameter("@CompanyName", projectModel.CompanyName);
+            projectModel.Sqlprms[3] = new SqlParameter("@PresonInCharge", projectModel.PresonInCharge);
+            projectModel.Sqlprms[4] = new SqlParameter("@ContractDate", projectModel.ContractDate);
+            projectModel.Sqlprms[5] = new SqlParameter("@ProjectDetailJson", projectModel.ProjectDetailJson);
+            projectModel.Sqlprms[6] = new SqlParameter("@ProjectType", projectModel.ProjectType);
             return cKMDL.InsertUpdateDeleteData("Project_Insert", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
         }
 
