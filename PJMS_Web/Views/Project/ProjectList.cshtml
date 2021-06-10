@@ -36,14 +36,11 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 var obj = {
-                    TeamID: '',
+                    ProjectType: '',
                 };
-
                 var response = CalltoApiController('@Url.Action("GetProject", "api/ProjectListApi")', obj);
                 BindTable(response);
             });
-
-
             function BindTable(response) {
                 table = $('#tblProject').DataTable({
                     responsive: true,
@@ -93,7 +90,6 @@
             function ProjectEdit(data, mode) {
                 window.location.href = '@Url.Action("ProjectEntry", "Project")?ProjectCD=' + data + "&Mode=" + mode;
             }
-           
         </script>
     }
 
