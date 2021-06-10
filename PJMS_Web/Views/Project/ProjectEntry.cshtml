@@ -193,7 +193,6 @@
                 Role: $("#hRole").val(),
             };
             CalltoApiController('@Url.Action("UpdateProject", "api/ProjectListApi")', obj);
-
             //ssa CHG 09 / 06 / 2021
             @*var obj = {
                 projectCD: $("#txtProjectCD").val(),
@@ -279,7 +278,6 @@
                     "data": "EmployeeCD",
                     "render": function (data) {
                         return '<input type="button" class="btn btn-danger" style="width:60px;margin:3px;padding-top:3px;" onclick="EmployeeDelete(this);" value="Delete">';
-                        //return "<button type='button' onclick='EmployeeDelete(this);' class='btn btn-danger'>Delete</button>";
                     },
                 }]
             });
