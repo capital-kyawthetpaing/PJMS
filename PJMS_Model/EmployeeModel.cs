@@ -11,7 +11,7 @@ namespace PJMS_Model
         public string EmployeeCD { get; set; }
         public string EmployeeName { get; set; }
         public string EmployeePhoto { get; set; }
-        public string TeamID { get; set; }
+        public string ProjectType { get; set; }
         public string EmployeeJson { get; set; }
     }
 }

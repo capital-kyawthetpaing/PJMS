@@ -151,7 +151,7 @@
     </div>
 @section Scripts
     {
-        <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             var mode = '@Model.Mode';
             if (mode == 'Edit') {
@@ -184,7 +184,7 @@
             var obj = {
                 ProjectCD: $("#txtProjectCD").val(),
                 ProjectName: $("#txtProjectName").val(),
-                TeamID: $("input[name='Teams']:checked").val(),
+                ProjectType: $("input[name='Teams']:checked").val(),
                 CompanyName: $("#txtCompanyName").val(),
                 PresonInCharge: $("#txtPresonInCharge").val(),
                 ContractDate: $("#txtContractDate").val(),
@@ -192,6 +192,7 @@
                 ProjectDetailJson: JSON.stringify(jsonObj),
                 Role: $("#hRole").val(),
             };
+            
             CalltoApiController('@Url.Action("UpdateProject", "api/ProjectListApi")', obj);
             //ssa CHG 09 / 06 / 2021
             @*var obj = {
@@ -225,7 +226,7 @@
         }
         function ShowModal(role) {
             jsonObj = [];
-            $('#selectedProjectDetail > tbody  > tr').each(function (index, tr) { 
+            $('#selectedProjectDetail > tbody  > tr').each(function (index, tr) {
                 var row = $(this).closest("tr")[0];
                 item = {};
                 item["EmployeeCD"] = row.cells[1].innerHTML;
@@ -236,7 +237,7 @@
             $("#hRole").val(role);
             $('#modal').iziModal('open');
             var obj = {
-                TeamID: $("input[name='Teams']:checked").val(),
+                ProjectType: $("input[name='Teams']:checked").val(),
                 EmployeeJson: JSON.stringify(jsonObj),
             };
             var response = CalltoApiController('@Url.Action("GetProjectEmployee", "api/EmployeeListApi")', obj);
@@ -307,7 +308,7 @@
             var obj = {
                 ProjectCD: $("#txtProjectCD").val(),
                 ProjectName: $("#txtProjectName").val(),
-                TeamID: $("input[name='Teams']:checked").val(),
+                ProjectType: $("input[name='Teams']:checked").val(),
                 CompanyName: $("#txtCompanyName").val(),
                 PresonInCharge: $("#txtPresonInCharge").val(),
                 ContractDate: $("#txtContractDate").val(),
@@ -324,5 +325,5 @@
             };
             CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);*@
         });
-        </script>
+    </script>
 }

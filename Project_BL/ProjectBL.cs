@@ -23,7 +23,7 @@ namespace Project_BL
             projectModel.Sqlprms = new SqlParameter[3];
             projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
             projectModel.Sqlprms[1] = new SqlParameter("@ProjectName", projectModel.ProjectName);
-            projectModel.Sqlprms[2] = new SqlParameter("@TeamID", projectModel.TeamID);
+            projectModel.Sqlprms[2] = new SqlParameter("@ProjectType", projectModel.ProjectType);
             return cKMDL.SelectJson("Project_Select", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
         }
         public string InsertProject(ProjectModel projectModel)
@@ -32,7 +32,7 @@ namespace Project_BL
             projectModel.Sqlprms = new SqlParameter[8];
             projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
             projectModel.Sqlprms[1] = new SqlParameter("@ProjectName", projectModel.ProjectName);
-            projectModel.Sqlprms[2] = new SqlParameter("@TeamID", projectModel.TeamID);
+            projectModel.Sqlprms[2] = new SqlParameter("@ProjectType", projectModel.ProjectType);
             projectModel.Sqlprms[3] = new SqlParameter("@CompanyName", projectModel.CompanyName);
             projectModel.Sqlprms[4] = new SqlParameter("@PresonInCharge", projectModel.PresonInCharge);
             projectModel.Sqlprms[5] = new SqlParameter("@ContractDate", projectModel.ContractDate);
@@ -47,7 +47,7 @@ namespace Project_BL
             projectModel.Sqlprms = new SqlParameter[8];
             projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
             projectModel.Sqlprms[1] = new SqlParameter("@ProjectName", projectModel.ProjectName);
-            projectModel.Sqlprms[2] = new SqlParameter("@TeamID", projectModel.TeamID);
+            projectModel.Sqlprms[2] = new SqlParameter("@ProjectType", projectModel.ProjectType);
             projectModel.Sqlprms[3] = new SqlParameter("@CompanyName", projectModel.CompanyName);
             projectModel.Sqlprms[4] = new SqlParameter("@PresonInCharge", projectModel.PresonInCharge);
             projectModel.Sqlprms[5] = new SqlParameter("@ContractDate", projectModel.ContractDate);
