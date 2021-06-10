@@ -37,7 +37,7 @@ namespace Project_BL
             projectModel.Sqlprms[4] = new SqlParameter("@PresonInCharge", projectModel.PresonInCharge);
             projectModel.Sqlprms[5] = new SqlParameter("@ContractDate", projectModel.ContractDate);
             projectModel.Sqlprms[6] = new SqlParameter("@ProjectDetailJson", projectModel.ProjectDetailJson);
-            projectModel.Sqlprms[7] = new SqlParameter("@Role", projectModel.Role);
+            //projectModel.Sqlprms[7] = new SqlParameter("@Role", projectModel.Role);
             return cKMDL.InsertUpdateDeleteData("Project_Insert", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
         }
 
