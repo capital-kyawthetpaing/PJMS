@@ -315,7 +315,7 @@
                 Role: $("#hRole").val(),
             };
             CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
-
+            ShowMessage("I101", 'txtProjectCD', "");//SSA chg [20210610]
             //ssa CHG 09 / 06 / 2021
             @*var obj = {
                 ProjectCD: $("#txtProjectCD").val(),
