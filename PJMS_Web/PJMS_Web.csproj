@@ -156,6 +156,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MessageApiController.cs" />
     <Compile Include="Controllers\ProjectListApiController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\EmployeeListApiController.cs" />
@@ -326,6 +327,10 @@
     <ProjectReference Include="..\Employee_BL\Employee_BL.csproj">
       <Project>{2123acac-765c-4163-9ebb-b9e6cf0c4cf8}</Project>
       <Name>Employee_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MessageBL\MessageBL.csproj">
+      <Project>{db082307-0f94-492f-a30a-9bd2b16e3f48}</Project>
+      <Name>MessageBL</Name>
     </ProjectReference>
     <ProjectReference Include="..\PJMS_Model\PJMS_Model.csproj">
       <Project>{e804b20e-dc80-482f-a9dc-dd2264aec8ee}</Project>

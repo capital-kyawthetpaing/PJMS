@@ -118,7 +118,7 @@
                 <table id="selectedProjectDetail" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%;">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th style="width: 10%;">Command</th>
                             <th>EmployeeCD</th>
                             <th>EmployeeName</th>
                             <th>Role</th>
@@ -193,7 +193,6 @@
                 Role: $("#hRole").val(),
             };
             CalltoApiController('@Url.Action("UpdateProject", "api/ProjectListApi")', obj);
-
             //ssa CHG 09 / 06 / 2021
             @*var obj = {
                 projectCD: $("#txtProjectCD").val(),
@@ -269,16 +268,16 @@
                 "searching": false,
                 "ordering": true,
                 "columns": [
-                    { "data": "EmployeeCD", "className": "align-center", "width": "10%" },
+                    { "data": "EmployeeCD", "className": "align-center", "width": "5%" },
                     { "data": "EmployeeCD", "className": "align-center", "width": "30%" },
-                    { "data": "EmployeeName", "className": "align-center", "width": "30%" },
-                    { "data": "Role", "className": "align-center", "width": "30%" }
+                    { "data": "EmployeeName", "className": "align-center", "width": "35%" },
+                    { "data": "Role", "className": "align-center", "width": "20%" }
                 ],
                 "columnDefs": [{
                     "targets": 0,
                     "data": "EmployeeCD",
                     "render": function (data) {
-                        return "<button type='button' onclick='EmployeeDelete(this);' class='btn btn-danger'>Delete</button>";
+                        return '<input type="button" class="btn btn-danger" style="width:60px;margin:3px;padding-top:3px;" onclick="EmployeeDelete(this);" value="Delete">';
                     },
                 }]
             });
@@ -297,7 +296,7 @@
                 } else {
                     value = "Member"
                 }
-                $('#selectedProjectDetail').append('<tr><td>' + "<button type='button' onclick='EmployeeDelete(this);' class='btn btn-danger'>Delete</button>" + '</td><td>' + item["EmployeeCD"] + '</td><td>'  + item["EmployeeName"] + '</td><td>' + value + '</td></tr>');
+                $('#selectedProjectDetail').append('<tr><td>' + `<input type="button" class="btn btn-danger" style='width: 70px; margin: 3px; ' onclick='EmployeeDelete(this); ' value="Delete">` + '</td><td>' + item["EmployeeCD"] + '</td><td>'  + item["EmployeeName"] + '</td><td>' + value + '</td></tr>');
             });
             $('#modal').iziModal('close');
         }
@@ -316,7 +315,7 @@
                 Role: $("#hRole").val(),
             };
             CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
-
+            ShowMessage("I101", 'txtProjectCD', "");//SSA chg [20210610]
             //ssa CHG 09 / 06 / 2021
             @*var obj = {
                 ProjectCD: $("#txtProjectCD").val(),
