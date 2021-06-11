@@ -44,12 +44,13 @@
 }
 #btnSave, #btnUpdate {
     background-color: lightcyan;
-    border:1px solid gray;
+    border: 1px solid gray;
     font-size: 15px;
     margin-bottom: 5px;
-    margin-left: 490px;
 }
-
+#btnSave, #btnUpdate {
+    margin-left: 42%;
+}
     #basic-addon1 i{
     font-size: 15px;
     color: aquamarine;
@@ -92,9 +93,33 @@
     text-align: center;
 }
 
-.StaffInfoLabel{
-    margin-bottom:5px;
-}
 #txtContractDate{
     text-align: center;
+}
+@media screen and (max-width: 1024px) {
+    #btnSave, #btnUpdate {
+       margin:5px;
+    }
+}
+@media screen and (min-width: 280px) {
+    #selectedProjectDetail tr th{
+      width: 20%;
+    }
+}
+}
+
+.media .media-heading{
+    margin-bottom:0;
+}
+
+.profileRow{
+    margin-bottom:15px;
+}
+
+.media-heading{
+    margin-bottom:0;
+}
+
+.staff-info{
+    margin-left : 10px;
 }
