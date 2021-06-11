@@ -100,6 +100,7 @@
                                    @id = "txtContractDate",
                                    maxlength = "10",
                                    max = "2100-12-12",
+                                   @onkeydown = "datecheckKeydown(event,this)"
                                })
                                 </div>
                             </div>
@@ -127,7 +128,7 @@
                     <tbody id="tbody"></tbody>
                 </table>
                 <button id="btnSave" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; Save</button>
-                @*<button id="btnUpdate" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; Update</button>*@[ssa]
+                <button id="btnUpdate" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; Update</button>
                 <div class="modal" id="modal" style="height: auto">
                     <div class="sections">
                         <section>
@@ -177,7 +178,7 @@
                 $("#txtContractDate").val(EData[0].ContractDate);
                 $("#btnSave").css("display", "none");
                 $("#btnUpdate").css("display", "block");
-            }
+            }            
         });
         $("#btnUpdate").css("display", "none");
         $('#btnUpdate').click(function () {
@@ -204,6 +205,17 @@
             };
             CalltoApiController('@Url.Action("UpdateProjectDetail", "api/ProjectListApi")', obj);*@
         });
+        function datecheckKeydown() {
+            if (event.keyCode === 13) {
+                 var obj = {
+                    ContractDate: $("#txtContractDate").val(),
+                };
+                var data = CalltoApiController('@Url.Action("Date_Checking", "api/CommonApi")', obj);
+                var datevalue = JSON.parse(data);
+                $("#txtContractDate").val(datevalue[0].resultdate);
+            }
+
+        }
         function BindTable(response) {
             table = $('#tblEmployee1').DataTable({
                 resSelectListItemelectListItemelectListelectListonsive: true,
@@ -323,7 +335,7 @@
                 $("#txtPresonInCharge").val('');
                 $("#txtContractDate").val('');
                 //document.getElementById('txtProjectCD').value = '';
-                
+
             }
 
             //ssa CHG 09 / 06 / 2021
@@ -382,7 +394,7 @@
                 //clearField($("#txtProjectCD"));
                 return true;
             }
-           
+
         }
     </script>
 }
