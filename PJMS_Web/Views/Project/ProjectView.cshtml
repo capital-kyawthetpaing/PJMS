@@ -73,41 +73,31 @@
                     $("#divMain").append(v1);
                 }
 
+                var type = '';
                 if (data[i].Role == '1') {
-
-                    var r1 = data[i].EmployeeCD.split('-');
-
-                    var v2 = 
-                        '<div class="col-md-12 col-sm-12 col-xl-12 col-lg-12 media" style="margin-top:0">' +
-                        '<div class="media-left">' +
-                        '<img src="http://163.43.113.92/HR_Management/Photo/' + r1[1] + '.jpg" style="max-width:50px; max-height:70px;float:left" />' +
-                        '</div>' +
-                        '<div class="media-body">' +
-                        '<h6 class="media-heading"><label id="lblName">' + data[i].EmployeeName + '</label></h6>' +
-                        '<p class="StaffInfoLabel" id="lblPosition">Leader</p>' +
-                        '<p class="StaffInfoLabel" id="lblAge"></p>' +
-                        ' </div>' +
-                        '</div>';
-
-                    $("#div" + data[i].ProjectCD + "row").append(v2);
+                    type = 'Leader';                    
                 }
-                else {
-                    var v3 =
-                        '<div class="col-md-4 col-sm-12 col-xl-4 col-lg-4 media" style="margin-top:0">' +
-                        '<div class="media-left">' +
-                        '<img src="http://163.43.113.92/HR_Management/Photo/' + r1[1] + '.jpg" style="max-width:50px; max-height:70px;float:left" />' +
-                        '</div>' +
-                        '<div class="media-body">' +
-                        '<h6 class="media-heading"><label id="lblName">' + data[i].EmployeeName + '</label></h6>' +
-                        '<p class="StaffInfoLabel" id="lblPosition">Member</p>' +
-                        '<p class="StaffInfoLabel" id="lblAge"></p>' +
-                        ' </div>' +
-                        '</div>';
-
-                    $("#div" + data[i].ProjectCD + "row").append(v3);
+                else if (data[i].Role == '2') {
+                    type = 'Member';
                 }
+
+                var v2 =
+                    '<div class="col-md-3 col-sm-12 col-xl-3 col-lg-3 profileRow">' +
+                    '<div class="media-left">' +
+                    '<img src="http://163.43.113.92/HR_Management/Photo/' + data[i].StaffPhoto + '" style="max-width:50px; max-height:70px;float:left;" />' +
+                    '</div>' +
+                    '<div class="media-body">' +
+                    '<h6 class="media-heading">' +
+                    '<label style = "margin-left:10px;" id = "lblName" > ' + data[i].EmployeeName + '</label>' +
+                    '<p><label class="staff-info">'+ type +'</label></p>'
+                    '</h6 > ' +
+                    ' </div>' +
+                    '</div>';
+
+                $("#div" + data[i].ProjectCD + "row").append(v2);
+
                 
-                projectCD = data[i].projectCD;
+                projectCD = data[i].ProjectCD;
             }
         }
     </script>

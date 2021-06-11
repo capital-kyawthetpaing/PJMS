@@ -92,9 +92,22 @@
     text-align: center;
 }
 
-.StaffInfoLabel{
-    margin-bottom:5px;
-}
 #txtContractDate{
     text-align: center;
+}
+
+.media .media-heading{
+    margin-bottom:0;
+}
+
+.profileRow{
+    margin-bottom:15px;
+}
+
+.media-heading{
+    margin-bottom:0;
+}
+
+.staff-info{
+    margin-left : 10px;
 }
