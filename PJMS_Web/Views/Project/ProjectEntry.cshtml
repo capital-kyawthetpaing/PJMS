@@ -24,14 +24,14 @@
                                     </div>
                                     @Html.HiddenFor(pm => pm.Mode, new { @id = "hfSave_Update" })
                                     @Html.TextBoxFor(pm => pm.ProjectCD, new
-                                   {
-                                       @class = "form-control input-sm input-integeronly1",
-                                       @tabindex = "1",
-                                       @required = "required",
-                                       @id = "txtProjectCD",
-                                       @autofocus = "autofocus",
-                                       maxlength = "4",
-                                   })
+                               {
+                                   @class = "form-control input-sm input-integeronly1",
+                                   @tabindex = "1",
+                                   @required = "required",
+                                   @id = "txtProjectCD",
+                                   @autofocus = "autofocus",
+                                   maxlength = "4",
+                               })
                                 </div>
                             </div>
                             <div class="form-group col-xl-3 col-md-3">
@@ -91,15 +91,16 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
                                     </div>
-                                    @Html.TextBoxFor(pm => pm.ContractDate, "{dd-MM-yyyy}", new
+                                    @Html.TextBoxFor(pm => pm.ContractDate, "{yyyy/MM/dd}", new
                                {
                                    @class = "form-control input-sm",
-                                   placeHolder = "dd/MM/yyyy",
+                                   placeHolder = "yyyy/MM/dd",//date form change [ssa]
                                    @required = "required",
                                    @tabindex = "5",
                                    @id = "txtContractDate",
                                    maxlength = "10",
-                                   max = "12-12-2100",
+                                   max = "2100-12-12",
+                                   @onkeydown = "datecheckKeydown(event,this)"
                                })
                                 </div>
                             </div>
@@ -177,7 +178,7 @@
                 $("#txtContractDate").val(EData[0].ContractDate);
                 $("#btnSave").css("display", "none");
                 $("#btnUpdate").css("display", "block");
-            }
+            }            
         });
         $("#btnUpdate").css("display", "none");
         $('#btnUpdate').click(function () {
@@ -204,6 +205,17 @@
             };
             CalltoApiController('@Url.Action("UpdateProjectDetail", "api/ProjectListApi")', obj);*@
         });
+        function datecheckKeydown() {
+            if (event.keyCode === 13) {
+                 var obj = {
+                    ContractDate: $("#txtContractDate").val(),
+                };
+                var data = CalltoApiController('@Url.Action("Date_Checking", "api/CommonApi")', obj);
+                var datevalue = JSON.parse(data);
+                $("#txtContractDate").val(datevalue[0].resultdate);
+            }
+
+        }
         function BindTable(response) {
             table = $('#tblEmployee1').DataTable({
                 resSelectListItemelectListItemelectListelectListonsive: true,
@@ -317,6 +329,13 @@
                 };
                 CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
                 ShowMessage('I101');//SSA chg [20210610]
+                $("#txtProjectCD").val('');
+                $("#txtProjectName").val('');
+                $("#txtCompanyName").val('');
+                $("#txtPresonInCharge").val('');
+                $("#txtContractDate").val('');
+                //document.getElementById('txtProjectCD').value = '';
+
             }
 
             //ssa CHG 09 / 06 / 2021
@@ -350,8 +369,32 @@
                 $("#txtProjectCD").focus();
                 return false;
             }
+            //ssa chg 2021_06_10[Require_Case]
+            else if (!$("#txtProjectName").val()) {
+                ShowMessage("E102");
+                $("#txtProjectName").focus();
+                return false;
+            }
+            else if (!$("#txtCompanyName").val()) {
+                ShowMessage("E102");
+                $("#txtCompanyName").focus();
+                return false;
+            }
+            else if (!$("#txtPresonInCharge").val()) {
+                ShowMessage("E102");
+                $("#txtPresonInCharge").focus();
+                return false;
+            }
+            else if (!$("#txtContractDate").val()) {
+                ShowMessage("E102");
+                $("#txtContractDate").focus();
+                return false;
+            }
+            else {
+                //clearField($("#txtProjectCD"));
+                return true;
+            }
 
-            return true;
         }
     </script>
 }

@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBL", "MessageBL\MessageBL.csproj", "{DB082307-0F94-492F-A30A-9BD2B16E3F48}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common_BL", "Common_BL\Common_BL.csproj", "{2DC8407F-C8CA-4238-A0A9-1CC2B98418CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{DB082307-0F94-492F-A30A-9BD2B16E3F48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB082307-0F94-492F-A30A-9BD2B16E3F48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB082307-0F94-492F-A30A-9BD2B16E3F48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DC8407F-C8CA-4238-A0A9-1CC2B98418CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DC8407F-C8CA-4238-A0A9-1CC2B98418CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DC8407F-C8CA-4238-A0A9-1CC2B98418CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DC8407F-C8CA-4238-A0A9-1CC2B98418CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
