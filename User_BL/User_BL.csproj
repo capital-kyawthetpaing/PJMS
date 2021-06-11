@@ -31,15 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CKM_CommonFunction">
-      <HintPath>..\..\..\RMS_Peace\RMSPeace\RMSPeace\RequireDLL\CKM_CommonFunction.dll</HintPath>
+    <Reference Include="CKM_CommonFunction, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\PJMS_Web\RequireDLL\CKM_CommonFunction.dll</HintPath>
     </Reference>
-    <Reference Include="CKM_DataLayer">
-      <HintPath>..\..\..\RMS_Peace\RMSPeace\RMSPeace\RequireDLL\CKM_DataLayer.dll</HintPath>
+    <Reference Include="CKM_DataLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\PJMS_Web\RequireDLL\CKM_DataLayer.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\RMS_Peace\RMSPeace\RMSPeace\RequireDLL\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\PJMS_Web\RequireDLL\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
