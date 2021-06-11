@@ -34,8 +34,8 @@ function ShowConfirmMessage(msgid, functionname,param1) {
         showCancelButton: true,
         confirmButtonColor: '#d33',
         cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Ok',
-        cancelButtonText: 'Cancel'
+        confirmButtonText: 'はい',
+        cancelButtonText: 'いいえ'
     }).then((result) => {
         if (result.value) {
             var fn = window[functionname];
@@ -78,7 +78,20 @@ function pad(num, size) {
     return num;
 }
 
-function ShowMessage(msgid,CtrlID, functionname) {
+function ShowMessage(msgid, CtrlID, functionname) {
+
+    var c1 = msgid.charAt(0);
+    var icon = ''
+    if (c1 == 'I') {
+        icon = 'info';
+    }
+    else if (c1 == 'E') {
+        icon = 'error';
+    }
+    else if (c1 == '') {
+        icon = 'success';
+    }
+
     var Mmodel = {
         MessageID: msgid,
     };
@@ -100,7 +113,7 @@ function ShowMessage(msgid,CtrlID, functionname) {
     })
 
     Toast.fire({
-        icon: msgdata[0].MessageIcon,
+        icon: icon,
         title: msgdata[0].MessageID,
         text: msgdata[0].MessageText.replace("{0}",CtrlID)
     })
