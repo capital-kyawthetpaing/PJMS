@@ -291,8 +291,9 @@
             });
         }
         function btnAddClick() {
-            jsonObj = [];
-            $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
+            let table = $('#tblEmployee1').DataTable();
+            var jsonObj = [];
+            $(table.$('input:checked')).each(function () {
                 var row = $(this).closest("tr")[0];
                 item = {};
                 item["EmployeeCD"] = row.cells[1].innerHTML;
