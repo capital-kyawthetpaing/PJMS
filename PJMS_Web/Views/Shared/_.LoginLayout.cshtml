@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="@Url.Content("~/Css/dataTables.bootstrap4.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/responsive.bootstrap4.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/buttons.bootstrap4.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/Login.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/sweetalert2.min.css")" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    @RenderBody()
+
+
+    <script src="@Url.Content("~/JS/app.min.js")"></script>
+    <script src="@Url.Content("~/JS/apple.min.js")"></script>
+    <script src="@Url.Content("~/JS/Common.js")"></script>
+    <script src="@Url.Content("~/JS/sweetalert2.min.js")"></script>
+    @RenderSection("scripts", required: false)
+    @RenderSection("styles", required: false)
+</body>
+</html>
