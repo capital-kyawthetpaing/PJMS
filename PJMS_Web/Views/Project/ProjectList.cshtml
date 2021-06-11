@@ -66,12 +66,12 @@
                     "paging":true,
                     "ordering": true,
                     "columns": [
-                        { "data": "ProjectCD", "className": "align-center", "width": "7%" },
-                        { "data": "ProjectCD", "className":"align-center","width": "2%"},
-                        { "data": "ProjectName", "className": "align-center", "width": "15%" },
-                        { "data": "ProjectType", "className": "align-center", "width": "2%" },
-                        { "data": "CompanyName", "className": "align-center", "width": "13%" },
-                        { "data": "PresonInCharge", "className": "align-center", "width": "9%" }
+                        { "data": "ProjectCD", "className": "align-center", "width": "10%" },
+                        { "data": "ProjectCD", "className":"align-center","width": "10%"},
+                        { "data": "ProjectName", "className": "align-center", "width": "20%" },
+                        { "data": "ProjectType", "className": "align-center", "width": "10%" },
+                        { "data": "CompanyName", "className": "align-center", "width": "20%" },
+                        { "data": "PresonInCharge", "className": "align-center", "width": "20%" }
                     ],
                     "buttons": [
                         {
@@ -97,8 +97,8 @@
                         "targets": 0,
                         "data": "ProjectCD",
                         "render": function (data) {
-                            return '<input type="button" class="btn btn-info" style="width:70px;margin:3px;" onclick="ShowDetail()" value="Detail">'+
-                                   '<input type="button" class="btn btn-info" style="width:70px;margin:3px;" onclick="ProjectEdit(\'' + data + '\',\'Edit\')" value="Edit">';
+                            return '<button type="button" style="margin-right:3px" class="btn btn-info" title="詳細" onclick="ShowDetail()"><i class="fa fa-info-circle"></i></button>'+
+                                '<button type="button" class="btn btn-success" onclick="ProjectEdit(\'' + data + '\',\'Edit\')" title="変更"><i class="fa fa-pencil-alt"></i></button>';
                        },
                     }]
                 });
