@@ -4,6 +4,9 @@
     Layout = "~/Views/Shared/_PJMSLayout.cshtml";
 }
 
+<div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
+    <button id="addLeader" onclick="ShowSearchCondition()" class="btn col-xl-2"><i class="fas fa-search"></i>&nbsp;検索オプション</button>
+</div>
 <div id="divMain">
     @*<div class="panel panel-inverse">
         <div class="panel-heading">
@@ -134,6 +137,10 @@
                 
                 projectCD = data[i].ProjectCD;
             }
+        }
+
+        function ShowSearchCondition() {
+
         }
     </script>
 }
