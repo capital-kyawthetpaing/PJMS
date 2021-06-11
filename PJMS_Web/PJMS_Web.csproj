@@ -162,6 +162,7 @@
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\EmployeeListApiController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserAuthentication.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -188,6 +189,7 @@
     <Content Include="CSS\ionicons.min.css" />
     <Content Include="CSS\iziModal.css" />
     <Content Include="CSS\iziModal.min.css" />
+    <Content Include="CSS\Login.css" />
     <Content Include="CSS\responsive.bootstrap4.min.css" />
     <Content Include="CSS\sweetalert2.css" />
     <Content Include="CSS\sweetalert2.min.css" />
@@ -248,6 +250,9 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="SystemImages\CK.ico" />
+    <Content Include="SystemImages\CK.JPG" />
+    <Content Include="SystemImages\Global.asax.jpg" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
@@ -290,6 +295,8 @@
     <Content Include="Views\Employee\EmployeeEntry.cshtml" />
     <Content Include="Views\Project\ProjectTeamSetUp.cshtml" />
     <Content Include="Views\Project\ProjectView.cshtml" />
+    <Content Include="Views\Shared\_.LoginLayout.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -345,6 +352,10 @@
     <ProjectReference Include="..\Project_BL\Project_BL.csproj">
       <Project>{ca53ceb0-e47c-4ba8-bca4-516348fdc8ae}</Project>
       <Name>Project_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\User_BL\User_BL.csproj">
+      <Project>{d33dfaf3-8b61-43b2-bc87-31a08d57b062}</Project>
+      <Name>User_BL</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

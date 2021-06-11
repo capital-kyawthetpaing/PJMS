@@ -85,7 +85,7 @@
                                })
                                 </div>
                             </div>
-                            <div class="form-group col-xl-1.2 col-md-1.2">
+                            <div class="form-group col-xl-3 col-md-3">
                                 <label for="ContractDate">Contract Date</label><label style="color: red; font-size: 20px;">&nbsp;*</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -104,10 +104,12 @@
                                })
                                 </div>
                             </div>
-                            <div class="col-xl-12 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.Teams, htmlAttributes: new { @class = "control-label mr-5" })
-                                @Html.RadioButton("Teams", "1", new { @id = "rdoSystem", @checked = true })<label for="rdoSystem">System</label>
-                                @Html.RadioButton("Teams", "2", new { @id = "rdoSeisaku", @class = "ml-3" })<label for="rdoSeisaku">Seisaku</label>
+                            <div class="form-group col-xl-3 col-md-3 col-sm-12">
+                                <label for="ContractDate">Team</label><label style="color: red; font-size: 20px;">&nbsp;*</label>
+                                <div class="input-group">
+                                    @Html.RadioButton("Teams", "1", new { @id = "rdoSystem", @checked = true,@class = "rdo1" })<label for="rdoSystem">System</label>
+                                    @Html.RadioButton("Teams", "2", new { @id = "rdoSeisaku", @class = "ml-3 rdo1" })<label for="rdoSeisaku">Seisaku</label>
+                                </div>
                             </div>
                         </div>
                         <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
@@ -233,7 +235,7 @@
                     "targets": 0,
                     "data": "EmployeeCD",
                     "render": function (data) {
-                        return '<input type="checkbox" class="chkStatus" />';
+                        return '<input type="checkbox" class="chkStatus big-checkbox" />';
                     },
                 }]
             });
@@ -261,6 +263,7 @@
             TransitionIn: 'FadeInRight',
             theme: 'light',
             width: '700px',
+            zindex: '9999',
             headerColor: 'deepskyblue',
         });
         $('#btnRemove').on('click', function (e) {
@@ -291,8 +294,9 @@
             });
         }
         function btnAddClick() {
-            jsonObj = [];
-            $("#tblEmployee1 input[type=checkbox]:checked").each(function () {
+            let table = $('#tblEmployee1').DataTable();
+            var jsonObj = [];
+            $(table.$('input:checked')).each(function () {
                 var row = $(this).closest("tr")[0];
                 item = {};
                 item["EmployeeCD"] = row.cells[1].innerHTML;
@@ -310,6 +314,10 @@
             $('#modal').iziModal('close');
         }
         function EmployeeDelete(e) {
+            ShowConfirmMessage("Q102","DeleteConfirm",e)            
+        }
+
+        function DeleteConfirm(e) {
             $(e).parents("tr").remove();
         }
 

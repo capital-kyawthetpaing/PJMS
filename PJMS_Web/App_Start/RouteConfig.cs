@@ -16,7 +16,7 @@ namespace PJMS_Web
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Project", action = "ProjectEntry", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Login", id = UrlParameter.Optional }
             );
         }
     }
