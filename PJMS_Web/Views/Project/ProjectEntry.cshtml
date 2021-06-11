@@ -334,8 +334,7 @@
                 $("#txtCompanyName").val('');
                 $("#txtPresonInCharge").val('');
                 $("#txtContractDate").val('');
-                //document.getElementById('txtProjectCD').value = '';
-
+                $("#tbody").empty();
             }
 
             //ssa CHG 09 / 06 / 2021
@@ -346,7 +345,15 @@
             };
             CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);*@
         });
+        function deleteAll(table) {
+            for (var i = 0; i <= table.rows.length; i++) {
+                table.rows[i].cells[0].innerHTML = "";
+                table.rows[i].cells[1].innerHTML = "";
+                table.rows[i].cells[2].innerHTML = "";
+                table.rows[i].cells[3].innerHTML = "";
+            }
 
+        }
         function getTableJson() {
             jsonObj = [];
             $('#selectedProjectDetail > tbody  > tr').each(function (index, tr) {
