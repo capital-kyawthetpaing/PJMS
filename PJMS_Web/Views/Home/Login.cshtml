@@ -23,17 +23,17 @@
                     <div class="row px-3">
                         <label class="mb-1">
                             <b>ユーザーID</b>
-                        </label> <input id="UserID" class="mb-4" type="text" placeholder="ユーザーID入力">
+                        </label> <input id="UserID" onkeydown="KeyDown(event,this)"  tabindex="1" class="mb-4" type="text" placeholder="ユーザーID入力">
                     </div>
                     <div class="row px-3">
                         <label class="mb-1">
                             <b>パスワード</b>
-                        </label> <input id="Password" type="password" name="password" placeholder="パスワード入力">
+                        </label> <input id="Password" onkeydown="KeyDown(event,this,'LoginClick')" tabindex="2" type="password" name="password" placeholder="パスワード入力">
                     </div>
                     <div class="row px-3 mb-4">
                         <div class="custom-control custom-checkbox custom-control-inline"></div>
                     </div>
-                    <div class="row mb-3 px-3"> <button onclick="LoginClick();" class="btn btn-success text-center">ログイン</button> </div>
+                    <div class="row mb-3 px-3"> <button onclick="LoginClick();" tabindex="3" class="btn btn-success text-center">ログイン</button> </div>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
 
         $(document).ready(function () {
             $("#UserID").focus();
-        });
+        });        
 
         function LoginClick() {
             if (ErrorCheck()) {
@@ -88,5 +88,31 @@
             }
             return true;
         }
+
+        //ssa chg [2021_06_11]
+        function KeyDown(e, ctrl, functionname) {
+            if (e.which == 13 || e.which == 9) {
+                e.preventDefault();
+                moveNext(ctrl);
+
+                if (functionname) {
+                    var fn = window[functionname];
+                    fn('OK');
+                }
+            }
+        }
+
+        function moveNext(ctrl) {
+            do {
+                ctrl = $('[tabIndex=' + (+$(ctrl).attr("tabIndex") + 1) + ']');
+                if (!$(ctrl).length) {
+                    ctrl = $('[tabIndex=1]');
+                    break;
+                }
+            } while ($(ctrl).is('[disabled=disabled]'));
+            $(ctrl).select();
+            $(ctrl).focus();
+        }
+
     </script>
 }
