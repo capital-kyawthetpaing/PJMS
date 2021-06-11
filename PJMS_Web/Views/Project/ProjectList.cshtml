@@ -4,33 +4,48 @@
     Layout = "~/Views/Shared/_PJMSLayout.cshtml";
 }
 
-    <div class="panel panel-inverse">
-        <div class="panel-heading">
-            <h4 class="panel-title">プロジェクト一覧</h4>
-            <div class="panel-heading-btn">
-                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-            </div>
-        </div>
-        <div class="panel-body">
-            <table id="tblProject" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>プロジェクトCD</th>
-                        <th>プロジェクトめい</th>
-                        <th>チーム</th>
-                        <th>会社名</th>
-                        <th>PresonInCharge</th>                        
-                    </tr>
-                </thead>
-                <tbody>
-                   
-                </tbody>
-                
-            </table>
+<div class="panel panel-inverse">
+    <div class="panel-heading">
+        <h4 class="panel-title">プロジェクト一覧</h4>
+        <div class="panel-heading-btn">
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
         </div>
     </div>
-
+    <div class="panel-body">
+        <table id="tblProject" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>プロジェクトCD</th>
+                    <th>プロジェクトめい</th>
+                    <th>チーム</th>
+                    <th>会社名</th>
+                    <th>PresonInCharge</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal" id="modal" style="height: auto">
+        <div class="sections">
+            <section>
+                <table id="detailEmployee" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>EmployeeCD</th>
+                            <th>EmployeeName</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <button id="detailRemove" class="btn btn-dark col-md-4 mt-3"><i class="fa fa-window-close"></i>&nbsp; Close</button>
+            </section>
+        </div>
+    </div>
+</div>
     @section Scripts
     {
         <script type="text/javascript">
@@ -56,7 +71,7 @@
                         { "data": "ProjectName", "className": "align-center", "width": "15%" },
                         { "data": "ProjectType", "className": "align-center", "width": "2%" },
                         { "data": "CompanyName", "className": "align-center", "width": "13%" },
-                        { "data": "PresonInCharge", "className": "align-center", "width": "9%" }                       
+                        { "data": "PresonInCharge", "className": "align-center", "width": "9%" }
                     ],
                     "buttons": [
                         {
@@ -82,14 +97,60 @@
                         "targets": 0,
                         "data": "ProjectCD",
                         "render": function (data) {
-                            return '<input type="button" class="btn btn-info" style="width:70px;margin:3px;" onclick="ProjectEdit(\'' + data + '\',\'Edit\')" value="Edit">';
+                            return '<input type="button" class="btn btn-info" style="width:70px;margin:3px;" onclick="ShowDetail()" value="Detail">'+
+                                   '<input type="button" class="btn btn-info" style="width:70px;margin:3px;" onclick="ProjectEdit(\'' + data + '\',\'Edit\')" value="Edit">';
                        },
+                    }]
+                });
+            }
+            function ShowDetail() {
+                $('#modal').iziModal('open');
+                var obj = {
+                    ProjectCD: '',
+                 }
+                var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
+                BindTable1(response);
+            }
+            $(".modal").iziModal({
+                title: "Employee detail",
+                padding: 10,
+                TransitionIn: 'FadeInRight',
+                theme: 'light',
+                width: '700px',
+                headerColor: 'deepskyblue',
+            });
+            $('#detailRemove').on('click', function (e) {
+                $('#modal').iziModal('close');
+            });
+            function BindTable1(response1) {
+                table = $('#detailEmployee').DataTable({
+                    responsive: true,
+                    data: JSON.parse(response1),
+                    datasrc: "",
+                    destroy: true,
+                    "paging": false,
+                    "searching": false,
+                    "ordering": true,
+                    "columns": [
+                        { "data": "EmployeeCD", "className": "align-center", "width": "5%" },
+                        { "data": "EmployeeCD", "className": "align-center", "width": "30%" },
+                        { "data": "EmployeeName", "className": "align-center", "width": "35%" },
+                        { "data": "Role", "className": "align-center", "width": "20%" }
+                    ],
+                    "columnDefs": [{
+                        "targets": 0,
+                        "data": "EmployeeCD",
+                        "render": function (data) {
+                            return '<input type="button" class="btn btn-danger" style="width:60px;margin:3px;padding-top:3px;" onclick="EmployeeDelete(this);" value="Delete">';
+                        },
                     }]
                 });
             }
             function ProjectEdit(data, mode) {
                 window.location.href = '@Url.Action("ProjectEntry", "Project")?ProjectCD=' + data + "&Mode=" + mode;
             }
+
+
         </script>
     }
 
