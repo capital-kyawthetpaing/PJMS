@@ -11,12 +11,12 @@
         </div>
     </div>
     <div class="panel-body">
-        <table id="tblEmployee" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+        <table id="tblEmployee" class="table table-striped table-bordered table-td-valign-middle" style="width:100%">
             <thead>
                 <tr>
+                    <th>EmployeePhoto</th>
                     <th>EmployeeCD</th>
                     <th>EmployeeName</th>
-                    <th>EmployeePhoto</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -37,44 +37,23 @@
             function BindTable(response) {
                 table = $('#tblEmployee').DataTable({
                     responsive: true,
-                    dom: 'Bfrtip',
                     data: JSON.parse(response),
                     datasrc:"",
                     destroy: true,
                     "paging":true,
                     "ordering": true,
                     "columns": [
+                        { "data": "EmployeePhoto", "className": "align-center", "width": "10%" },
                         { "data": "EmployeeCD", "className": "align-center", "width": "20%" },
-                        { "data": "EmployeeName", "className": "align-center", "width": "40%" },
-                        { "data": "EmployeePhoto", "className": "align-center", "width": "40%" }
+                        { "data": "EmployeeName", "className": "align-center", "width": "70%" },
                     ],
-                    "buttons": [
-                        {
-                            extend: 'copy'
+                    "columnDefs": [{
+                        "targets": 0,
+                        "data": "EmployeePhoto",
+                        "render": function (data) {
+                            return '<img src="http://163.43.113.92/HR_Management/Photo/' + data + '" style="max-width:50px; max-height:70px" />'; 
                         },
-                        {
-                            extend: 'excel',
-                            className: 'btn-success',
-                            init: function (api, node, config) {
-                                $(node).removeClass("btn-secondary");
-                            }
-                        },
-                        {
-                            extend: 'pdf',
-                            className: 'btn-danger',
-                            charset: "utf-8",
-                            init: function (api, node, config) {
-                                $(node).removeClass("btn-secondary");
-                            }
-                        },
-                    ]
-                    //"columnDefs": [{
-                    //    "targets": 0,
-                    //    "data": "EmployeeCD",
-                    //    "render": function (data) {
-                    //        return '<input type="button" class="btn btn-info" style="width:70px;margin:3px;" onclick="EmployeeEdit(\'' + data + '\',\'Edit\')" value="Edit">'; 
-                    //    },
-                    //}]
+                    }]
                 });
             }
         @*function EmployeeEdit(data, mode) {

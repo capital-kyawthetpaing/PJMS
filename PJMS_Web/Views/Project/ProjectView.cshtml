@@ -5,41 +5,76 @@
 }
 
 <div id="divMain">
-
+    @*<div class="panel panel-inverse">
+        <div class="panel-heading">
+            <h4 class="panel-title">Project View</h4>
+            <div class="panel-heading-btn">
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
+                    <div class="form-row">
+                        <div class="form-group col-xl-1.2 col-md-1.2">
+                            <label for="ProjectCD">ProjectCD</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-project-diagram"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm" id="txtProjectCD" 
+                                     tabindex="1" maxlength="100" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3">
+                            <label for="ProjectName">Project Name</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-list-ol"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm" id="txtProjectName" 
+                                     tabindex="2" maxlength="100" />  
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3">
+                            <label for="CompanyName">Company Name</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-building"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm" id="txtCompanyName" 
+                                     tabindex="3" maxlength="100" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3">
+                            <label for="PresonInCharge">Preson In Charge</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-signature"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm" id="txtPersonInCharge" 
+                                     tabindex="4" maxlength="100" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-1.2 col-md-1.2">
+                            <label for="ContractDate">Contract Date</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm" placeholder="yyyy/MM/dd" id="txtContractDate" 
+                                       onkeydown = "datecheckKeydown(event,this)" tabindex="5" maxlength="10" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
+                        <button id="btnSearch" onclick="Search('1')" class="btn col-xl-2"><i class="fas fa-users"></i>&nbsp; 検索</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
 </div>
-
-@*<div class="panel panel-inverse">
-    <div class="panel-heading">
-        <h4 class="panel-title">Project View</h4>
-        <div class="panel-heading-btn">
-            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-        </div>
-    </div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-md-4 col-sm-6 col-xl-3 col-lg-3 media" style="margin-top:0">
-                <div class="media-left">
-                    <img src="http://163.43.113.92/HR_Management/Photo/149.jpg" style="max-width:50px; max-height:70px;float:left" />
-                </div>
-                <div class="media-body">
-                    <h6 class="media-heading"><label id="lblName">Swe Swe Aung</label></h6>
-                    <p class="StaffInfoLabel" id="lblPosition">Member</p>
-                    <p class="StaffInfoLabel" id="lblAge">35years</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xl-3 col-lg-3 media" style="margin-top:0">
-                <div class="media-left">
-                    <img src="http://163.43.113.92/HR_Management/Photo/149.jpg" style="max-width:50px; max-height:70px;float:left" />
-                </div>
-                <div class="media-body">
-                    <h6 class="media-heading"><label id="lblName">Swe Swe Aung</label></h6>
-                    <p class="StaffInfoLabel" id="lblPosition">Member</p>
-                    <p class="StaffInfoLabel" id="lblAge">35years</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@
 
 @section Scripts
 {
@@ -82,13 +117,13 @@
                 }
 
                 var v2 =
-                    '<div class="col-md-3 col-sm-12 col-xl-3 col-lg-3 profileRow">' +
+                    '<div class="col-md-3 col-sm-6 col-xl-3 col-lg-3 profileRow">' +
                     '<div class="media-left">' +
                     '<img src="http://163.43.113.92/HR_Management/Photo/' + data[i].StaffPhoto + '" style="max-width:50px; max-height:70px;float:left;" />' +
                     '</div>' +
                     '<div class="media-body">' +
                     '<h6 class="media-heading">' +
-                    '<label style = "margin-left:10px;" id = "lblName" > ' + data[i].EmployeeName + '</label>' +
+                    '<b><label class="staff-info" id = "lblName" > ' + data[i].EmployeeName + '</label></b>' +
                     '<p><label class="staff-info">'+ type +'</label></p>'
                     '</h6 > ' +
                     ' </div>' +

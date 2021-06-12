@@ -14,5 +14,17 @@ namespace PJMS_Web.Controllers
 
             return View();
         }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult CreateSession(string key, string value)
+        {
+            Session[key] = value;
+
+            return this.Json(new { success = true });
+        }
     }
 }
