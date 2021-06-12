@@ -108,11 +108,11 @@
        margin:5px;
     }
 }
-@media screen and (min-width: 280px) {
+/*@media screen and (min-width: 280px) {
     #selectedProjectDetail tr th{
       width: 20%;
     }
-}
+}*/
 
 .media .media-heading{
     margin-bottom:0;

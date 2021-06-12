@@ -107,7 +107,7 @@
                             <div class="form-group col-xl-3 col-md-3 col-sm-12">
                                 <label for="ContractDate">Team</label><label style="color: red; font-size: 20px;">&nbsp;*</label>
                                 <div class="input-group">
-                                    @Html.RadioButton("Teams", "1", new { @id = "rdoSystem", @checked = true,@class = "rdo1" })<label for="rdoSystem">System</label>
+                                    @Html.RadioButton("Teams", "1", new { @id = "rdoSystem", @checked = true, @class = "rdo1" })<label for="rdoSystem">System</label>
                                     @Html.RadioButton("Teams", "2", new { @id = "rdoSeisaku", @class = "ml-3 rdo1" })<label for="rdoSeisaku">Seisaku</label>
                                 </div>
                             </div>
@@ -118,23 +118,29 @@
                         </div>
                     </div>
                 </div>
-                <table id="selectedProjectDetail" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%;">
-                    <thead>
-                        <tr>
-                            <th style="width: 10%;">Command</th>
-                            <th>EmployeeCD</th>
-                            <th>EmployeeName</th>
-                            <th>Role</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody"></tbody>
-                </table>
-                <button id="btnSave" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; Save</button>
-                <button id="btnUpdate" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; Update</button>
+                <div class="mb-1">
+                    <table id="selectedProjectDetail" class="table table-striped reducepadding table-bordered ">
+                        <thead>
+                            <tr>
+                                <th style="width: 10%;">Command</th>
+                                <th>EmployeeCD</th>
+                                <th>EmpName</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody"></tbody>
+                    </table>
+                </div>
+                <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
+                    <button id="btnSave" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; Save</button>
+                </div>
+                <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
+                    <button id="btnUpdate" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; Update</button>
+                </div>
                 <div class="modal" id="modal" style="height: auto">
                     <div class="sections">
                         <section>
-                            <table id="tblEmployee1" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+                            <table id="tblEmployee1" class="table table-striped reducepadding table-bordered table-td-valign-middle">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -147,6 +153,26 @@
                             <button id="btnRemove" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-window-close"></i>&nbsp; Close</button>
                             <button id="btnAdd" onclick="btnAddClick();" value="Save" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-save"></i>&nbsp; Add Employee</button>
                         </section>
+                    </div>
+                    <button id="btnSave" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; Save</button>
+                    <button id="btnUpdate" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; Update</button>
+                    <div class="modal" id="modal" style="height: auto">
+                        <div class="sections">
+                            <section>
+                                <table id="tblEmployee1" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>EmployeeCD</th>
+                                            <th>EmployeeName</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                <button id="btnRemove" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-window-close"></i>&nbsp; Close</button>
+                                <button id="btnAdd" onclick="btnAddClick();" value="Save" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-save"></i>&nbsp; Add Employee</button>
+                            </section>
+                        </div>
                     </div>
                 </div>
             </div>

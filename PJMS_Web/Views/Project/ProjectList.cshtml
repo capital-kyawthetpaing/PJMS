@@ -106,11 +106,11 @@
             }
             function ShowDetail() {
                 $('#modal').iziModal('open');
-                 var obj = {
-                     ProjectCD: $("#detailEmployee" tr ).val,
+                var obj = {
+                    ProjectCD: '',
                  }
                 var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
-                BindTable1(response); alert($("#cd").val);
+                BindTable1(response);
             }
             $(".modal").iziModal({
                 title: "Employee detail",
