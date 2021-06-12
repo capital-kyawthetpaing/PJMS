@@ -4,33 +4,48 @@
     Layout = "~/Views/Shared/_PJMSLayout.cshtml";
 }
 
-    <div class="panel panel-inverse">
-        <div class="panel-heading">
-            <h4 class="panel-title">プロジェクト一覧</h4>
-            <div class="panel-heading-btn">
-                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-            </div>
-        </div>
-        <div class="panel-body">
-            <table id="tblProject" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>プロジェクトCD</th>
-                        <th>プロジェクトめい</th>
-                        <th>チーム</th>
-                        <th>会社名</th>
-                        <th>PresonInCharge</th>                        
-                    </tr>
-                </thead>
-                <tbody>
-                   
-                </tbody>
-                
-            </table>
+<div class="panel panel-inverse">
+    <div class="panel-heading">
+        <h4 class="panel-title">プロジェクト一覧</h4>
+        <div class="panel-heading-btn">
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
         </div>
     </div>
-
+    <div class="panel-body">
+        <table id="tblProject" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>プロジェクトCD</th>
+                    <th>プロジェクトめい</th>
+                    <th>チーム</th>
+                    <th>会社名</th>
+                    <th>PresonInCharge</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal" id="modal" style="height: auto">
+        <div class="sections">
+            <section>
+                <table id="detailEmployee" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>EmployeeCD</th>
+                            <th>EmployeeName</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <button id="detailRemove" class="btn btn-dark col-md-4 mt-3"><i class="fa fa-window-close"></i>&nbsp; Close</button>
+            </section>
+        </div>
+    </div>
+</div>
     @section Scripts
     {
         <script type="text/javascript">
