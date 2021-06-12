@@ -49,6 +49,11 @@
 @section Scripts
 {
     <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#UserID").focus();
+        });
+
         function LoginClick() {
             if (ErrorCheck()) {
                 var obj = {
@@ -63,6 +68,9 @@
                         { key: "UserInfo", value: userinfo }, function (data) {
                             location.href = '@Url.Action("ProjectView", "Project")';
                         });
+                }
+                else {
+                    ShowMessage("E101");
                 }
             }
         }

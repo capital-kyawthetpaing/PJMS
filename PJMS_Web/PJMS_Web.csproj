@@ -250,6 +250,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="SystemImages\CK.ico" />
     <Content Include="SystemImages\CK.JPG" />
     <Content Include="SystemImages\Global.asax.jpg" />
     <Content Include="webfonts\fa-brands-400.svg" />
