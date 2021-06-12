@@ -81,6 +81,13 @@
     color: white;
     margin-top: 5px;
 }
+#detailRemove {
+    background-color: red;
+    font-size: 15px;
+    color: white;
+    margin-top: 5px;
+    margin-left: 240px;
+}
 #addLeader, #addMember {
     background-color: lightcyan;
     border: 1px solid gray;
