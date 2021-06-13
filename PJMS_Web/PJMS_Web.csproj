@@ -156,12 +156,17 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CommonApiController.cs" />
+    <Compile Include="Controllers\ErrorApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageApiController.cs" />
+    <Compile Include="Controllers\ProgressApiController.cs" />
+    <Compile Include="Controllers\ProgressController.cs" />
     <Compile Include="Controllers\ProjectListApiController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\EmployeeListApiController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\ProjectTypeApiController.cs" />
+    <Compile Include="Controllers\ProjectTypeController.cs" />
     <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\UserAuthentication.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -212,6 +217,7 @@
     <Content Include="JS\dataTables.bootstrap4.min.js" />
     <Content Include="JS\dataTables.buttons.min.js" />
     <Content Include="JS\dataTables.responsive.min.js" />
+    <Content Include="JS\ErrorCheck.js" />
     <Content Include="JS\iziModal.js" />
     <Content Include="JS\iziModal.min.js" />
     <Content Include="JS\jquery.dataTables.min.js" />
@@ -297,6 +303,10 @@
     <Content Include="Views\Project\ProjectView.cshtml" />
     <Content Include="Views\Shared\_.LoginLayout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\ProjectType\ProjectTypeList.cshtml" />
+    <Content Include="Views\ProjectType\ProjectTypeEntry.cshtml" />
+    <Content Include="Views\Progress\ProgressEntry.cshtml" />
+    <Content Include="Views\Progress\ProgressList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -348,6 +358,14 @@
     <ProjectReference Include="..\PJMS_Model\PJMS_Model.csproj">
       <Project>{e804b20e-dc80-482f-a9dc-dd2264aec8ee}</Project>
       <Name>PJMS_Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Progress_BL\Progress_BL.csproj">
+      <Project>{8abf5149-6ce0-4bf8-8077-b08ed12d10cf}</Project>
+      <Name>Progress_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProjectType_BL\ProjectType_BL.csproj">
+      <Project>{9623aa99-d8b1-4807-833a-cb780e63a556}</Project>
+      <Name>ProjectType_BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Project_BL\Project_BL.csproj">
       <Project>{ca53ceb0-e47c-4ba8-bca4-516348fdc8ae}</Project>

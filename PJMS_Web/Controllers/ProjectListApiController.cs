@@ -17,6 +17,15 @@ namespace PJMS_Web.Controllers
 
         [UserAuthentication]
         [HttpPost]
+        [ActionName("ProjectCUD")]
+        public IHttpActionResult ProjectCUD([FromBody] ProjectModel projectModel)
+        {
+            ProjectBL projectBL = new ProjectBL();
+            return Ok(projectBL.ProjectCUD(projectModel));
+        }
+
+        [UserAuthentication]
+        [HttpPost]
         [ActionName("InsertProject")]
         public IHttpActionResult InsertProject([FromBody] ProjectModel projectModel)
         {

@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 
 namespace Common_BL
 {
@@ -22,9 +23,8 @@ namespace Common_BL
 
         public string Date_Checking(string inputdate)
         {
-            // return "[{\"result\":\"true\"}]";
 
-            string result, strdate = string.Empty;
+            string strdate = string.Empty;
             if (!string.IsNullOrWhiteSpace(inputdate))
             {
                 if (IsInteger(inputdate.Replace("/", "").Replace("-", "")))
@@ -85,13 +85,13 @@ namespace Common_BL
                     strdate = year + "/" + month + "/" + day;
                     if (CheckDate(strdate))
                     {
-                        result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";   //"[{"result":"2020/01/01"}]";                      
-                        return result;
+                        //result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";   //"[{"result":"2020/01/01"}]";                      
+                        return strdate;
                     }
                     else
                     {
-                        result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"false\"}]";
-                        return result;
+                        //result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"false\"}]";
+                        return "NG";
                         //mmodel = new MessageModel()
                         //{
                         //    MessageID = "E103"
@@ -102,8 +102,8 @@ namespace Common_BL
                 }
                 else
                 {
-                    result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"false\"}]";
-                    return result;
+                    //result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"false\"}]";
+                    return "NG";
                     //mmodel = new MessageModel()
                     //{
                     //    MessageID = "E103"
@@ -114,8 +114,8 @@ namespace Common_BL
             }
             else
             {
-                result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";
-                return result;
+                //result = "[{\"resultdate\" : \"" + strdate + "\", \"flg\" : \"true\"}]";
+                return strdate;
             }
         }
 
@@ -139,6 +139,29 @@ namespace Common_BL
                        System.Globalization.CultureInfo.InvariantCulture,
                        DateTimeStyles.None,
                        out DateTime d);
+        }
+
+        public string ExistsCheck(BaseModel baseModel)
+        {
+            baseModel.Sqlprms = new SqlParameter[2];
+            baseModel.Sqlprms[0] = new SqlParameter("@param1", baseModel.param1);
+            baseModel.Sqlprms[1] = new SqlParameter("@param2", baseModel.param2);
+            DataTable dt = cKMDL.SelectDatatable("Check_DataExists", ff.GetConnectionWithDefaultPath("PJMS"), baseModel.Sqlprms);
+            if (dt.Rows.Count > 0)
+                return "1";
+            return "0";
+        }
+
+        public string ByteLengthCheck(BaseModel baseModel)
+        {
+            if(baseModel.param1 != null)
+            {
+                int i = Encoding.GetEncoding(932).GetByteCount(baseModel.param1);
+                if (i > Convert.ToInt32(baseModel.param2))
+                    return "0";
+                return "1";
+            }
+            return "1";
         }
     }
 }

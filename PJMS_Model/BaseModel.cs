@@ -9,5 +9,7 @@ namespace PJMS_Model
         public SqlParameter[] Sqlprms { get; set; }
         public string UpdatedBy { get; set; }
         public string UpdatedDate { get; set; }
+        public string param1 { get; set; }
+        public string param2 { get; set; }
     }
 }

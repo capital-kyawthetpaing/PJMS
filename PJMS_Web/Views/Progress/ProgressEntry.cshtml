@@ -1,0 +1,112 @@
+﻿@model PJMS_Model.ProgressModel
+@{
+    ViewBag.Title = "ProgressEntry";
+    Layout = "~/Views/Shared/_PJMSLayout.cshtml";
+}
+
+
+<div class="panel panel-inverse">
+    <div class="panel-heading">
+        <h4 class="panel-title">進捗入力</h4>
+        <div class="panel-heading-btn">
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="container-fluid" id="content_zip">
+            <div class="row">
+                <div class="col-xl-12 col-md-12 col-sm-12 mb-2">
+                    <div id="divEntry" class="form-row">
+                        <div class="form-group col-xl-2 col-md-2 col-sm-12">
+                            <label for="txtProgressCD">進捗CD</label><label style="color:red;font-size:20px;">&nbsp;*</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
+                                </div>
+                                <input type="text" id="txtProgressCD" required maxlength="2" tabindex="1"
+                                       onkeydown="KeyDown(event,this,'txtProgressName')" class="form-control input-sm" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-8 col-md-8 col-sm-8">
+                            <label for="txtProgressName">進捗名</label><label style="color:red;font-size:20px;">&nbsp;*</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
+                                </div>
+                                <input type="text" id="txtProgressName" required maxlength="50" tabindex="2"
+                                       onkeydown="KeyDown(event,this,'btnSave')" class="form-control input-sm" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
+                <button id="btnSave" onclick="SaveClick();" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp;<span id="btnText">登録</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            SetErrorCheck();
+            $("#txtProgressCD").focus();
+
+            if ('@Model.Mode' == 'Edit') {
+
+                $("#btnText").html('更新');
+                $("#txtProgressCD").attr('disabled', 'disabled');;
+                $("#txtProgressName").focus();
+
+                var obj = {
+                    ProgressCD: '@Model.ProgressCD',
+                };
+                var response = CalltoApiController('@Url.Action("GetProgress", "api/ProgressApi")', obj);
+                var data = JSON.parse(response);
+                if (data.length > 0) {
+                    SetData(data)
+                }
+            }
+        });
+
+        function SaveClick() {
+            if (ErrorCheckOnSave('divEntry')) {
+                var obj = {
+                Mode:'@Model.Mode',
+                ProgressCD: $("#txtProgressCD").val(),
+                ProgressName: $("#txtProgressName").val(),
+                UpdatedBy: $("#LoginID").val(),
+                };
+                CalltoApiController('@Url.Action("ProgressCUD", "api/ProgressApi")', obj);
+                if ('@Model.Mode' == 'New') {
+                    Clear();
+                }
+                ShowMessage('I101');
+            }
+        }
+
+        function SetErrorCheck() {
+            if ('@Model.Mode' == 'New') {
+                $("#txtProgressCD").attr('data-exists', 'Progress');
+            }
+            else if ('@Model.Mode' == 'Edit') {
+                $("#txtProgressCD").removeAttr('data-exists');
+            }
+        }
+
+        function Clear() {
+            $("#txtProgressCD").focus();
+            $("#txtProgressCD").val('');
+            $("#txtProgressName").val('');
+        }
+
+        function SetData(data) {
+            $("#txtProgressCD").val(data[0].ProgressCD);
+            $("#txtProgressName").val(data[0].ProgressName);
+        }
+    </script>
+}
+

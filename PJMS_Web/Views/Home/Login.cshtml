@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="card2 card border-0 px-4 py-5">
+                <div id="divMain" class="card2 card border-0 px-4 py-5">
                     <div style="text-align:center;width:100%">
                         <label>
                             <b><label style="font-size:22px;">プロジェクト管理システム</label></b>
@@ -23,17 +23,17 @@
                     <div class="row px-3">
                         <label class="mb-1">
                             <b>ユーザーID</b>
-                        </label> <input id="UserID" onkeydown="KeyDown(event,this)"  tabindex="1" class="mb-4" type="text" placeholder="ユーザーID入力">
+                        </label> <input id="UserID" maxlength="50" onkeydown="KeyDown(event,this,'Password')" required  tabindex="1" class="mb-4" type="text" placeholder="ユーザーID入力">
                     </div>
                     <div class="row px-3">
                         <label class="mb-1">
                             <b>パスワード</b>
-                        </label> <input id="Password" onkeydown="KeyDown(event,this,'LoginClick')" tabindex="2" type="password" name="password" placeholder="パスワード入力">
+                        </label> <input id="Password" maxlength="50" onkeydown="KeyDown(event,this,'btnLogin','LoginClick')" required tabindex="2" type="password" name="password" placeholder="パスワード入力">
                     </div>
                     <div class="row px-3 mb-4">
                         <div class="custom-control custom-checkbox custom-control-inline"></div>
                     </div>
-                    <div class="row mb-3 px-3"> <button onclick="LoginClick();" tabindex="3" class="btn btn-success text-center">ログイン</button> </div>
+                    <div class="row mb-3 px-3"> <button id="btnLogin" onclick="LoginClick();" tabindex="3" class="btn btn-success text-center">ログイン</button> </div>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
         });        
 
         function LoginClick() {
-            if (ErrorCheck()) {
+            if (ErrorCheckOnSave('divMain')) {
                 var obj = {
                 UserID: $("#UserID").val(),
                 Password: $("#Password").val(),
@@ -74,45 +74,5 @@
                 }
             }
         }
-
-        function ErrorCheck() {
-            if (!$("#UserID").val()) {
-                ShowMessage("E102");
-                $("#UserID").focus();
-                return false;
-            }
-            else if (!$("#Password").val()) {
-                ShowMessage("E102");
-                $("#Password").focus();
-                return false;
-            }
-            return true;
-        }
-
-        //ssa chg [2021_06_11]
-        function KeyDown(e, ctrl, functionname) {
-            if (e.which == 13 || e.which == 9) {
-                e.preventDefault();
-                moveNext(ctrl);
-
-                if (functionname) {
-                    var fn = window[functionname];
-                    fn('OK');
-                }
-            }
-        }
-
-        function moveNext(ctrl) {
-            do {
-                ctrl = $('[tabIndex=' + (+$(ctrl).attr("tabIndex") + 1) + ']');
-                if (!$(ctrl).length) {
-                    ctrl = $('[tabIndex=1]');
-                    break;
-                }
-            } while ($(ctrl).is('[disabled=disabled]'));
-            $(ctrl).select();
-            $(ctrl).focus();
-        }
-
     </script>
 }

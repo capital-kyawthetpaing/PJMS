@@ -36,6 +36,9 @@
     }
 </head>
 <body>
+    <input id="ExistsUrl" type="hidden" value="@Url.Action("ExistsCheck","api/ErrorApi")" />
+    <input id="ByteLengthUrl" type="hidden" value="@Url.Action("ByteLengthCheck","api/ErrorApi")" />
+    <input id="DateCheckUrl" type="hidden" value="@Url.Action("DateCheck","api/ErrorApi")" />
     <input id="LoginID" type="hidden" value="@ID" />
     <div id="page-loader" class="fade show">
         <span class="spinner"></span>
@@ -43,8 +46,10 @@
     <div id="page-container" class="page-container fade">
         <div id="header" class="header navbar-default">
             <div class="navbar-header">
-                <a href="#" class="navbar-brand"><img style="margin-right:5px" src="@Url.Content("~/SystemImages/CK.JPG")" />
-                       <b class="mr-1">プロジェクト管理システム</b></a>
+                <a href="#" class="navbar-brand">
+                    <img style="margin-right:5px" src="@Url.Content("~/SystemImages/CK.JPG")" />
+                    <b class="mr-1">プロジェクト管理システム</b>
+                </a>
                 <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -62,12 +67,12 @@
                         <a href="@Url.Action("Login","Home")" class="dropdown-item">Log Out</a>
                     </div>
                 </li>
-            </ul>          
+            </ul>
         </div>
         <div id="sidebar" class="sidebar" style="padding-top:50px;">
 
             <div data-scrollbar="true" data-height="100%">
-                <ul class="nav">                   
+                <ul class="nav">
                     <li>
                         <ul class="nav nav-profile">
                             <li><a href="javascript:;"><i class="fa fa-cog"></i> Settings</a></li>
@@ -83,7 +88,7 @@
                             <i class="ion-ios-grid-view bg-gradient-pink"></i>
                             <span>ホーム</span>
                         </a>
-                    </li>                  
+                    </li>
                     <li class="has-sub">
                         <a href="javascript:;">
                             <b class="caret"></b>
@@ -102,9 +107,33 @@
                             <span>スタッフ</span>
                         </a>
                         <ul class="sub-menu">
-                            <li><a href="@Url.Action("EmployeeList","Employee")">スタッフ一覧</a></li>                        
+                            <li><a href="@Url.Action("EmployeeList","Employee")">スタッフ一覧</a></li>
                         </ul>
-                   <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="ion-ios-arrow-back"></i></a></li>
+                    <li>
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            <i class="fa fa-project-diagram bg-gradient-red"></i>
+                            <span>プロジェクト区分</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="@Url.Action("ProjectTypeList","ProjectType")">プロジェクト区分一覧</a></li>
+                            <li><a href="@Url.Action("ProjectTypeEntry","ProjectType")">プロジェクト区分入力</a></li>
+                        </ul>
+                    <li>
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            <i class="fa fa-tasks bg-gradient-orange"></i>
+                            <span>状況・進捗</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="@Url.Action("ProgressList","Progress")">進捗一覧</a></li>
+                            <li><a href="@Url.Action("ProgressEntry","Progress")">進捗入力</a></li>
+                        </ul>
+                    <li>
+                        <a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="ion-ios-arrow-back"></i></a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -131,6 +160,7 @@
     <script src="@Url.Content("~/JS/table-manage-buttons.demo.js")"></script>
     <script src="@Url.Content("~/JS/sweetalert2.min.js")"></script>
     <script src="@Url.Content("~/JS/Common.js")"></script>
+    <script src="@Url.Content("~/JS/ErrorCheck.js")"></script>
     <script src="@Url.Content("~/JS/bootstrap-datepicker.js")"></script>
     <script src="@Url.Content("~/JS/bootstrap-datepicker.js")"></script>
     @*eonasdan-bootstrap-datetimepicker*@

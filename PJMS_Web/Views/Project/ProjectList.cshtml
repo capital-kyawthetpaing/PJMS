@@ -16,39 +16,38 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>プロジェクトCD</th>
-                    <th>プロジェクトめい</th>
-                    <th>チーム</th>
+                    <th>プロジェクト<br />CD</th>
+                    <th>プロジェクト名</th>
+                    <th>プロジェクト<br />区分</th>
                     <th>会社名</th>
-                    <th>PresonInCharge</th>
+                    <th>担当者<br />（お客さん）</th>
                 </tr>
             </thead>
             <tbody>
             </tbody>
         </table>
     </div>
-    <div class="modal" id="modal" style="height: auto">
-        <div class="sections">
-            <section>
-                <table id="detailEmployee" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>EmployeeCD</th>
-                            <th>EmployeeName</th>
-                            <th>Role</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-                <button id="detailRemove" class="btn btn-dark col-md-4 mt-3"><i class="fa fa-window-close"></i>&nbsp; Close</button>
-            </section>
-        </div>
+</div>
+<div class="modal" id="modal" style="height: auto">
+    <div class="sections">
+        <section>
+            <table id="detailEmployee" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>スタッフCD</th>
+                        <th>スタッフ名</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <button id="detailRemove" class="btn btn-dark col-md-4 mt-3"><i class="fa fa-window-close"></i>&nbsp; 閉じる</button>
+        </section>
     </div>
 </div>
-    @section Scripts
+@section Scripts
     {
-        <script type="text/javascript">
+    <script type="text/javascript">
             $(document).ready(function () {
                 var obj = {
                     ProjectType: '',
@@ -59,7 +58,6 @@
             function BindTable(response) {
                 table = $('#tblProject').DataTable({
                     responsive: true,
-                    dom: 'Bfrtip',
                     data: JSON.parse(response),
                     datasrc:"",
                     destroy: true,
@@ -67,57 +65,41 @@
                     "ordering": true,
                     "columns": [
                         { "data": "ProjectCD", "className": "align-center", "width": "10%" },
-                        { "data": "ProjectCD", "className":"align-center","width": "10%"},
-                        { "data": "ProjectName", "className": "align-center", "width": "20%" },
+                        { "data": "ProjectCD", "className":"align-center","width": "13%"},
+                        { "data": "ProjectName", "className": "align-center", "width": "13%" },
                         { "data": "ProjectType", "className": "align-center", "width": "10%" },
-                        { "data": "CompanyName", "className": "align-center", "width": "20%" },
-                        { "data": "PresonInCharge", "className": "align-center", "width": "20%" }
-                    ],
-                    "buttons": [
-                        {
-                            extend: 'copy'
-                        },
-                        {
-                            extend: 'excel',
-                            className: 'btn-success',
-                            init: function (api, node, config) {
-                                $(node).removeClass("btn-secondary");
-                            }
-                        },
-                        {
-                            extend: 'pdf',
-                            className: 'btn-danger',
-                            charset: "utf-8",
-                            init: function (api, node, config) {
-                                $(node).removeClass("btn-secondary");
-                            }
-                        },
+                        { "data": "CompanyName", "className": "align-center", "width": "17%" },
+                        { "data": "PersonInCharge", "className": "align-center", "width": "17%" }
                     ],
                     "columnDefs": [{
                         "targets": 0,
                         "data": "ProjectCD",
                         "render": function (data) {
-                            return '<button type="button" style="margin-right:3px" class="btn btn-info" title="詳細" onclick="ShowDetail()"><i class="fa fa-info-circle"></i></button>'+
+                            return '<button type="button" style="margin-right:3px" class="btn btn-info" title="詳細" onclick="ShowDetail(this)"><i class="fa fa-info-circle"></i></button>'+
                                 '<button type="button" class="btn btn-success" onclick="ProjectEdit(\'' + data + '\',\'Edit\')" title="変更"><i class="fa fa-pencil-alt"></i></button>';
                        },
                     }]
                 });
             }
-            function ShowDetail() {
+            function ShowDetail(row) {
+                var currentRow = $(row).closest("tr");
+                var data = $('#tblProject').DataTable().row(currentRow).data();
+
                 $('#modal').iziModal('open');
                 var obj = {
-                    ProjectCD: '',
-                 }
+                    ProjectCD: data["ProjectCD"],
+                }
+
                 var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
                 BindTable1(response);
             }
             $(".modal").iziModal({
-                title: "Employee detail",
+                title: "メンバー",
                 padding: 10,
                 TransitionIn: 'FadeInRight',
                 theme: 'light',
                 width: '700px',
-                headerColor: 'deepskyblue',
+                headerColor: 'lightcyan',
             });
             $('#detailRemove').on('click', function (e) {
                 $('#modal').iziModal('close');
@@ -132,18 +114,10 @@
                     "searching": false,
                     "ordering": true,
                     "columns": [
-                        { "data": "EmployeeCD", "className": "align-center", "width": "5%" },
                         { "data": "EmployeeCD", "className": "align-center", "width": "30%" },
                         { "data": "EmployeeName", "className": "align-center", "width": "35%" },
                         { "data": "Role", "className": "align-center", "width": "20%" }
                     ],
-                    "columnDefs": [{
-                        "targets": 0,
-                        "data": "EmployeeCD",
-                        "render": function (data) {
-                            return '<input type="button" class="btn btn-danger" style="width:60px;margin:3px;padding-top:3px;" onclick="EmployeeDelete(this);" value="Delete">';
-                        },
-                    }]
                 });
             }
             function ProjectEdit(data, mode) {
@@ -151,7 +125,7 @@
             }
 
 
-        </script>
-    }
+    </script>
+}
 
 

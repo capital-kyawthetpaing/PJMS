@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "ProgressList";
+    Layout = "~/Views/Shared/_PJMSLayout.cshtml";
+}
+
+<div class="panel panel-inverse">
+    <div class="panel-heading">
+        <h4 class="panel-title">進捗一覧</h4>
+        <div class="panel-heading-btn">
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <table id="tblProgress" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>進捗CD</th>
+                    <th>進捗名</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+                var obj = {
+                    ProgressCD: '',
+                };
+                var response = CalltoApiController('@Url.Action("GetProgress", "api/ProgressApi")', obj);
+                BindTable(response);
+        });
+
+        function BindTable(response) {
+            table = $('#tblProgress').DataTable({
+                responsive: true,
+                data: JSON.parse(response),
+                datasrc: "",
+                destroy: true,
+                "paging": true,
+                "ordering": true,
+                "columns": [
+                    { "data": "ProgressCD", "className": "align-center", "width": "10%" },
+                    { "data": "ProgressCD", "className": "align-center", "width": "10%" },
+                    { "data": "ProgressName", "className": "align-center", "width": "20%" },
+                ],
+                "columnDefs": [{
+                    "targets": 0,
+                    "data": "ProgressCD",
+                    "render": function (data) {
+                        return '<button type="button" class="btn btn-info" title="変更" onclick="ProgressEdit(this)">変更</button>'
+                    },
+                }]
+            });
+        }
+
+        function ProgressEdit(row) {
+            var currentRow = $(row).closest("tr");
+            var data = $('#tblProgress').DataTable().row(currentRow).data();
+            var url = '@Url.Action("ProgressEntry", "Progress")?ProjectTypeCD=' + data["ProgressCD"] + '&Mode=Edit';
+            location.href = url;
+        }
+    </script>
+}
+
+

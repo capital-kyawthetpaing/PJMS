@@ -126,3 +126,19 @@ function sleep(milliseconds) {
         currentDate = Date.now();
     } while (currentDate - date < milliseconds);
 }
+
+//ssa chg [2021_06_11]
+function KeyDown(e, ctrl, nextcontrolid, functionname) {
+    if (e.which == 13) {
+        e.preventDefault();
+        if (ErrorCheck(ctrl)) {
+            $("#" + nextcontrolid).focus();
+        }
+        
+        if (functionname) {
+            var fn = window[functionname];
+            fn('OK');
+        }
+
+    }
+}
