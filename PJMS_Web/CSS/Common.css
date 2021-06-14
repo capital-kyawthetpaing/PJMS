@@ -48,17 +48,18 @@
     border: 1px solid gray;
     font-size: 15px;
     margin-bottom: 5px;
+    margin-right:5px;
 }
 
-#btnSave, #btnUpdate {
-    background-color: lightcyan;
+.pjmscancelbtn {
+    background-color: red;
+    color:white;
     border: 1px solid gray;
     font-size: 15px;
     margin-bottom: 5px;
+    margin-right:5px;
 }
-#btnSave, #btnUpdate {
-    margin-left: 42%;
-}
+
     #basic-addon1 i{
     font-size: 15px;
     color: black;
@@ -77,40 +78,7 @@
     font-size: 16px;
     margin-left: 55px;
 }*/
-#btnAdd {
-    background-color: lightcyan;
-    font-size: 15px;
-    color: black;
-    margin-top: 5px;
-}
-#btnRemove {
-    background-color: red;
-    font-size: 15px;
-    color: white;
-    margin-top: 5px;
-}
-#detailRemove {
-    background-color: red;
-    font-size: 15px;
-    color: white;
-    margin-top: 5px;
-    margin-left: 240px;
-}
-#addLeader, #addMember {
-    background-color: lightcyan;
-    border: 1px solid gray;
-    font-size: 15px;
-    margin-top: 5px;
-    margin-right: 2px;
-}
 
-.pjmsbtn {
-    background-color: lightcyan;
-    border: 1px solid gray;
-    font-size: 15px;
-    margin-top: 5px;
-    margin-right: 2px;
-}
 
 .div-centerbtn{
     display:flex;

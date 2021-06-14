@@ -6,7 +6,7 @@
 <input type="hidden" id="hRole" />
 <div class="panel panel-inverse">
     <div class="panel-heading">
-        <h4 class="panel-title">Project Entry</h4>
+        <h4 class="panel-title"> プロジェクト入力</h4>
         <div class="panel-heading-btn">
             <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
         </div>
@@ -190,8 +190,8 @@
                         </div>
                     </div>
                     <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
-                        <button id="addLeader" onclick="ShowModal('1')" class="btn col-xl-2"><i class="fas fa-users"></i>&nbsp; CKMの責任者</button>
-                        <button id="addMember" onclick="ShowModal('2')" class="btn col-xl-2"><i class="fas fa-users"></i>&nbsp; メンバー</button>
+                        <button id="addLeader" onclick="ShowModal('1')" class="btn pjmsbtn col-xl-2"><i class="fas fa-users"></i>&nbsp; CKMの責任者</button>
+                        <button id="addMember" onclick="ShowModal('2')" class="btn pjmsbtn col-xl-2"><i class="fas fa-users"></i>&nbsp; メンバー</button>
                     </div>
                 </div>
             </div>
@@ -199,7 +199,7 @@
                 <table id="selectedProjectDetail" class="table table-striped reducepadding table-bordered ">
                     <thead>
                         <tr>
-                            <th style="width: 10%;">コマンド</th>
+                            <th></th>
                             <th>スタッフCD</th>
                             <th>スタッフ名</th>
                             <th>Role</th>
@@ -208,8 +208,8 @@
                     <tbody id="tbody"></tbody>
                 </table>
             </div>
-            <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
-                <button id="btnSave" onclick="btnSaveClick();" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; <span id="btnText">登録</span></button>
+            <div class="div-centerbtn">
+                <button id="btnSave" onclick="btnSaveClick();" class="btn pjmsbtn col-xl-2"><i class="fa fa-save"></i>&nbsp; <span id="btnText">登録</span></button>
             </div>
             <div class="modal" id="modal" style="height: auto">
                 <div class="sections">
@@ -224,8 +224,11 @@
                             </thead>
                             <tbody></tbody>
                         </table>
-                        <button id="btnClose" onclick="btnCloseClick();" class="btn btn-danger col-md-4 mt-3 ml-5"><i class="fa fa-window-close"></i>&nbsp;　閉じる</button>
-                        <button id="btnAdd" onclick="btnAddClick();" value="Save" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-save"></i>&nbsp; 追加する</button>
+                        <div class="row div-centerbtn">
+                            <button id="btnClose" onclick="btnCloseClick();" class="btn pjmscancelbtn col-sm-12 col-xl-2"><i class="fa fa-window-close"></i>&nbsp;　閉じる</button>
+                            <button id="btnAdd" onclick="btnAddClick();" value="Save" class="btn pjmsbtn col-xl-2"><i class="fa fa-save"></i>&nbsp; 追加する</button>
+                        </div>
+
                     </section>
                 </div>
             </div>
@@ -422,7 +425,10 @@
 
                 CalltoApiController('@Url.Action("ProjectCUD", "api/ProjectListApi")', obj);
                 ShowMessage('I101');//SSA chg [20210610]
-                Clear();
+
+                if ('@Model.Mode' == 'New') {
+                    Clear();
+                }               
             }
         }
         function Clear() {
@@ -472,7 +478,8 @@
             };
 
             var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
-            if (response.length > 0) {
+            var v1 = JSON.parse(response)
+            if (v1.length > 0) {
                 BindTable1(response);
             }
             
