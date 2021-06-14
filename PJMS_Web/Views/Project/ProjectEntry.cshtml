@@ -431,8 +431,6 @@
             $("#CompanyName").val('');
             $("#RelatedCompanyName").val('');
             $("#PersonInCharge").val('');
-            //var getValue = document.getElementById('ProjectType').selectedOptions[0].value;
-            //alert(getValue);
             $('#ProjectType').val('01');
             $("#ContractDate").val('');
             $("#StartDate").val('');
@@ -547,7 +545,7 @@
 
             CalltoApiController('@Url.Action("UpdateProject", "api/ProjectListApi")', obj);
             ShowMessage('I101');
-            Clear();
+            
             //ssa CHG 09 / 06 / 2021-->
     @*var obj = {
             projectCD: $("#txtProjectCD").val(),
