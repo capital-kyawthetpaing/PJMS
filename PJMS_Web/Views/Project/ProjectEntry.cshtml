@@ -224,7 +224,7 @@
                                 </thead>
                                 <tbody></tbody>
                             </table>
-                            <button id="btnClose" class="btn btn-danger col-md-4 mt-3 ml-5"><i class="fa fa-window-close"></i>&nbsp;　閉じる</button>
+                            <button id="btnClose" onclick="btnCloseClick();" class="btn btn-danger col-md-4 mt-3 ml-5"><i class="fa fa-window-close"></i>&nbsp;　閉じる</button>
                             <button id="btnAdd" onclick="btnAddClick();" value="Save" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-save"></i>&nbsp; 追加する</button>
                         </section>
                     </div>
@@ -388,9 +388,9 @@
             $(e).parents("tr").remove();
         }
 
-        $('#btnClose').on('click', function (e) {
+        function btnCloseClick() {
             $('#modal').iziModal('close');
-        });
+        }
 
         function btnSaveClick() {
             if (ErrorCheckOnSave('divMain')) {
