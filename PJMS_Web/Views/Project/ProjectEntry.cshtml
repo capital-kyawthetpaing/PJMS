@@ -269,9 +269,9 @@
                 padding: 10,
                 TransitionIn: 'FadeInRight',
                 theme: 'light',
-                width: '700px',
+                width: '70%',
                 zindex: '9999',
-                headerColor: 'deepskyblue',
+                headerColor: 'lightcyan',
             });
         });
 
@@ -472,7 +472,10 @@
             };
 
             var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
-            BindTable1(response);
+            if (response.length > 0) {
+                BindTable1(response);
+            }
+            
         }
 
         function BindTable1(response1) {
@@ -500,194 +503,4 @@
             });
         }
     </script>
-    <!--<script type="text/javascript">
-        $(document).ready(function () {
-            var mode = '@Model.Mode';
-            if (mode == 'Edit') {
-                var obj = {
-                    ProjectCD: '@Model.ProjectCD',
-                    ProjectName: '@Model.ProjectName',
-                    CompanyName: '@Model.CompanyName',
-                    PresonInCharge: '@Model.PersonInCharge',
-                    ContractDate: '@Model.ContractDate',
-                };
-                var data = CalltoApiController('@Url.Action("GetProject", "api/ProjectListApi")', obj);
-                var EData = JSON.parse(data);
-                var obj = {
-                    ProjectCD: '@Model.ProjectCD'
-                };
-                var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
-                BindTable1(response);
-                $("#txtProjectCD").val(EData[0].ProjectCD);
-                $('#txtProjectCD').attr('readonly', true);
-                $("#txtProjectName").val(EData[0].ProjectName);
-                $("#txtCompanyName").val(EData[0].CompanyName);
-                $("#txtPresonInCharge").val(EData[0].PresonInCharge);
-                $("#txtContractDate").val(EData[0].ContractDate);
-                $("#btnSave").css("display", "none");
-                $("#btnUpdate").css("display", "block");
-            }
-        });
-        $("#btnUpdate").css("display", "none");
-        $('#btnUpdate').click(function () {
-            jsonObj = getTableJson();
-
-            var obj = {
-                ProjectCD: $("#txtProjectCD").val(),
-                ProjectName: $("#txtProjectName").val(),
-                ProjectType: $("input[name='Teams']:checked").val(),
-                CompanyName: $("#txtCompanyName").val(),
-                PresonInCharge: $("#txtPresonInCharge").val(),
-                ContractDate: $("#txtContractDate").val(),
-                //SSA chg 09_06_2021
-                ProjectDetailJson: JSON.stringify(jsonObj),
-            };
-
-            CalltoApiController('@Url.Action("UpdateProject", "api/ProjectListApi")', obj);
-            ShowMessage('I101');
-            
-            //ssa CHG 09 / 06 / 2021-->
-    @*var obj = {
-            projectCD: $("#txtProjectCD").val(),
-            ProjectDetailJson: JSON.stringify(jsonObj),
-            Role: $("#hRole").val(),
-        };
-        CalltoApiController('@Url.Action("UpdateProjectDetail", "api/ProjectListApi")', obj);*@
-    <!--});
-    function datecheckKeydown() {
-        if (event.keyCode === 13) {
-             var obj = {
-                ContractDate: $("#txtContractDate").val(),
-            };
-            var data = CalltoApiController('@Url.Action("Date_Checking", "api/CommonApi")', obj);
-            var datevalue = JSON.parse(data);
-            $("#txtContractDate").val(datevalue[0].resultdate);
-        }
-
-    }
-
-
-
-
-    function BindTable1(response1) {
-        table = $('#selectedProjectDetail').DataTable({
-            responsive: true,
-            data: JSON.parse(response1),
-            datasrc: "",
-            destroy: true,
-            "paging": false,
-            "searching": false,
-            "ordering": true,
-            "columns": [
-                { "data": "EmployeeCD", "className": "align-center", "width": "5%" },
-                { "data": "EmployeeCD", "className": "align-center", "width": "30%" },
-                { "data": "EmployeeName", "className": "align-center", "width": "35%" },
-                { "data": "Role", "className": "align-center", "width": "20%" }
-            ],
-            "columnDefs": [{
-                "targets": 0,
-                "data": "EmployeeCD",
-                "render": function (data) {
-                    return '<input type="button" class="btn btn-danger" style="width:60px;margin:3px;padding-top:3px;" onclick="EmployeeDelete(this);" value="Delete">';
-                },
-            }]
-        });
-    }
-    function btnAddClick() {
-        let table = $('#tblEmployee1').DataTable();
-        var jsonObj = [];
-        $(table.$('input:checked')).each(function () {
-            var row = $(this).closest("tr")[0];
-            item = {};
-            item["EmployeeCD"] = row.cells[1].innerHTML;
-            item["EmployeeName"] = row.cells[2].innerHTML;
-            item["Role"] = $("#hRole").val();
-            jsonObj.push(item);
-            let value = $("#hRole").val();
-            if (value == 1) {
-                value = "Leader";
-            } else {
-                value = "Member"
-            }
-            $('#selectedProjectDetail').append('<tr><td>' + `<input type="button" class="btn btn-danger" style='width: 70px; margin: 3px; ' onclick='EmployeeDelete(this); ' value="Delete">` + '</td><td>' + item["EmployeeCD"] + '</td><td>'  + item["EmployeeName"] + '</td><td>' + value + '</td></tr>');
-        });
-        $('#modal').iziModal('close');
-    }
-
-
-    $('#btnSave').click(function () {
-
-        if (ErrorCheck()) {
-            jsonObj = getTableJson();
-
-            var obj = {
-                ProjectCD: $("#txtProjectCD").val(),
-                ProjectName: $("#txtProjectName").val(),
-                ProjectType: $("input[name='Teams']:checked").val(),
-                CompanyName: $("#txtCompanyName").val(),
-                PresonInCharge: $("#txtPresonInCharge").val(),
-                ContractDate: $("#txtContractDate").val(),
-                ProjectDetailJson: JSON.stringify(jsonObj),
-            };
-            CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
-            ShowMessage('I101');//SSA chg [20210610]
-
-            Clear();//ssa chg [20210614]
-        }
-
-        //ssa CHG 09 / 06 / 2021-->
-    @*var obj = {
-            ProjectCD: $("#txtProjectCD").val(),
-            ProjectDetailJson: JSON.stringify(jsonObj),
-            Role: $("#hRole").val(),
-        };
-        CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);*@
-    <!--});
-        function deleteAll(table) {
-            for (var i = 0; i <= table.rows.length; i++) {
-                table.rows[i].cells[0].innerHTML = "";
-                table.rows[i].cells[1].innerHTML = "";
-                table.rows[i].cells[2].innerHTML = "";
-                table.rows[i].cells[3].innerHTML = "";
-            }
-
-        }
-
-
-        function ErrorCheck() {
-            if (!$("#txtProjectCD").val()) {
-                ShowMessage("E102");
-                $("#txtProjectCD").focus();
-                return false;
-            }
-            //ssa chg 2021_06_10[Require_Case]
-            else if (!$("#txtProjectName").val()) {
-                ShowMessage("E102");
-                $("#txtProjectName").focus();
-                return false;
-            }
-            else if (!$("#txtCompanyName").val()) {
-                ShowMessage("E102");
-                $("#txtCompanyName").focus();
-                return false;
-            }
-            else if (!$("#txtPresonInCharge").val()) {
-                ShowMessage("E102");
-                $("#txtPresonInCharge").focus();
-                return false;
-            }
-            else if (!$("#txtContractDate").val()) {
-                ShowMessage("E102");
-                $("#txtContractDate").focus();
-                return false;
-            }
-            else {
-                //clearField($("#txtProjectCD"));
-                return true;
-            }
-
-        }
-
-
-    </script>-->
 }

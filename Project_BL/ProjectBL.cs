@@ -91,8 +91,13 @@ namespace Project_BL
         }
         public string GetProjectView(ProjectModel projectModel)
         {
-            projectModel.Sqlprms = new SqlParameter[1];
+            projectModel.Sqlprms = new SqlParameter[6];
             projectModel.Sqlprms[0] = new SqlParameter("@ProjectCD", projectModel.ProjectCD);
+            projectModel.Sqlprms[1] = new SqlParameter("@ProjectName", projectModel.ProjectName);
+            projectModel.Sqlprms[2] = new SqlParameter("@ProjectTypeCD", projectModel.ProjectTypeCD);
+            projectModel.Sqlprms[3] = new SqlParameter("@CompanyName", projectModel.CompanyName);
+            projectModel.Sqlprms[4] = new SqlParameter("@PersonInCharge", projectModel.PersonInCharge);
+            projectModel.Sqlprms[5] = new SqlParameter("@ProgressCD", projectModel.ProgressCD);
             return cKMDL.SelectJson("ProjectView_Select", ff.GetConnectionWithDefaultPath("PJMS"), projectModel.Sqlprms);
         }
         public string InsertProjectDetail(ProjectModel projectModel)

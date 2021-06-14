@@ -42,6 +42,14 @@
     font-weight:bold;
     color:green;
 }
+
+.pjmsbtn {
+    background-color: lightcyan;
+    border: 1px solid gray;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
 #btnSave, #btnUpdate {
     background-color: lightcyan;
     border: 1px solid gray;
@@ -95,6 +103,20 @@
     margin-top: 5px;
     margin-right: 2px;
 }
+
+.pjmsbtn {
+    background-color: lightcyan;
+    border: 1px solid gray;
+    font-size: 15px;
+    margin-top: 5px;
+    margin-right: 2px;
+}
+
+.div-centerbtn{
+    display:flex;
+    justify-content:center;
+}
+
 
 #selectedProjectDetail tr{
     text-align: center;
