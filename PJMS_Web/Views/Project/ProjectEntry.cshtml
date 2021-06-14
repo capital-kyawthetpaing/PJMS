@@ -4,234 +4,234 @@
     Layout = "~/Views/Shared/_PJMSLayout.cshtml";
 }
 <input type="hidden" id="hRole" />
-    <div class="panel panel-inverse">
-        <div class="panel-heading">
-            <h4 class="panel-title">Project Entry</h4>
-            <div class="panel-heading-btn">
-                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-            </div>
+<div class="panel panel-inverse">
+    <div class="panel-heading">
+        <h4 class="panel-title">Project Entry</h4>
+        <div class="panel-heading-btn">
+            <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
         </div>
-        <div class="panel-body">
-            <div class="container-fluid" id="content_zip">
-                <div class="row">
-                    <div id="divMain" class="col-xl-12 col-md-12 col-sm-12 mb-2">
-                        <div class="form-row">
-                            <div class="form-group col-xl-3 col-md-3 col-lg-2 col-sm-12">
-                                <label class="required" for="ProjectCD">プロジェクトCD</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control input-sm" id="ProjectCD" required maxlength="10"
-                                           onkeydown="KeyDown(event,this,'ProjectName')" tabindex="1" />
+    </div>
+    <div class="panel-body">
+        <div class="container-fluid" id="content_zip">
+            <div class="row">
+                <div id="divMain" class="col-xl-12 col-md-12 col-sm-12 mb-2">
+                    <div class="form-row">
+                        <div class="form-group col-xl-3 col-md-3 col-lg-2 col-sm-12">
+                            <label class="required" for="ProjectCD">プロジェクトCD</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
                                 </div>
-                            </div>
-                            <div class="form-group col-xl-3 col-md-3 col-lg-2 col-sm-12">
-                                <label class="required" for="ProjectName">プロジェクト名</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control input-sm" id="ProjectName" required maxlength="30"
-                                           onkeydown="KeyDown(event,this,'CompanyName')" tabindex="2" />
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-3 col-md-3 col-lg-2 col-sm-12">
-                                <label class="required" for="CompanyName">会社名（お客さん）</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control input-sm" id="CompanyName" required maxlength="50"
-                                           onkeydown="KeyDown(event,this,'PersonInCharge')" tabindex="3" />
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-3 col-md-3 col-lg-2 col-sm-12">
-                                <label class="required" for="PresonInCharge">担当者（お客さん）</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control input-sm" id="PersonInCharge" required maxlength="50"
-                                           onkeydown="KeyDown(event,this,'ProjectType')" tabindex="4" />
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-3 col-md-3 col-lg-3 col-sm-12">
-                                <label class="required" for="ProjectType">プロジェクト区分</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-check-circle"></i></span>
-                                    </div>
-                                    <select class="form-control input-sm" maxlength="30" tabindex="5" id="ProjectType" onkeydown="KeyDown(event,this,'RelatedCompanyName')"></select>
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-3 col-md-3 col-lg-3 col-sm-12">
-                                <label class="required" for="RelatedCompanyName">関係する会社名</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control input-sm" id="RelatedCompanyName" required maxlength="50"
-                                           onkeydown="KeyDown(event,this,'ContractDate')" tabindex="6" />
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-3 col-md-3">
-                                <label class="required" for="ContractDate">契約日</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control input-sm align-center" id="ContractDate" required maxlength="10" placeholder="yyyy/MM/dd"
-                                           onkeydown="KeyDown(event,this,'StartDate')" tabindex="6" />
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-3 col-md-3">
-                                <label for="StartDate">Start日</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info align-center" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control input-sm align-center" id="StartDate" maxlength="10" placeholder="yyyy/MM/dd"
-                                           onkeydown="KeyDown(event,this,'PlanEndDate')" tabindex="7" />
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-3 col-md-3">
-                                <label for="ContractDate">End予定日</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info align-center" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control input-sm align-center" id="PlanEndDate" maxlength="10" placeholder="yyyy/MM/dd"
-                                           onkeydown="KeyDown(event,this,'EndDate')" tabindex="8" />
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-3 col-md-3">
-                                <label for="ContractDate">End日</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control input-sm align-center" id="EndDate" maxlength="10" placeholder="yyyy/MM/dd"
-                                           onkeydown="KeyDown(event,this,'Progress')" tabindex="9" />
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-3 col-md-3">
-                                <label for="ContractDate">状況・進捗</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
-                                    </div>
-                                    <select class="form-control input-sm" maxlength="1000" tabindex="10" id="Progress" onkeydown="KeyDown(event,this,'ContractAmount')"></select>
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-3 col-md-3">
-                                <label for="ContractAmount">契約金額（日本円）</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control input-sm align-right price1" id="ContractAmount" maxlength="10"
-                                           onkeydown="KeyDown(event,this,'PhoneNo')" tabindex="11"
-                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-3 col-md-3">
-                                <label for="ContractAmount">電話番号</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-mobile-alt"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control input-sm" id="PhoneNo" maxlength="50"
-                                           onkeydown="KeyDown(event,this,'MailAddress')" tabindex="12" />
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-3 col-md-3">
-                                <label for="MailAddress">メールアドレス</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-envelope"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control input-sm" id="MailAddress" maxlength="50"
-                                           onkeydown="KeyDown(event,this,'BPO')" tabindex="13" />
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-3 col-md-3">
-                                <label for="BPO">BPOの時の契約人数</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-marker"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control input-sm align-right" id="BPO" maxlength="3"
-                                           oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
-                                           onkeydown="KeyDown(event,this,'BillingTiming')" tabindex="14" />
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-3 col-md-3">
-                                <label for="BillingTiming">請求タイミング</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-marker"></i></span>
-                                    </div>
-                                    <input type="text" class="form-control input-sm" id="BillingTiming" maxlength="100"
-                                           onkeydown="KeyDown(event,this,'ProjectInfo')" tabindex="15" />
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-6 col-md-6">
-                                <label for="ProjectInfo">Projectの内容</label>
-                                <div class="input-group">
-                                    <textarea id="ProjectInfo" maxlength="200" tabindex="16" class="form-control input-sm"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group col-xl-6 col-md-6">
-                                <label for="Comment">備考</label>
-                                <div class="input-group">
-                                    <textarea id="Comment" maxlength="400" tabindex="17" class="form-control input-sm"></textarea>
-                                </div>
+                                <input type="text" class="form-control input-sm" id="ProjectCD" required maxlength="10"
+                                       onkeydown="KeyDown(event,this,'ProjectName')" tabindex="1" />
                             </div>
                         </div>
-                        <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
-                            <button id="addLeader" onclick="ShowModal('1')" class="btn col-xl-2"><i class="fas fa-users"></i>&nbsp; CKMの責任者</button>
-                            <button id="addMember" onclick="ShowModal('2')" class="btn col-xl-2"><i class="fas fa-users"></i>&nbsp; メンバー</button>
+                        <div class="form-group col-xl-3 col-md-3 col-lg-2 col-sm-12">
+                            <label class="required" for="ProjectName">プロジェクト名</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm" id="ProjectName" required maxlength="30"
+                                       onkeydown="KeyDown(event,this,'CompanyName')" tabindex="2" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3 col-lg-2 col-sm-12">
+                            <label class="required" for="CompanyName">会社名（お客さん）</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm" id="CompanyName" required maxlength="50"
+                                       onkeydown="KeyDown(event,this,'PersonInCharge')" tabindex="3" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3 col-lg-2 col-sm-12">
+                            <label class="required" for="PresonInCharge">担当者（お客さん）</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm" id="PersonInCharge" required maxlength="50"
+                                       onkeydown="KeyDown(event,this,'ProjectType')" tabindex="4" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3 col-lg-3 col-sm-12">
+                            <label class="required" for="ProjectType">プロジェクト区分</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-check-circle"></i></span>
+                                </div>
+                                <select class="form-control input-sm" maxlength="30" tabindex="5" id="ProjectType" onkeydown="KeyDown(event,this,'RelatedCompanyName')"></select>
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3 col-lg-3 col-sm-12">
+                            <label class="required" for="RelatedCompanyName">関係する会社名</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm" id="RelatedCompanyName" required maxlength="50"
+                                       onkeydown="KeyDown(event,this,'ContractDate')" tabindex="6" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3">
+                            <label class="required" for="ContractDate">契約日</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm align-center" id="ContractDate" required maxlength="10" placeholder="yyyy/MM/dd"
+                                       onkeydown="KeyDown(event,this,'StartDate')" tabindex="6" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3">
+                            <label for="StartDate">Start日</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info align-center" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm align-center" id="StartDate" maxlength="10" placeholder="yyyy/MM/dd"
+                                       onkeydown="KeyDown(event,this,'PlanEndDate')" tabindex="7" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3">
+                            <label for="ContractDate">End予定日</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info align-center" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm align-center" id="PlanEndDate" maxlength="10" placeholder="yyyy/MM/dd"
+                                       onkeydown="KeyDown(event,this,'EndDate')" tabindex="8" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3">
+                            <label for="ContractDate">End日</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm align-center" id="EndDate" maxlength="10" placeholder="yyyy/MM/dd"
+                                       onkeydown="KeyDown(event,this,'Progress')" tabindex="9" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3">
+                            <label for="ContractDate">状況・進捗</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
+                                </div>
+                                <select class="form-control input-sm" maxlength="1000" tabindex="10" id="Progress" onkeydown="KeyDown(event,this,'ContractAmount')"></select>
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3">
+                            <label for="ContractAmount">契約金額（日本円）</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm align-right price1" id="ContractAmount" maxlength="10"
+                                       onkeydown="KeyDown(event,this,'PhoneNo')" tabindex="11"
+                                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3">
+                            <label for="ContractAmount">電話番号</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-mobile-alt"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm" id="PhoneNo" maxlength="50"
+                                       onkeydown="KeyDown(event,this,'MailAddress')" tabindex="12" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3">
+                            <label for="MailAddress">メールアドレス</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-envelope"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm" id="MailAddress" maxlength="50"
+                                       onkeydown="KeyDown(event,this,'BPO')" tabindex="13" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3">
+                            <label for="BPO">BPOの時の契約人数</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-marker"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm align-right" id="BPO" maxlength="3"
+                                       oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"
+                                       onkeydown="KeyDown(event,this,'BillingTiming')" tabindex="14" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-3 col-md-3">
+                            <label for="BillingTiming">請求タイミング</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-marker"></i></span>
+                                </div>
+                                <input type="text" class="form-control input-sm" id="BillingTiming" maxlength="100"
+                                       onkeydown="KeyDown(event,this,'ProjectInfo')" tabindex="15" />
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-6 col-md-6">
+                            <label for="ProjectInfo">Projectの内容</label>
+                            <div class="input-group">
+                                <textarea id="ProjectInfo" maxlength="200" tabindex="16" class="form-control input-sm"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-xl-6 col-md-6">
+                            <label for="Comment">備考</label>
+                            <div class="input-group">
+                                <textarea id="Comment" maxlength="400" tabindex="17" class="form-control input-sm"></textarea>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="mb-1">
-                    <table id="selectedProjectDetail" class="table table-striped reducepadding table-bordered ">
-                        <thead>
-                            <tr>
-                                <th style="width: 10%;">Command</th>
-                                <th>EmployeeCD</th>
-                                <th>EmpName</th>
-                                <th>Role</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody"></tbody>
-                    </table>
-                </div>
-                <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
-                    <button id="btnSave" onclick="btnSaveClick();" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; <span id="btnText">登録</span></button>
-                </div>
-                <div class="modal" id="modal" style="height: auto">
-                    <div class="sections">
-                        <section>
-                            <table id="tblEmployee1" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>スタッフCD</th>
-                                        <th>スタッフ名</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                            <button id="btnClose" onclick="btnCloseClick();" class="btn btn-danger col-md-4 mt-3 ml-5"><i class="fa fa-window-close"></i>&nbsp;　閉じる</button>
-                            <button id="btnAdd" onclick="btnAddClick();" value="Save" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-save"></i>&nbsp; 追加する</button>
-                        </section>
+                    <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
+                        <button id="addLeader" onclick="ShowModal('1')" class="btn col-xl-2"><i class="fas fa-users"></i>&nbsp; CKMの責任者</button>
+                        <button id="addMember" onclick="ShowModal('2')" class="btn col-xl-2"><i class="fas fa-users"></i>&nbsp; メンバー</button>
                     </div>
+                </div>
+            </div>
+            <div class="mb-1">
+                <table id="selectedProjectDetail" class="table table-striped reducepadding table-bordered ">
+                    <thead>
+                        <tr>
+                            <th style="width: 10%;">Command</th>
+                            <th>EmployeeCD</th>
+                            <th>EmpName</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
+            <div class="text-s font-weight-bold text-custom1 text-uppercase mb-1">
+                <button id="btnSave" onclick="btnSaveClick();" class="btn col-xl-2"><i class="fa fa-save"></i>&nbsp; <span id="btnText">登録</span></button>
+            </div>
+            <div class="modal" id="modal" style="height: auto">
+                <div class="sections">
+                    <section>
+                        <table id="tblEmployee1" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>スタッフCD</th>
+                                    <th>スタッフ名</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <button id="btnClose" class="btn btn-danger col-md-4 mt-3 ml-5"><i class="fa fa-window-close"></i>&nbsp;　閉じる</button>
+                        <button id="btnAdd" onclick="btnAddClick();" value="Save" class="btn btn-dark col-md-4 mt-3 ml-5"><i class="fa fa-save"></i>&nbsp; 追加する</button>
+                    </section>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @section Scripts
     {
     <script type="text/javascript">
@@ -388,9 +388,9 @@
             $(e).parents("tr").remove();
         }
 
-        function btnCloseClick() {
+        $('#btnClose').on('click', function (e) {
             $('#modal').iziModal('close');
-        }
+        });
 
         function btnSaveClick() {
             if (ErrorCheckOnSave('divMain')) {
@@ -422,9 +422,31 @@
 
                 CalltoApiController('@Url.Action("ProjectCUD", "api/ProjectListApi")', obj);
                 ShowMessage('I101');//SSA chg [20210610]
+                Clear();
             }
         }
-
+        function Clear() {
+            $("#ProjectCD").val('');
+            $("#ProjectName").val('');
+            $("#CompanyName").val('');
+            $("#RelatedCompanyName").val('');
+            $("#PersonInCharge").val('');
+            $("#ProjectType").val('');
+            $("#ContractDate").val('');
+            $("#StartDate").val('');
+            $("#PlanEndDate").val('');
+            $("#EndDate").val('');
+            $("#Progress").val('');
+            $("#ContractAmount").val('');
+            $("#PhoneNo").val('');
+            $("#MailAddress").val('');
+            $("#BPO").val('');
+            $("#BillingTiming").val('');
+            $("#ProjectInfo").val('');
+            $("#Comment").val('');
+            $("#tbodyid").empty();
+            $("#tbody").empty();
+        }
         function SetData(data) {
             $("#ProjectCD").val(data[0].ProjectCD);
             $("#ProjectName").val(data[0].ProjectName);
@@ -504,7 +526,7 @@
                 $("#txtContractDate").val(EData[0].ContractDate);
                 $("#btnSave").css("display", "none");
                 $("#btnUpdate").css("display", "block");
-            }            
+            }
         });
         $("#btnUpdate").css("display", "none");
         $('#btnUpdate').click(function () {
@@ -523,107 +545,104 @@
 
             CalltoApiController('@Url.Action("UpdateProject", "api/ProjectListApi")', obj);
             ShowMessage('I101');
+            Clear();
             //ssa CHG 09 / 06 / 2021-->
-            @*var obj = {
-                projectCD: $("#txtProjectCD").val(),
-                ProjectDetailJson: JSON.stringify(jsonObj),
-                Role: $("#hRole").val(),
+    @*var obj = {
+            projectCD: $("#txtProjectCD").val(),
+            ProjectDetailJson: JSON.stringify(jsonObj),
+            Role: $("#hRole").val(),
+        };
+        CalltoApiController('@Url.Action("UpdateProjectDetail", "api/ProjectListApi")', obj);*@
+    <!--});
+    function datecheckKeydown() {
+        if (event.keyCode === 13) {
+             var obj = {
+                ContractDate: $("#txtContractDate").val(),
             };
-            CalltoApiController('@Url.Action("UpdateProjectDetail", "api/ProjectListApi")', obj);*@
-        <!--});
-        function datecheckKeydown() {
-            if (event.keyCode === 13) {
-                 var obj = {
-                    ContractDate: $("#txtContractDate").val(),
-                };
-                var data = CalltoApiController('@Url.Action("Date_Checking", "api/CommonApi")', obj);
-                var datevalue = JSON.parse(data);
-                $("#txtContractDate").val(datevalue[0].resultdate);
+            var data = CalltoApiController('@Url.Action("Date_Checking", "api/CommonApi")', obj);
+            var datevalue = JSON.parse(data);
+            $("#txtContractDate").val(datevalue[0].resultdate);
+        }
+
+    }
+
+
+
+
+    function BindTable1(response1) {
+        table = $('#selectedProjectDetail').DataTable({
+            responsive: true,
+            data: JSON.parse(response1),
+            datasrc: "",
+            destroy: true,
+            "paging": false,
+            "searching": false,
+            "ordering": true,
+            "columns": [
+                { "data": "EmployeeCD", "className": "align-center", "width": "5%" },
+                { "data": "EmployeeCD", "className": "align-center", "width": "30%" },
+                { "data": "EmployeeName", "className": "align-center", "width": "35%" },
+                { "data": "Role", "className": "align-center", "width": "20%" }
+            ],
+            "columnDefs": [{
+                "targets": 0,
+                "data": "EmployeeCD",
+                "render": function (data) {
+                    return '<input type="button" class="btn btn-danger" style="width:60px;margin:3px;padding-top:3px;" onclick="EmployeeDelete(this);" value="Delete">';
+                },
+            }]
+        });
+    }
+    function btnAddClick() {
+        let table = $('#tblEmployee1').DataTable();
+        var jsonObj = [];
+        $(table.$('input:checked')).each(function () {
+            var row = $(this).closest("tr")[0];
+            item = {};
+            item["EmployeeCD"] = row.cells[1].innerHTML;
+            item["EmployeeName"] = row.cells[2].innerHTML;
+            item["Role"] = $("#hRole").val();
+            jsonObj.push(item);
+            let value = $("#hRole").val();
+            if (value == 1) {
+                value = "Leader";
+            } else {
+                value = "Member"
             }
+            $('#selectedProjectDetail').append('<tr><td>' + `<input type="button" class="btn btn-danger" style='width: 70px; margin: 3px; ' onclick='EmployeeDelete(this); ' value="Delete">` + '</td><td>' + item["EmployeeCD"] + '</td><td>'  + item["EmployeeName"] + '</td><td>' + value + '</td></tr>');
+        });
+        $('#modal').iziModal('close');
+    }
 
-        }
-        
-        
-        
-        
-        function BindTable1(response1) {
-            table = $('#selectedProjectDetail').DataTable({
-                responsive: true,
-                data: JSON.parse(response1),
-                datasrc: "",
-                destroy: true,
-                "paging": false,
-                "searching": false,
-                "ordering": true,
-                "columns": [
-                    { "data": "EmployeeCD", "className": "align-center", "width": "5%" },
-                    { "data": "EmployeeCD", "className": "align-center", "width": "30%" },
-                    { "data": "EmployeeName", "className": "align-center", "width": "35%" },
-                    { "data": "Role", "className": "align-center", "width": "20%" }
-                ],
-                "columnDefs": [{
-                    "targets": 0,
-                    "data": "EmployeeCD",
-                    "render": function (data) {
-                        return '<input type="button" class="btn btn-danger" style="width:60px;margin:3px;padding-top:3px;" onclick="EmployeeDelete(this);" value="Delete">';
-                    },
-                }]
-            });
-        }
-        function btnAddClick() {
-            let table = $('#tblEmployee1').DataTable();
-            var jsonObj = [];
-            $(table.$('input:checked')).each(function () {
-                var row = $(this).closest("tr")[0];
-                item = {};
-                item["EmployeeCD"] = row.cells[1].innerHTML;
-                item["EmployeeName"] = row.cells[2].innerHTML;
-                item["Role"] = $("#hRole").val();
-                jsonObj.push(item);
-                let value = $("#hRole").val();
-                if (value == 1) {
-                    value = "Leader";
-                } else {
-                    value = "Member"
-                }
-                $('#selectedProjectDetail').append('<tr><td>' + `<input type="button" class="btn btn-danger" style='width: 70px; margin: 3px; ' onclick='EmployeeDelete(this); ' value="Delete">` + '</td><td>' + item["EmployeeCD"] + '</td><td>'  + item["EmployeeName"] + '</td><td>' + value + '</td></tr>');
-            });
-            $('#modal').iziModal('close');
-        }
-        
 
-        $('#btnSave').click(function () {
+    $('#btnSave').click(function () {
 
-            if (ErrorCheck()) {
-                jsonObj = getTableJson();
+        if (ErrorCheck()) {
+            jsonObj = getTableJson();
 
-                var obj = {
-                    ProjectCD: $("#txtProjectCD").val(),
-                    ProjectName: $("#txtProjectName").val(),
-                    ProjectType: $("input[name='Teams']:checked").val(),
-                    CompanyName: $("#txtCompanyName").val(),
-                    PresonInCharge: $("#txtPresonInCharge").val(),
-                    ContractDate: $("#txtContractDate").val(),
-                    ProjectDetailJson: JSON.stringify(jsonObj),
-                };
-                CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
-                ShowMessage('I101');//SSA chg [20210610]
-                $("#txtProjectCD").val('');
-                $("#txtProjectName").val('');
-                $("#txtCompanyName").val('');
-                $("#txtPresonInCharge").val('');
-                $("#txtContractDate").val('');
-                $("#tbody").empty();
-            }
-
-            //ssa CHG 09 / 06 / 2021-->
-            @*var obj = {
+            var obj = {
                 ProjectCD: $("#txtProjectCD").val(),
+                ProjectName: $("#txtProjectName").val(),
+                ProjectType: $("input[name='Teams']:checked").val(),
+                CompanyName: $("#txtCompanyName").val(),
+                PresonInCharge: $("#txtPresonInCharge").val(),
+                ContractDate: $("#txtContractDate").val(),
                 ProjectDetailJson: JSON.stringify(jsonObj),
-                Role: $("#hRole").val(),
             };
-            CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);*@
-        <!--});
+            CalltoApiController('@Url.Action("InsertProject", "api/ProjectListApi")', obj);
+            ShowMessage('I101');//SSA chg [20210610]
+
+            Clear();//ssa chg [20210614]
+        }
+
+        //ssa CHG 09 / 06 / 2021-->
+    @*var obj = {
+            ProjectCD: $("#txtProjectCD").val(),
+            ProjectDetailJson: JSON.stringify(jsonObj),
+            Role: $("#hRole").val(),
+        };
+        CalltoApiController('@Url.Action("InsertProjectDetail", "api/ProjectListApi")', obj);*@
+    <!--});
         function deleteAll(table) {
             for (var i = 0; i <= table.rows.length; i++) {
                 table.rows[i].cells[0].innerHTML = "";
@@ -633,7 +652,7 @@
             }
 
         }
-        
+
 
         function ErrorCheck() {
             if (!$("#txtProjectCD").val()) {
@@ -669,6 +688,6 @@
 
         }
 
-        
+
     </script>-->
 }
