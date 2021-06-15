@@ -1,0 +1,287 @@
+﻿
+@{
+    ViewBag.Title = "ProjectListMobile";
+    Layout = "~/Views/Shared/_PJMSLayout.cshtml";
+}
+
+<div id="divMain" class="row">
+    <div class="col-md-4 col-sm-6">
+        <div class="card border-0 text-truncate mb-3 bg-dark text-white">
+
+            <div class="card-body">
+
+                <div class="mb-3 text-grey">
+                    <b class="mb-3">CONVERSION RATE</b>
+                    <span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>
+                </div>
+
+
+                <div class="d-flex align-items-center mb-1">
+                    <h2 class="text-white mb-0"><span data-animation="number" data-value="2.19">2.19</span>%</h2>
+                    <div class="ml-auto" style="position: relative;">
+                    </div>
+                </div>
+
+
+                <div class="mb-4 text-grey">
+                    <i class="fa fa-caret-right"></i> <span data-animation="number" data-value="0.50">0.50</span>% compare to last week
+                </div>
+
+
+                <div class="d-flex mb-2">
+                    <div class="d-flex align-items-center">
+                        <i class="fa fa-circle text-red f-s-8 mr-2"></i>
+                        Added to cart
+                    </div>
+                    <div class="d-flex align-items-center ml-auto">
+                        <div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="262">262</span>%</div>
+                    </div>
+                </div>
+
+
+                <div class="d-flex mb-2">
+                    <div class="d-flex align-items-center">
+                        <i class="fa fa-circle text-warning f-s-8 mr-2"></i>
+                        Reached checkout
+                    </div>
+                    <div class="d-flex align-items-center ml-auto">
+                        <div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="11">11</span>%</div>
+                        <div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="3.85">3.85</span>%</div>
+                    </div>
+                </div>
+
+
+                <div class="d-flex">
+                    <div class="d-flex align-items-center">
+                        <i class="fa fa-circle text-lime f-s-8 mr-2"></i>
+                        Sessions converted
+                    </div>
+                    <div class="d-flex align-items-center ml-auto">
+                        <div class="text-grey f-s-11"><i class="fa fa-caret-up"></i> <span data-animation="number" data-value="57">57</span>%</div>
+                        <div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="2.19">2.19</span>%</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal" style="height: auto">
+    <div class="row">
+        <div id="divMain" class="col-xl-12 col-md-12 col-sm-12 mb-2">
+            <div class="form-row">
+                <div class="form-group col-xl-3 col-md-3 col-lg-2 col-sm-12">
+                    <label for="ProjectCD">プロジェクトCD</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
+                        </div>
+                        <input type="text" class="form-control input-sm" id="ProjectCD" maxlength="10"
+                               onkeydown="KeyDown(event,this,'ProjectName')" tabindex="1" />
+                    </div>
+                </div>
+                <div class="form-group col-xl-3 col-md-3 col-lg-2 col-sm-12">
+                    <label for="ProjectName">プロジェクト名</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
+                        </div>
+                        <input type="text" class="form-control input-sm" id="ProjectName" maxlength="30"
+                               onkeydown="KeyDown(event,this,'ProjectType')" tabindex="2" />
+                    </div>
+                </div>
+                <div class="form-group col-xl-3 col-md-3 col-lg-3 col-sm-12">
+                    <label for="ProjectType">プロジェクト区分</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-check-circle"></i></span>
+                        </div>
+                        <select class="form-control input-sm" maxlength="30" tabindex="5" id="ProjectType" onkeydown="KeyDown(event,this,'CompanyName')"></select>
+                    </div>
+                </div>
+                <div class="form-group col-xl-3 col-md-3 col-lg-2 col-sm-12">
+                    <label for="CompanyName">会社名（お客さん）</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
+                        </div>
+                        <input type="text" class="form-control input-sm" id="CompanyName" maxlength="50"
+                               onkeydown="KeyDown(event,this,'PersonInCharge')" tabindex="3" />
+                    </div>
+                </div>
+                <div class="form-group col-xl-3 col-md-3 col-lg-2 col-sm-12">
+                    <label for="PresonInCharge">担当者（お客さん）</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text text-info" id="basic-addon1"><i class="fas fa-marker"></i></span>
+                        </div>
+                        <input type="text" class="form-control input-sm" id="PersonInCharge" maxlength="50"
+                               onkeydown="KeyDown(event,this,'Progress')" tabindex="4" />
+                    </div>
+                </div>
+                <div class="form-group col-xl-3 col-md-3 col-lg-2 col-sm-12">
+                    <label for="ContractDate">状況・進捗</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
+                        </div>
+                        <select class="form-control input-sm" maxlength="1000" tabindex="10" id="Progress" onkeydown="KeyDown(event,this,'ContractAmount')"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row div-centerbtn">
+                <button id="btnSearch" onclick="btnSearchClick()" class="btn col-sm-12 col-md-2 col-lg-2 col-xl-2 pjmsbtn"><i class="fas fa-search"></i>&nbsp;検索</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var obj = {
+                ProjectCD: '',
+            };
+            BindProjectView(obj);
+
+            $("#ProjectType").append(
+                $('<option></option>').val('').html(''));
+
+            $("#Progress").append(
+                $('<option></option>').val('').html(''));
+            BindProjectType();
+            BindProgress();
+
+            $(".modal").iziModal({
+                title: "プロジェクト検索",
+                padding: 10,
+                top: 50,
+                TransitionIn: 'FadeInRight',
+                theme: 'light',
+                width: '70%',
+                zindex: '9999',
+                headerColor: 'lightcyan',
+            });
+        });
+
+        function BindProjectType() {
+            var obj = {
+                ProjectTypeCD: ''
+            };
+            BindDropdown('ProjectType', 'ProjectTypeCD','ProjectTypeName','@Url.Action("GetProjectType", "api/ProjectTypeApi")',obj);
+        }
+
+        function BindProgress() {
+            var obj = {
+                ProgressCD: ''
+            };
+            BindDropdown('Progress', 'ProgressCD','ProgressName','@Url.Action("GetProgress", "api/ProgressApi")',obj);
+        }
+
+        function BindProjectView(obj) {
+            //$("#divMain").empty();
+
+            var response = CalltoApiController('@Url.Action("GetProjectView", "api/ProjectListApi")', obj);
+            var data = JSON.parse(response);
+
+            var projectCD = '';
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].ProjectCD != projectCD) {
+                    var v1 = '<div class="col-md-4 col-sm-6">' +
+                        '<div class="card border-0 text-truncate mb-3 bg-dark text-white" >' +
+
+                            '<div class="card-body">' +
+
+                                '<div class="mb-3 text-grey">' +
+                                    '<b class="mb-3">CONVERSION RATE</b>' +
+                                    '<span class="ml-2"><i class="fa fa-info-circle" data-toggle="popover" data-trigger="hover" data-title="Conversion Rate" data-placement="top" data-content="Percentage of sessions that resulted in orders from total number of sessions." data-original-title="" title=""></i></span>' +
+                                '</div>' +
+
+
+                                '<div class="d-flex align-items-center mb-1">' +
+                                    '<h2 class="text-white mb-0"><span data-animation="number" data-value="2.19">2.19</span>%</h2>' +
+                                    '<div class="ml-auto" style="position: relative;">' +
+                                    '</div>' +
+                                '</div>' +
+
+
+                                '<div class="mb-4 text-grey">' +
+                                    '<i class="fa fa-caret-right"></i><span data-animation="number" data-value="0.50">0.50</span>% compare to last week' +
+                                '</div>' +
+
+
+                                '<div class="d-flex mb-2">' +
+                                    '<div class="d-flex align-items-center">' +
+                                        '<i class="fa fa-circle text-red f-s-8 mr-2"></i>' +
+                        'Added to cart' +
+                        '</div>' +
+                                    '<div class="d-flex align-items-center ml-auto">' +
+                                        '<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i><span data-animation="number" data-value="262">262</span>%</div>' +
+                                    '</div>' +
+                                '</div>' +
+
+
+                                '<div class="d-flex mb-2">' +
+                                    '<div class="d-flex align-items-center">' +
+                                        '<i class="fa fa-circle text-warning f-s-8 mr-2"></i>' +
+                        'Reached checkout' +
+                    '</div>' +
+                                    '<div class="d-flex align-items-center ml-auto">' +
+                                        '<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i><span data-animation="number" data-value="11">11</span>%</div>' +
+                                        '<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="3.85">3.85</span>%</div>' +
+                                    '</div>' +
+                                '</div>' +
+
+
+                                '<div class="d-flex">' +
+                                    '<div class="d-flex align-items-center">' +
+                                        '<i class="fa fa-circle text-lime f-s-8 mr-2"></i>' +
+                        'Sessions converted'
+                    '</div>' +
+                                    '<div class="d-flex align-items-center ml-auto">' +
+                                        '<div class="text-grey f-s-11"><i class="fa fa-caret-up"></i><span data-animation="number" data-value="57">57</span>%</div>' +
+                    '<div class="width-50 text-right pl-2 f-w-600"><span data-animation="number" data-value="2.19">2.19</span>%</div>' +
+                        '</div>' +
+                        '</div>' +
+
+                        '</div>' +
+
+                        '</div >' +
+                        '</div >';
+
+                    $("#divMain").append(v1);
+                }
+
+                //var type = '';
+                //if (data[i].Role == '1') {
+                //    type = 'Leader';
+                //}
+                //else if (data[i].Role == '2') {
+                //    type = 'Member';
+                //}
+
+                //var v2 =
+                //    '<div class="col-md-3 col-sm-6 col-xl-3 col-lg-3 profileRow">' +
+                //    '<div class="media-left">' +
+                //    '<img src="http://163.43.113.92/HR_Management/Photo/' + data[i].StaffPhoto + '" style="max-width:50px; max-height:70px;float:left;" />' +
+                //    '</div>' +
+                //    '<div class="media-body">' +
+                //    '<h6 class="media-heading">' +
+                //    '<b><label class="staff-info" id = "lblName" > ' + data[i].EmployeeName + '</label></b>' +
+                //    '<p><label class="staff-info">'+ type +'</label></p>'
+                //    '</h6 > ' +
+                //    ' </div>' +
+                //    '</div>';
+
+                //$("#div" + data[i].ProjectCD + "row").append(v2);
+
+
+                projectCD = data[i].ProjectCD;
+            }
+        }
+
+    </script>
+}
+

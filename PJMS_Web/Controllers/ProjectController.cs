@@ -11,6 +11,12 @@ namespace PJMS_Web.Controllers
         {
             return View();
         }
+
+        public ActionResult ProjectListMobile()
+        {
+            return View();
+        }
+
         public ActionResult ProjectEntry(ProjectModel pModel)
         {
             if (string.IsNullOrWhiteSpace(pModel.Mode))
