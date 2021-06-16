@@ -68,18 +68,18 @@
                     "ordering": true,
                     "columns": [
                         { "data": "ProjectCD", "className": "align-center", "width": "10%" },
-                        { "data": "ProjectCD", "className":"align-center","width": "13%"},
-                        { "data": "ProjectName", "className": "align-center", "width": "13%" },
-                        { "data": "ProjectType", "className": "align-center", "width": "10%" },
-                        { "data": "CompanyName", "className": "align-center", "width": "17%" },
-                        { "data": "PersonInCharge", "className": "align-center", "width": "17%" }
+                        { "data": "ProjectCD", "className":"align-center","width": "15%"},
+                        { "data": "ProjectName", "className": "align-center", "width": "20%" },
+                        { "data": "ProjectType", "className": "align-center", "width": "20%" },
+                        { "data": "CompanyName", "className": "align-center", "width": "15%" },
+                        { "data": "PersonInCharge", "className": "align-center", "width": "20%" }
                     ],
                     "columnDefs": [{
                         "targets": 0,
                         "data": "ProjectCD",
                         "render": function (data) {
-                            return '<button type="button" style="margin-right:3px" class="btn btn-info" title="詳細" onclick="ShowDetail(this)"><i class="fa fa-info-circle"></i></button>'+
-                                '<button type="button" class="btn btn-success" onclick="ProjectEdit(\'' + data + '\',\'Edit\')" title="変更"><i class="fa fa-pencil-alt"></i></button>';
+                            return '<button type="button" style="margin-right:5px" class="btn btn-info" title="詳細" onclick="ShowDetail(this)"><i class="fa fa-info-circle"></i></button>'+
+                                '<button type="button" style="margin-right:5px" class="btn btn-success" onclick="ProjectEdit(\'' + data + '\',\'Edit\')" title="変更"><i class="fa fa-pencil-alt"></i></button>';
                        },
                     }]
                 });
@@ -101,7 +101,7 @@
                 padding: 10,
                 TransitionIn: 'FadeInRight',
                 theme: 'light',
-                width: '700px',
+                width: '50%',
                 headerColor: 'lightcyan',
             });
             $('#detailRemove').on('click', function (e) {
