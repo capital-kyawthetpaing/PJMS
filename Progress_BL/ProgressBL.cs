@@ -19,6 +19,7 @@ namespace Progress_BL
         {
             progressModel.Sqlprms = new SqlParameter[1];
             progressModel.Sqlprms[0] = new SqlParameter("@ProgressCD", progressModel.ProgressCD);
+            //progressModel.Sqlprms[0] = new SqlParameter("@ProgressRate", progressModel.ProgressRate);
             return cKMDL.SelectJson("Progress_Select", ff.GetConnectionWithDefaultPath("PJMS"), progressModel.Sqlprms);
         }
 
