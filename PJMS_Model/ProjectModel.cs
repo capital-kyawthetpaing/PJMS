@@ -12,10 +12,12 @@ namespace PJMS_Model
         public string PersonInCharge { get; set; }
         public string ProjectTypeCD { get; set; }
         public string ContractDate { get; set; }
+        public string DeliveryDate { get; set; }
         public string StartDate { get; set; }
         public string PlanEndDate { get; set; }
         public string EndDate { get; set; }
         public string ProgressCD { get; set; }
+        public string ProgressRate { get; set; }
         public string ContractAmount { get; set; }
         public string PhoneNo { get; set; }
         public string MailAddress { get; set; }
