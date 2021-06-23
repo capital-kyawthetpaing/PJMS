@@ -57,16 +57,23 @@
             //    $('#imagemodal').modal('show');
             //});
 
-            $('#pop img').on("click", function () {
-                $('#imagepreview').prop('src', this.src);
-                $('#imagemodal').modal('show');
-                //var imgSrc = $(this).attr('src');
-                //var imgSrc = $(this).closest('img').attr('src')
-                //$('#imagepreview').attr('src', imgSrc);
+            //$('#pop img').on("click", function () {
+            //    debugger;
+            //    $('#imagepreview').prop('src', this.src);
+            //    $('#imagemodal').modal('show');
+            //    //var imgSrc = $(this).attr('src');
+            //    //var imgSrc = $(this).closest('img').attr('src')
+            //    //$('#imagepreview').attr('src', imgSrc);
                 
-            });
+            //});
 
         });
+
+        function Showimg(ctrl) {
+            $('#imagepreview').prop('src', ctrl.src);
+            $('#imagemodal').modal('show');
+        }
+
         function BindTable(response) {
             table = $('#tblEmployee').DataTable({
                 responsive: true,
@@ -84,7 +91,7 @@
                     "targets": 0,
                     "data": "EmployeePhoto",
                     "render": function (data) {
-                        return '<a href="#" id="pop"><img class="imageresource" src="http://163.43.113.92/HR_Management/Photo/' + data + '" style="max-width:50px; max-height:70px" /></a >'; 
+                        return '<a href="#" id="pop"><img class="imageresource" src="http://163.43.113.92/HR_Management/Photo/' + data + '" onclick=Showimg(this) style="max-width:50px; max-height:70px" /></a >'; 
                     },
                 }]
             });
