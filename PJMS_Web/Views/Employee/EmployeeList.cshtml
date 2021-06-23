@@ -24,16 +24,16 @@
         <!-- Creates the bootstrap modal where the image will appear -->
         <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content" style="width: 535px;">
+                <div class="modal-content imageModal" >
                     <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Image preview</h4>
+                        <h4 class="modal-title" id="myModalLabel"> 画像プレビュー</h4>
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     </div>
                     <div class="modal-body">
-                        <img src="" id="imagepreview" style="width: 500px; height: 500px;" >
+                        <img src="" id="imagepreview" style="width: 420px; height: 390px;" >
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
                     </div>
                 </div>
             </div>
@@ -50,23 +50,6 @@
             };
             var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeListApi")',obj);
             BindTable(response);
-            //$("img").on("click", function (data) {
-            //    //var imgSrc = "http://163.43.113.92/HR_Management/Photo/" + data + ".jpg";
-            //    var imgSrc = $('#pop img').attr('src');
-            //    $('#imagepreview').attr('src',this);
-            //    $('#imagemodal').modal('show');
-            //});
-
-            //$('#pop img').on("click", function () {
-            //    debugger;
-            //    $('#imagepreview').prop('src', this.src);
-            //    $('#imagemodal').modal('show');
-            //    //var imgSrc = $(this).attr('src');
-            //    //var imgSrc = $(this).closest('img').attr('src')
-            //    //$('#imagepreview').attr('src', imgSrc);
-                
-            //});
-
         });
 
         function Showimg(ctrl) {

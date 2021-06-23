@@ -138,4 +138,9 @@
 .input-group-text {
     background-color: lightcyan;
 }
- 
+.imageModal{
+    margin-top: 150px;
+    margin-left:200px;
+    width: 450px;
+    height:550px;
+}
