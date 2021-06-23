@@ -21,6 +21,23 @@
             </thead>
             <tbody></tbody>
         </table>
+        <!-- Creates the bootstrap modal where the image will appear -->
+        <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width: 535px;">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Image preview</h4>
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="" id="imagepreview" style="width: 500px; height: 500px;" >
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -31,31 +48,48 @@
             var obj = {
                 EmployeeCD: ''
             };
-                var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeListApi")',obj);
-                BindTable(response);
+            var response = CalltoApiController('@Url.Action("GetEmployee", "api/EmployeeListApi")',obj);
+            BindTable(response);
+            //$("img").on("click", function (data) {
+            //    //var imgSrc = "http://163.43.113.92/HR_Management/Photo/" + data + ".jpg";
+            //    var imgSrc = $('#pop img').attr('src');
+            //    $('#imagepreview').attr('src',this);
+            //    $('#imagemodal').modal('show');
+            //});
+
+            $('#pop img').on("click", function () {
+                $('#imagepreview').prop('src', this.src);
+                $('#imagemodal').modal('show');
+                //var imgSrc = $(this).attr('src');
+                //var imgSrc = $(this).closest('img').attr('src')
+                //$('#imagepreview').attr('src', imgSrc);
+                
+            });
+
         });
-            function BindTable(response) {
-                table = $('#tblEmployee').DataTable({
-                    responsive: true,
-                    data: JSON.parse(response),
-                    datasrc:"",
-                    destroy: true,
-                    "paging":true,
-                    "ordering": true,
-                    "columns": [
-                        { "data": "EmployeePhoto", "className": "align-center", "width": "13%" },
-                        { "data": "EmployeeCD", "className": "align-center", "width": "20%" },
-                        { "data": "EmployeeName", "className": "align-center", "width": "67%" },
-                    ],
-                    "columnDefs": [{
-                        "targets": 0,
-                        "data": "EmployeePhoto",
-                        "render": function (data) {
-                            return '<img src="http://163.43.113.92/HR_Management/Photo/' + data + '" style="max-width:50px; max-height:70px" />'; 
-                        },
-                    }]
-                });
-            }
+        function BindTable(response) {
+            table = $('#tblEmployee').DataTable({
+                responsive: true,
+                data: JSON.parse(response),
+                datasrc:"",
+                destroy: true,
+                "paging":true,
+                "ordering": true,
+                "columns": [
+                    { "data": "EmployeePhoto", "className": "align-center", "width": "13%" },
+                    { "data": "EmployeeCD", "className": "align-center", "width": "20%" },
+                    { "data": "EmployeeName", "className": "align-center", "width": "67%" },
+                ],
+                "columnDefs": [{
+                    "targets": 0,
+                    "data": "EmployeePhoto",
+                    "render": function (data) {
+                        return '<a href="#" id="pop"><img class="imageresource" src="http://163.43.113.92/HR_Management/Photo/' + data + '" style="max-width:50px; max-height:70px" /></a >'; 
+                    },
+                }]
+            });
+        }
+        
         @*function EmployeeEdit(data, mode) {
             window.location.href = '@Url.Action("EmployeeEntry", "Employee")?EmployeeCD=' + data + '&Mode=' + mode;
         }*@
