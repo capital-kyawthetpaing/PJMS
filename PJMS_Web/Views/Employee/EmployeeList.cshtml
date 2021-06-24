@@ -22,20 +22,10 @@
             <tbody></tbody>
         </table>
         <!-- Creates the bootstrap modal where the image will appear -->
-        <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content imageModal" >
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel"> 画像プレビュー</h4>
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <img src="" id="imagepreview" style="width: 420px; height: 390px;" >
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                    </div>
-                </div>
+        <div class="modal" id="modal" style="height: 320px">
+                <img class="col-xs-12 col-sm-12 col-md-12" src="" id="imagepreview" style="width: 500px; height: 360px;">
+            <div class="row div-centerbtn">
+                <button id="btnClose" onclick="btnCloseClick();" class="btn pjmscancelbtn col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4"><i class="fa fa-window-close"></i>&nbsp;閉じる</button>
             </div>
         </div>
     </div>
@@ -53,10 +43,22 @@
         });
 
         function Showimg(ctrl) {
-            $('#imagepreview').prop('src', ctrl.src);
-            $('#imagemodal').modal('show');
+           $('#imagepreview').prop('src', ctrl.src);
+            $('#modal').iziModal('open');
         }
-
+        $(".modal").iziModal({
+            title: "画像プレビュー",
+            padding: 10,
+            className: "iziheader",
+            TransitionIn: 'FadeInRight',
+            theme: 'light',
+            width: '35%',
+            zindex: '9999',
+            headerColor: 'lightcyan',
+        });
+        function btnCloseClick() {
+            $('#modal').iziModal('close');
+        }
         function BindTable(response) {
             table = $('#tblEmployee').DataTable({
                 responsive: true,
