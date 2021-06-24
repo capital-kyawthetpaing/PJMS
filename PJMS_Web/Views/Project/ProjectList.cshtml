@@ -18,9 +18,17 @@
                     <th></th>
                     <th>プロジェクト<br />CD</th>
                     <th>プロジェクト名</th>
-                    <th>プロジェクト<br />区分</th>
-                    <th>会社名</th>
-                    <th>担当者<br />（お客さん）</th>
+                    <th>会社名<br />（お客さん）</th>
+                    <th>プロジェクト区分</th>
+                    <th>契約日</th>
+                    <th>納期</th>
+                    <th>Start日</th>
+                    <th>End予定日</th>
+                    <th>End日</th>
+                    <th>状況・進捗</th>
+                    <th>進捗率（％）</th>
+                    <th>BPOの時の<br/>契約人数</th>
+                    <th>請求タイミング</th>
                 </tr>
             </thead>
             <tbody>
@@ -67,12 +75,20 @@
                     "paging":true,
                     "ordering": true,
                     "columns": [
-                        { "data": "ProjectCD", "className": "align-center", "width": "10%" },
-                        { "data": "ProjectCD", "className":"align-center","width": "15%"},
+                        { "data": "ProjectCD", "className": "align-center", "width": "5%" },
+                        { "data": "ProjectCD", "className":"align-center","width": "2%"},
                         { "data": "ProjectName", "className": "align-center", "width": "20%" },
-                        { "data": "ProjectType", "className": "align-center", "width": "20%" },
                         { "data": "CompanyName", "className": "align-center", "width": "15%" },
-                        { "data": "PersonInCharge", "className": "align-center", "width": "20%" }
+                        { "data": "ProjectTypeCD", "className": "align-center", "width": "5%" },
+                        { "data": "RelatedCompanyName", "className": "align-center", "width": "10%" },
+                        { "data": "DeliveryDate", "className": "align-center", "width": "5%" },
+                        { "data": "StartDate", "className": "align-center", "width": "5%" },
+                        { "data": "PlanEndDate", "className": "align-center", "width": "5%" },
+                        { "data": "EndDate", "className": "align-center", "width": "5%" },
+                        { "data": "ProgressCD", "className": "align-center", "width": "3%" },
+                        { "data": "ProgressRate", "className": "align-center", "width": "3%" },
+                        { "data": "BPO", "className": "align-center", "width": "2%" },
+                        { "data": "BillingTiming", "className": "align-center", "width": "5%" }
                     ],
                     "columnDefs": [{
                         "targets": 0,
