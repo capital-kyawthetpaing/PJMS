@@ -64,22 +64,28 @@
     /* New Styles */
     table thead tr th:first-child,
     table thead tr th:nth-child(2),
+    table thead tr th:nth-child(3),
     table tbody tr td:first-child,
-    table tbody tr td:nth-child(2) {
+    table tbody tr td:nth-child(2),
+    table tbody tr td:nth-child(3) {
         position: relative;
         z-index: 10;
+        border: 1px solid #dadada;
         /*background-color: #EFEFEF;*/
     }
 
     .table-striped tbody tr:nth-of-type(odd) td:first-child:nth-of-type(odd),
-    .table-striped tbody tr:nth-of-type(odd) td:nth-child(2):nth-of-type(odd) {
+    .table-striped tbody tr:nth-of-type(odd) td:nth-child(2):nth-of-type(even),
+    .table-striped tbody tr:nth-of-type(odd) td:nth-child(3):nth-of-type(odd) {
         background-color: #f3f3f3;
     }
 
-    .table-striped tbody tr:nth-of-type(even) th:first-child,
-    .table-striped tbody tr:nth-of-type(even) th:nth-child(2),
-    .table-striped tbody tr:nth-of-type(even) td:first-child:nth-of-type(even),
-    .table-striped tbody tr:nth-of-type(even) td:nth-child(2):nth-of-type(even) {
+    .table-striped thead tr th:first-child,
+    .table-striped thead tr th:nth-child(2),
+    .table-striped thead tr th:nth-child(3),
+    .table-striped tbody tr:nth-of-type(even) td:first-child:nth-of-type(odd),
+    .table-striped tbody tr:nth-of-type(even) td:nth-child(2):nth-of-type(even),
+    .table-striped tbody tr:nth-of-type(even) td:nth-child(3):nth-of-type(odd) {
         background-color: #fff;
     }
 
@@ -152,13 +158,17 @@
                 $('table').on('scroll', function () {
                     var $stickyHeader1 = $('table thead tr th:first-child');
                     var $stickyHeader2 = $('table thead tr th:nth-child(2)');
+                    var $stickyHeader3 = $('table thead tr th:nth-child(3)');
                     var $stickyCell1 = $('table tbody tr td:first-child');
                     var $stickyCell2 = $('table tbody tr td:nth-child(2)');
+                    var $stickyCell3 = $('table tbody tr td:nth-child(3)');
 
                     $stickyHeader1.css('left', ($(this).scrollLeft() + 'px'));
                     $stickyHeader2.css('left', ($(this).scrollLeft() + 'px'));
+                    $stickyHeader3.css('left', ($(this).scrollLeft() + 'px'));
                     $stickyCell1.css('left', ($(this).scrollLeft() + 'px'));
                     $stickyCell2.css('left', ($(this).scrollLeft() + 'px'));
+                    $stickyCell3.css('left', ($(this).scrollLeft() + 'px'));
 
                     $("table > *").width($("table").width() + $("table").scrollLeft());
                 });
