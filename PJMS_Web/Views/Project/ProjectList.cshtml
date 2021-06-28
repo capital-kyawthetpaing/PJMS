@@ -4,6 +4,87 @@
     Layout = "~/Views/Shared/_PJMSLayout.cshtml";
 }
 
+<style>
+    .table thead th {
+        /*vertical-align: middle;*/
+        white-space: nowrap;
+    }
+
+    div.dataTables_wrapper {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    table {
+        border-collapse: collapse;
+        /*width: 300px;*/
+        overflow-x: scroll;
+        display: block;
+    }
+
+    thead, tbody {
+        display: block;
+    }
+
+    tbody {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        max-height: 410px;
+    }
+
+    td:first-child,
+    td:nth-child(2),
+    td:nth-child(7),
+    td:nth-child(8),
+    td:nth-child(9),
+    td:nth-child(10),
+    td:nth-child(11),
+    td:nth-child(12),
+    td:nth-child(13) {
+        min-width: 100px;
+        max-width: 110px;
+    }
+    td:nth-child(3){
+        min-width: 239px;
+        max-width: 250px;
+    }
+    td:nth-child(4),
+    td:nth-child(6) {
+        min-width: 189px;
+        max-width: 200px;
+    }
+    td:nth-child(5){
+        min-width: 124px;
+    }
+    td:nth-child(14) {
+        min-width: 478px;
+        max-width: 500px;
+    }
+
+    /* New Styles */
+    table thead tr th:first-child,
+    table thead tr th:nth-child(2),
+    table tbody tr td:first-child,
+    table tbody tr td:nth-child(2) {
+        position: relative;
+        z-index: 10;
+        /*background-color: #EFEFEF;*/
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) td:first-child:nth-of-type(odd),
+    .table-striped tbody tr:nth-of-type(odd) td:nth-child(2):nth-of-type(odd) {
+        background-color: #f3f3f3;
+    }
+
+    .table-striped tbody tr:nth-of-type(even) th:first-child,
+    .table-striped tbody tr:nth-of-type(even) th:nth-child(2),
+    .table-striped tbody tr:nth-of-type(even) td:first-child:nth-of-type(even),
+    .table-striped tbody tr:nth-of-type(even) td:nth-child(2):nth-of-type(even) {
+        background-color: #fff;
+    }
+
+</style>
+
 <div class="panel panel-inverse">
     <div class="panel-heading">
         <h4 class="panel-title">プロジェクト一覧</h4>
@@ -13,22 +94,23 @@
     </div>
     <div class="panel-body">
         <table id="tblProject" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
+            @*table table-striped reducepadding table-bordered table-td-valign-middle*@@*stripe row-border order-column table-bordered*@
             <thead>
                 <tr>
-                    <th></th>
-                    <th>プロジェクト<br />CD</th>
-                    <th>プロジェクト名</th>
-                    <th>会社名<br />（お客さん）</th>
+                    <th style="min-width: 72px;max-width: 110px;"></th>
+                    <th style="min-width: 72px;max-width: 110px;">プロジェクト<br />CD</th>
+                    <th style="min-width: 211px;">プロジェクト名</th>
+                    <th style="min-width: 161px;">会社名<br />（お客さん）</th>
                     <th>プロジェクト区分</th>
-                    <th>契約日</th>
-                    <th>納期</th>
-                    <th>Start日</th>
-                    <th>End予定日</th>
-                    <th>End日</th>
-                    <th>状況・進捗</th>
-                    <th>進捗率（％）</th>
-                    <th>BPOの時の<br/>契約人数</th>
-                    <th>請求タイミング</th>
+                    <th style="min-width: 161px;">契約日</th>
+                    <th style="min-width: 72px;">納期</th>
+                    <th style="min-width: 72px;">Start日</th>
+                    <th style="min-width: 72px;">End予定日</th>
+                    <th style="min-width: 72px;">End日</th>
+                    <th style="min-width: 72px;">状況・進捗</th>
+                    <th style="min-width: 72px;">進捗率（％）</th>
+                    <th style="min-width: 72px;">BPOの時の<br />契約人数</th>
+                    <th style="min-width: 422px;">請求タイミング</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,10 +134,11 @@
             <div class="row div-centerbtn">
                 <button id="detailRemove" class="btn pjmscancelbtn col-sm-12 col-md-2 col-lg-2 col-xl-2"><i class="fa fa-window-close"></i>&nbsp; 閉じる</button>
             </div>
-            
+
         </section>
     </div>
 </div>
+
 @section Scripts
     {
     <script type="text/javascript">
@@ -65,7 +148,23 @@
                 };
                 var response = CalltoApiController('@Url.Action("GetProject", "api/ProjectListApi")', obj);
                 BindTable(response);
+                                
+                $('table').on('scroll', function () {
+                    var $stickyHeader1 = $('table thead tr th:first-child');
+                    var $stickyHeader2 = $('table thead tr th:nth-child(2)');
+                    var $stickyCell1 = $('table tbody tr td:first-child');
+                    var $stickyCell2 = $('table tbody tr td:nth-child(2)');
+
+                    $stickyHeader1.css('left', ($(this).scrollLeft() + 'px'));
+                    $stickyHeader2.css('left', ($(this).scrollLeft() + 'px'));
+                    $stickyCell1.css('left', ($(this).scrollLeft() + 'px'));
+                    $stickyCell2.css('left', ($(this).scrollLeft() + 'px'));
+
+                    $("table > *").width($("table").width() + $("table").scrollLeft());
+                });
+
             });
+
             function BindTable(response) {
                 table = $('#tblProject').DataTable({
                     responsive: true,
