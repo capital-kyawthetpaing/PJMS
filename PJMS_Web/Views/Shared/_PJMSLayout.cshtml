@@ -44,7 +44,7 @@
         <span class="spinner"></span>
     </div>
     <div id="page-container" class="page-container fade">
-        <div id="header" class="header navbar-default">
+        <div id="header" class="header navbar-default" style="position:fixed;">
             <div class="navbar-header">
                 <a href="#" class="navbar-brand">
                     <img style="margin-right:5px" src="@Url.Content("~/SystemImages/CK.JPG")" />
@@ -69,7 +69,7 @@
                 </li>
             </ul>
         </div>
-        <div id="sidebar" class="sidebar" style="padding-top:50px;">
+        <div id="sidebar" class="sidebar" style="padding-top:50px; position: fixed;">
 
             <div data-scrollbar="true" data-height="100%">
                 <ul class="nav">
@@ -139,7 +139,7 @@
             </div>
         </div>
         <div class="sidebar-bg"></div>
-        <div id="content" class="content">
+        <div id="content" class="content" style="padding-top:70px;">
             @RenderBody()
         </div>
     </div>
