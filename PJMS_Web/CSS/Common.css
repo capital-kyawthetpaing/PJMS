@@ -138,3 +138,6 @@
 .input-group-text {
     background-color: lightcyan;
 }
+th, td {
+    white-space: nowrap;
+}

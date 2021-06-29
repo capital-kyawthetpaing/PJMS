@@ -15,25 +15,31 @@
         margin: 0 auto;
     }
 
-    table {
+    /*table {
+        border-collapse: collapse;*/
+        /*width: 300px;*/
+        /*overflow-x: scroll;
+        display: block;
+    }*/
+    #tblProject table{
         border-collapse: collapse;
         /*width: 300px;*/
         overflow-x: scroll;
         display: block;
     }
 
-    thead, tbody {
+    #tblProject thead, #tblProject tbody {
         display: block;
     }
 
-    tbody {
+    #tblProject tbody {
         overflow-y: scroll;
         overflow-x: hidden;
         max-height: 410px;
     }
 
-    td:first-child,
-    td:nth-child(2),
+    #tblProject td:first-child,
+    #tblProject td:nth-child(2),
     td:nth-child(7),
     td:nth-child(8),
     td:nth-child(9),
@@ -44,7 +50,7 @@
         min-width: 100px;
         max-width: 110px;
     }
-    td:nth-child(3){
+    #tblProject td:nth-child(3) {
         min-width: 239px;
         max-width: 250px;
     }
@@ -62,12 +68,12 @@
     }
 
     /* New Styles */
-    table thead tr th:first-child,
-    table thead tr th:nth-child(2),
-    table thead tr th:nth-child(3),
-    table tbody tr td:first-child,
-    table tbody tr td:nth-child(2),
-    table tbody tr td:nth-child(3) {
+    #tblProject table thead tr th:first-child,
+    #tblProject table thead tr th:nth-child(2),
+    #tblProject table thead tr th:nth-child(3),
+    #tblProject table tbody tr td:first-child,
+    #tblProject table tbody tr td:nth-child(2),
+    #tblProject table tbody tr td:nth-child(3) {
         position: relative;
         z-index: 10;
         border: 1px solid #dadada;
@@ -122,28 +128,30 @@
             <tbody>
             </tbody>
         </table>
-    </div>
-</div>
-<div class="modal" id="modal" style="height: auto">
-    <div class="sections">
-        <section>
-            <table id="detailEmployee" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>スタッフCD</th>
-                        <th>スタッフ名</th>
-                        <th>Role</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            <div class="row div-centerbtn">
-                <button id="detailRemove" class="btn pjmscancelbtn col-sm-12 col-md-2 col-lg-2 col-xl-2"><i class="fa fa-window-close"></i>&nbsp; 閉じる</button>
-            </div>
 
-        </section>
+        <div class="modal" id="modal" style="height: auto">
+            <div class="sections">
+                <section>
+                    <table id="detailEmployee" class="table  reducepadding table-bordered table-td-valign-middle col-sm-12 col-md-2 col-lg-2 col-xl-2" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>スタッフCD</th>
+                                <th>スタッフ名</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="row div-centerbtn">
+                        <button id="detailRemove" class="btn pjmscancelbtn col-sm-12 col-md-4 col-lg-4 col-xl-4"><i class="fa fa-window-close"></i>&nbsp; 閉じる</button>
+                    </div>
+
+                </section>
+            </div>
+        </div>
     </div>
 </div>
+
 
 @section Scripts
     {
@@ -226,28 +234,30 @@
                 padding: 10,
                 TransitionIn: 'FadeInRight',
                 theme: 'light',
-                width: '50%',
+                width: '33%',
                 headerColor: 'lightcyan',
             });
             $('#detailRemove').on('click', function (e) {
                 $('#modal').iziModal('close');
             });
-            function BindTable1(response1) {
+            function BindTable1(response) {
                 table = $('#detailEmployee').DataTable({
                     responsive: true,
-                    data: JSON.parse(response1),
+                    //resSelectListItemelectListItemelectListelectListonsive: true,
+                    data: JSON.parse(response),
                     datasrc: "",
                     destroy: true,
                     "paging": false,
                     "searching": false,
                     "ordering": true,
                     "columns": [
-                        { "data": "EmployeeCD", "className": "align-center", "width": "30%" },
-                        { "data": "EmployeeName", "className": "align-center", "width": "35%" },
+                        { "data": "EmployeeCD", "className": "align-center", "width": "20%" },
+                        { "data": "EmployeeName", "className": "align-center", "width": "60%" },
                         { "data": "Role", "className": "align-center", "width": "20%" }
                     ],
                 });
             }
+       
             function ProjectEdit(data, mode) {
                 window.location.href = '@Url.Action("ProjectEntry", "Project")?ProjectCD=' + data + "&Mode=" + mode;
             }
