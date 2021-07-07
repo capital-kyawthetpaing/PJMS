@@ -182,14 +182,15 @@
                 });
 
             });
-
             function BindTable(response) {
-                table = $('#tblProject').DataTable({
+                var table = $('#tblProject').DataTable({
                     //responsive: true,
-                    //label: 検索条件,
                     data: JSON.parse(response),
                     datasrc:"",
                     destroy: true,
+                    //initComplete: function () {
+                    //    $('#tblProject label input').focus();
+                    //},
                     "paging":true,
                     "ordering": true,
                     "columns": [
@@ -220,6 +221,8 @@
                         "sSearch": "検索条件"
                     }
                 });
+                var table = $('#tblProject').DataTable();
+                $('div.dataTables_filter input', table.table().container()).focus();
             }
             function ShowDetail(row) {
                 var currentRow = $(row).closest("tr");
