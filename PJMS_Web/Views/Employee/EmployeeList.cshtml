@@ -60,7 +60,7 @@
             $('#modal').iziModal('close');
         }
         function BindTable(response) {
-            table = $('#tblEmployee').DataTable({
+            var table = $('#tblEmployee').DataTable({
                 responsive: true,
                 data: JSON.parse(response),
                 datasrc:"",
@@ -83,6 +83,7 @@
                     "sSearch": "検索条件"
                 }
             });
+            $('div.dataTables_filter input', table.table().container()).focus();
         }
         
         @*function EmployeeEdit(data, mode) {

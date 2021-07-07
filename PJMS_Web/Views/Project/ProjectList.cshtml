@@ -183,7 +183,7 @@
 
             });
             function BindTable(response) {
-                var table = $('#tblProject').DataTable({
+                table = $('#tblProject').DataTable({
                     //responsive: true,
                     data: JSON.parse(response),
                     datasrc:"",
@@ -221,7 +221,6 @@
                         "sSearch": "検索条件"
                     }
                 });
-                var table = $('#tblProject').DataTable();
                 $('div.dataTables_filter input', table.table().container()).focus();
             }
             function ShowDetail(row) {
