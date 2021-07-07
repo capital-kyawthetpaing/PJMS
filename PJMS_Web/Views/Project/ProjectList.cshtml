@@ -186,6 +186,7 @@
             function BindTable(response) {
                 table = $('#tblProject').DataTable({
                     //responsive: true,
+                    //label: 検索条件,
                     data: JSON.parse(response),
                     datasrc:"",
                     destroy: true,
@@ -214,7 +215,10 @@
                             return '<button type="button" style="margin-right:5px" class="btn btn-info" title="詳細" onclick="ShowDetail(this)"><i class="fa fa-info-circle"></i></button>'+
                                 '<button type="button" style="margin-right:5px" class="btn btn-success" onclick="ProjectEdit(\'' + data + '\',\'Edit\')" title="変更"><i class="fa fa-pencil-alt"></i></button>';
                        },
-                    }]
+                    }],
+                    "oLanguage": {
+                        "sSearch": "検索条件"
+                    }
                 });
             }
             function ShowDetail(row) {
@@ -225,7 +229,6 @@
                 var obj = {
                     ProjectCD: data["ProjectCD"],
                 }
-
                 var response = CalltoApiController('@Url.Action("GetProjectDetail", "api/ProjectListApi")', obj);
                 BindTable1(response);
             }
@@ -261,8 +264,6 @@
             function ProjectEdit(data, mode) {
                 window.location.href = '@Url.Action("ProjectEntry", "Project")?ProjectCD=' + data + "&Mode=" + mode;
             }
-
-
     </script>
 }
 
