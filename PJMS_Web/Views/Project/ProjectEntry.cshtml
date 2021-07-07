@@ -350,7 +350,7 @@
                 } else {
                     value = "Member"
                 }
-                $('#selectedProjectDetail').append('<tr><td>' + `<input type="button" class="btn btn-danger" style='width: 70px; margin: 3px; ' onclick='EmployeeDelete(this); ' value="Delete">` + '</td><td>' + item["EmployeeCD"] + '</td><td>' + item["EmployeeName"] + '</td><td>' + value + '</td></tr>');
+                $('#selectedProjectDetail').append('<tr><td>' + `<input type="button" class="btn btn-danger" style='width: 60px; margin: 3px;padding-top: 3px' onclick='EmployeeDelete(this); ' value="削除">` + '</td><td>' + item["EmployeeCD"] + '</td><td>' + item["EmployeeName"] + '</td><td>' + value + '</td></tr>');
             });
             $('#modal').iziModal('close');
         }
