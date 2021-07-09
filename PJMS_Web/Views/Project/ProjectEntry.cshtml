@@ -3,6 +3,7 @@
     ViewBag.Title = "Project Entry";
     Layout = "~/Views/Shared/_PJMSLayout.cshtml";
 }
+
 <input type="hidden" id="hRole" />
 <div class="panel panel-inverse">
     <div class="panel-heading">
@@ -223,7 +224,7 @@
                 </div>
             </div>
             <div class="mb-1">
-                <table id="selectedProjectDetail" class="table table-striped reducepadding table-bordered ">
+                <table id="selectedProjectDetail" class="table table-striped reducepadding table-bordered" style="width: 100%;">
                     <thead>
                         <tr>
                             <th style="width: 44px;"></th>
@@ -241,7 +242,7 @@
             <div class="modal" id="modal">
                 <div class="sections">
                     <section>
-                        <table id="tblEmployee1" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width:100%; height: 400px">
+                        <table id="tblEmployee1" class="table table-striped reducepadding table-bordered table-td-valign-middle" style="width: 100%; height: 400px;">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -249,7 +250,7 @@
                                     <th>スタッフ名</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody><tr style="height: 10px;"></tr></tbody>
                         </table>
                         <div class="row div-centerbtn mt-2">
                             <button id="btnClose" onclick="btnCloseClick();" class="btn pjmscancelbtn col-sm-12 col-md-3 col-lg-2 col-xl-2"><i class="fa fa-window-close"></i>&nbsp;　閉じる</button>
@@ -266,6 +267,10 @@
     {
     <script type="text/javascript">
         $(document).ready(function () {
+            const thArrrow = $('#selectedProjectDetail thead');
+            const removesort = thArrrow.clone();
+            removesort.find('th').removeClass('sorting');
+            thArrrow.hide().after(removesort);
             BindProjectType();
             BindProgress();
 
@@ -276,8 +281,6 @@
                 $("#btnText").html('更新');
                 $("#ProjectCD").attr('disabled', 'disabled');;
                 $("#ProjectName").focus();
-
-
                 var obj = {
                     ProjectCD: '@Model.ProjectCD',
                 };
@@ -397,9 +400,9 @@
                 "paging": true,
                 "ordering": true,
                 "columns": [
-                    { "data": "EmployeeCD", "className": "align-center", "width": "20%" },
+                    { "data": "EmployeeCD", "className": "align-center", "width": "20%"},
                     { "data": "EmployeeCD", "className": "align-center", "width": "40%" },
-                    { "data": "EmployeeName", "className": "align-center", "width": "40%" }
+                    { "data": "EmployeeName", "className": "align-center", "width": "40%"}
                 ],
                 "columnDefs": [{
                     "targets": 0,

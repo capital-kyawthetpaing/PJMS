@@ -134,10 +134,13 @@
 .table td, .table th{
     vertical-align : middle;
 }
-
+#tblEmployee1 td {
+    height: 10px !important;
+}
 .input-group-text {
     background-color: lightcyan;
 }
 th, td {
     white-space: nowrap;
 }
+

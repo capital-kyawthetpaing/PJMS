@@ -35,6 +35,10 @@
     {
     <script type="text/javascript">
         $(document).ready(function () {
+            const thArrrow = $('#tblEmployee thead');
+            const removesort = thArrrow.clone();
+            removesort.find('th').removeClass('sorting');
+            thArrrow.hide().after(removesort);
             var obj = {
                 EmployeeCD: ''
             };
