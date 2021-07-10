@@ -134,8 +134,10 @@
 .table td, .table th{
     vertical-align : middle;
 }
-#tblEmployee1 td {
-    height: 10px !important;
+table#tblEmployee1 tbody tr {
+    height: 10px;
+    overflow: hidden;
+    word-wrap: break-word;
 }
 .input-group-text {
     background-color: lightcyan;
