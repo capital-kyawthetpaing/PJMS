@@ -9,7 +9,7 @@ namespace PJMS_Web.Controllers
         [UserAuthentication]
         [HttpPost]
         [ActionName("GetUser")]
-        public IHttpActionResult GetProject([FromBody] UserModel userModel)
+        public IHttpActionResult GetUser([FromBody] UserModel userModel)
         {
             UserBL userBL = new UserBL();
             return Ok(userBL.GetUser(userModel));
