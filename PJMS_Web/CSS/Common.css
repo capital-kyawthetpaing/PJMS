@@ -134,10 +134,15 @@
 .table td, .table th{
     vertical-align : middle;
 }
-
+table#tblEmployee1 tbody tr {
+    height: 10px;
+    overflow: hidden;
+    word-wrap: break-word;
+}
 .input-group-text {
     background-color: lightcyan;
 }
 th, td {
     white-space: nowrap;
 }
+

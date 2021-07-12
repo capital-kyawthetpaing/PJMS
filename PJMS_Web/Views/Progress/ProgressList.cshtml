@@ -30,11 +30,15 @@
 {
     <script type="text/javascript">
         $(document).ready(function () {
-                var obj = {
-                    ProgressCD: '',
-                };
-                var response = CalltoApiController('@Url.Action("GetProgress", "api/ProgressApi")', obj);
-                BindTable(response);
+            const thArrrow = $('#tblProgress thead');
+            const removesort = thArrrow.clone();
+            removesort.find('th').removeClass('sorting');
+            thArrrow.hide().after(removesort);
+            var obj = {
+                ProgressCD: '',
+            };
+            var response = CalltoApiController('@Url.Action("GetProgress", "api/ProgressApi")', obj);
+            BindTable(response);
         });
 
         function BindTable(response) {

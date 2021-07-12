@@ -31,11 +31,15 @@
 {
     <script type="text/javascript">
         $(document).ready(function () {
-                var obj = {
-                    ProjectTypeCD: '',
-                };
-                var response = CalltoApiController('@Url.Action("GetProjectType", "api/ProjectTypeApi")', obj);
-                BindTable(response);
+            const thArrrow = $('#tblProjectType thead');
+            const removesort = thArrrow.clone();
+            removesort.find('th').removeClass('sorting');
+            thArrrow.hide().after(removesort);
+            var obj = {
+                ProjectTypeCD: '',
+            };
+            var response = CalltoApiController('@Url.Action("GetProjectType", "api/ProjectTypeApi")', obj);
+            BindTable(response);
         });
 
         function BindTable(response) {
