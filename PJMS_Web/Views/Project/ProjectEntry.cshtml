@@ -313,14 +313,33 @@
             });
         });
 
+        //var datetab = document.getElementById("PlanEndDate");
+        //datetab.onkeydown = function (e) {
+        //    var startDate = new Date(Date.parse($("#StartDate").val()));
+        //    var planEndDate = new Date(Date.parse($("#PlanEndDate").val()));
+        //    if (startDate >= planEndDate) {
+        //        $("#EndDate").focus();
+        //    }
+        //    else {
+        //        $("#PlanEndDate").focus();
+        //        ShowMessage('E133');
+        //    }
+        //}
+
         var datetab = document.getElementById("PlanEndDate");
         datetab.onkeydown = function (e) {
-            var startDate = new Date(Date.parse($("#StartDate").val()));
-            var planEndDate = new Date(Date.parse($("#PlanEndDate").val()));
-            if (startDate >= planEndDate)
-                ShowMessage('E133');
-            $("#EndDate").focus();
+            if (e.keyCode === 13) {
+                var startDate = new Date(Date.parse($("#StartDate").val()));
+                var planEndDate = new Date(Date.parse($("#PlanEndDate").val()));
+                if (startDate >= planEndDate)
+                    ShowMessage('E133');
+                else
+                    $("#EndDate").focus();
+            }
+            
         }
+
+
         
         function BindProjectType() {
             var obj = {
