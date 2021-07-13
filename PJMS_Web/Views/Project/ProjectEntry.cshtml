@@ -313,7 +313,6 @@
             });
         });
 
-
         var datetab = document.getElementById("PlanEndDate");
         datetab.onkeydown = function (e) {
             var startDate = new Date(Date.parse($("#StartDate").val()));
@@ -323,6 +322,7 @@
             else
                 datetab = "KeyDown(event,this,'EndDate')"
         }
+        
         function BindProjectType() {
             var obj = {
                 ProjectTypeCD: ''
