@@ -59,7 +59,7 @@
                     "targets": 0,
                     "data": "ProjectTypeCD",
                     "render": function (data) {
-                        return '<button type="button" class="btn btn-info" title="変更" onclick="ProjectTypeEdit(this)">変更</button>'
+                        return `<button type="button" class="btn btn-info" title="変更" onclick="ProjectTypeEdit(this)">変更</button><input type="button" class="btn btn-danger" style="width:60px;margin:3px;padding-top:3px;" onclick="EmployeeDelete(this);" value=" 削除">`
                     },
                 }],
                 "oLanguage": {
@@ -68,7 +68,12 @@
             });
             $('div.dataTables_filter input', table.table().container()).focus();
         }
-
+        function EmployeeDelete(e) {
+            ShowConfirmMessage("Q102", "DeleteConfirm", e)
+        }
+        function DeleteConfirm(e) {
+            $(e).parents("tr").remove();
+        }
         function ProjectTypeEdit(row) {
             var currentRow = $(row).closest("tr");
             var data = $('#tblProjectType').DataTable().row(currentRow).data();

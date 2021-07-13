@@ -145,4 +145,10 @@ table#tblEmployee1 tbody tr {
 th, td {
     white-space: nowrap;
 }
+/*div.dataTables_wrapper div.dataTables_scrollBody {
+    min-height: 10px;
+}*/
+/*#tblEmployee1 tbody td {
+    max-height: 10px;
+}*/
 

@@ -116,7 +116,7 @@
                                     <span class="input-group-text text-info align-center" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
                                 </div>
                                 <input type="text" class="form-control input-sm align-center" id="StartDate" maxlength="10" placeholder="yyyy/MM/dd"
-                                       onkeydown="KeyDown(event,this,'PlanEndDate')" tabindex="8" />
+                                       onkeydown="KeyDown(event,this,'PlanEndDate')"  tabindex="8" />
                             </div>
                         </div>
                         <div class="form-group col-xl-3 col-md-3">
@@ -126,7 +126,7 @@
                                     <span class="input-group-text text-info align-center" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
                                 </div>
                                 <input type="text" class="form-control input-sm align-center" id="PlanEndDate" maxlength="10" placeholder="yyyy/MM/dd"
-                                       onkeydown="KeyDown(event,this,'EndDate')" tabindex="9" />
+                                       @*onkeydown="KeyDown(event,this,'EndDate')"*@ tabindex="9" />
                             </div>
                         </div>
                         <div class="form-group col-xl-3 col-md-3">
@@ -136,7 +136,7 @@
                                     <span class="input-group-text text-info" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
                                 </div>
                                 <input type="text" class="form-control input-sm align-center" id="EndDate" maxlength="10" placeholder="yyyy/MM/dd"
-                                       onkeydown="KeyDown(event,this,'Progress')" tabindex="10" />
+                                       @*onkeydown="KeyDown(event,this,'Progress')"*@ tabindex="10" />
                             </div>
                         </div>
                         <div class="form-group col-xl-3 col-md-3">
@@ -271,6 +271,11 @@
             const removesort = thArrrow.clone();
             removesort.find('th').removeClass('sorting');
             thArrrow.hide().after(removesort);
+            //tblEmployee1
+            const thArrrow1 = $('#tblEmployee1 thead');
+            const removesort1 = thArrrow1.clone();
+            removesort1.find('th').removeClass('sorting');
+            thArrrow1.hide().after(removesort1);
             BindProjectType();
             BindProgress();
 
@@ -308,6 +313,16 @@
             });
         });
 
+
+        var datetab = document.getElementById("PlanEndDate");
+        datetab.onkeydown = function (e) {
+            var startDate = new Date(Date.parse($("#StartDate").val()));
+            var planEndDate = new Date(Date.parse($("#PlanEndDate").val()));
+            if (startDate >= planEndDate)
+                ShowMessage('E133');
+            else
+                datetab = "KeyDown(event,this,'EndDate')"
+        }
         function BindProjectType() {
             var obj = {
                 ProjectTypeCD: ''
@@ -328,7 +343,6 @@
             $("#StartDate").attr('data-date','1');
             $("#PlanEndDate").attr('data-date','1');
             $("#EndDate").attr('data-date','1');
-
             if ('@Model.Mode' == 'New') {
                 $("#ProjectCD").attr('data-exists', 'Project');
             }
@@ -457,12 +471,13 @@
                     UpdatedBy: $("#LoginID").val(),
                     Mode:'@Model.Mode',
                 };
-                var startDate = new Date(Date.parse($("#StartDate").val()));
-                var planEndDate = new Date(Date.parse($("#PlanEndDate").val()));
-                var endDate = new Date(Date.parse($("#EndDate").val()));
-                if (startDate >= planEndDate || startDate >= endDate || planEndDate >= endDate || planEndDate <= startDate || endDate <= startDate || endDate <= planEndDate) {
-                    alert("Error");
-                }
+                //var startDate = new Date(Date.parse($("#StartDate").val()));
+                //var planEndDate = new Date(Date.parse($("#PlanEndDate").val()));
+                //var endDate = new Date(Date.parse($("#EndDate").val()));
+                //if (startDate >= planEndDate || startDate >= endDate || planEndDate >= endDate || planEndDate <= startDate || endDate <= startDate || endDate <= planEndDate) {
+                //    alert("Error");
+                //}
+
                 //CalltoApiController('@Url.Action("ProjectCUD", "api/ProjectListApi")', obj);
                 //ShowMessage('I101');//SSA chg [20210610]
                 if ('@Model.Mode' == 'New') {
