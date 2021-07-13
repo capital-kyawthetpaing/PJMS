@@ -319,8 +319,7 @@
             var planEndDate = new Date(Date.parse($("#PlanEndDate").val()));
             if (startDate >= planEndDate)
                 ShowMessage('E133');
-            else
-                datetab = "KeyDown(event,this,'EndDate')"
+            $("#EndDate").focus();
         }
         
         function BindProjectType() {
