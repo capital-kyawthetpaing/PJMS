@@ -336,9 +336,7 @@
                 else
                     $("#Progress").focus();
             }
-
         }
-
 
         
         function BindProjectType() {
@@ -496,8 +494,8 @@
                 //    alert("Error");
                 //}
 
-                //CalltoApiController('@Url.Action("ProjectCUD", "api/ProjectListApi")', obj);
-                //ShowMessage('I101');//SSA chg [20210610]
+                CalltoApiController('@Url.Action("ProjectCUD", "api/ProjectListApi")', obj);
+                ShowMessage('I101');//SSA chg [20210610]
                 if ('@Model.Mode' == 'New') {
                     Clear();
                 } 
