@@ -426,6 +426,7 @@
                 resSelectListItemelectListItemelectListelectListonsive: true,
                 data: JSON.parse(response),
                 datasrc: "",
+                select: true,
                 destroy: true,
                 "paging": true,
                 "ordering": true,
@@ -487,13 +488,7 @@
                     UpdatedBy: $("#LoginID").val(),
                     Mode:'@Model.Mode',
                 };
-                //var startDate = new Date(Date.parse($("#StartDate").val()));
-                //var planEndDate = new Date(Date.parse($("#PlanEndDate").val()));
-                //var endDate = new Date(Date.parse($("#EndDate").val()));
-                //if (startDate >= planEndDate || startDate >= endDate || planEndDate >= endDate || planEndDate <= startDate || endDate <= startDate || endDate <= planEndDate) {
-                //    alert("Error");
-                //}
-
+                
                 CalltoApiController('@Url.Action("ProjectCUD", "api/ProjectListApi")', obj);
                 ShowMessage('I101');//SSA chg [20210610]
                 if ('@Model.Mode' == 'New') {

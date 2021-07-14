@@ -50,16 +50,21 @@
 {
     <script type="text/javascript">
         $(document).ready(function () {
-
             SetErrorCheck();
             $("#txtProjectTypeCD").focus();
-
             if ('@Model.Mode' == 'Edit') {
 
                 $("#btnText").html('更新');
                 $("#txtProjectTypeCD").attr('disabled', 'disabled');;
                 $("#txtProjectTypeName").focus();
-
+                SetDataFunction();
+            }
+            else{
+                $("#btnText").html('Delete');
+                $("#txtProjectTypeCD").focus();
+                SetDataFunction();
+            }
+            function SetDataFunction() {
                 var obj = {
                     ProjectTypeCD: '@Model.ProjectTypeCD',
                 };
