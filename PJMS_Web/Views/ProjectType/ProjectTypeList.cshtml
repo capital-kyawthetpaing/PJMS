@@ -60,7 +60,7 @@
                     "data": "ProjectTypeCD",
                     "render": function (data) {
                         return '<button type="button" class="btn btn-info" style="width:50px;margin:3px;padding-top:3px;" title="変更" onclick="ProjectTypeEdit(this)">変更<button type="button" class="btn btn-danger" style="width:50px;margin:3px;padding-top:3px;" title="削除" onclick="ProjectTypeListDelete(this)">削除</button>'
-
+      
                     },
                     //"columnDefs": [{
                     //    "targets": 0,
@@ -68,7 +68,7 @@
                     //    "render": function (data) {
                     //        return '<button type="button" class="btn btn-danger" title="削除" onclick="ProjectTypeDelete(this)">削除</button>'
                     //    },
-
+                    
                 }],
                 "oLanguage": {
                     "sSearch": "検索条件"
@@ -87,18 +87,22 @@
         function ProjectTypeListDelete(row) {
             var currentRow = $(row).closest("tr");
             var data = $('#tblProjectType').DataTable().row(currentRow).data();
-            var url = '@Url.Action("ProjectTypeEntry", "ProjectType")?ProjectTypeCD=' + data["ProjectTypeCD"] + '&Mode=Delete';
-            location.href = url;
-            //location.href = '@Url.Action("ProjectTypeList", "ProjectType")?ProjectTypeCD=' + data["ProjectTypeCD"] + '&Mode=Delete';
-            //ShowConfirmMessage("Q102", "DeleteConfirm", ProjectTypeCD)
+            var obj = {
+                ProjectTypeCD: data["ProjectTypeCD"],
+                Mode: 'Delete',
+                UpdatedBy: $("#LoginID").val(),
+                };
+            var response = CalltoApiController('@Url.Action("ProjectTypeCUD", "api/ProjectTypeApi")', obj);
+                var data = JSON.parse(response);
+                if (data == true) {
+                    var obj = {
+                    ProjectTypeCD: '',
+                  };
+                  var response = CalltoApiController('@Url.Action("GetProjectType", "api/ProjectTypeApi")', obj);
+                  BindTable(response);
+                  }
         }
 
-        //function DeleteConfirm(ProjectTypeCD) {
-        //    DoProcess(ProjectTypeCD);
-        //}
-
-        function DeleteConfirm(ProjectTypeCD) {
-            $(ProjectTypeCD).parents("tr").remove();
-        }
+     
     </script>
 }
