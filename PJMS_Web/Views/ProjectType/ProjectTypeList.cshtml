@@ -94,13 +94,13 @@
                 };
             var response = CalltoApiController('@Url.Action("ProjectTypeCUD", "api/ProjectTypeApi")', obj);
                 var data = JSON.parse(response);
-            if (data == true) {
-                var obj = {
+                if (data == true) {
+                    var obj = {
                     ProjectTypeCD: '',
-                    };
-                    var response = CalltoApiController('@Url.Action("GetProjectType", "api/ProjectTypeApi")', obj);
-                    BindTable(response);
-                        }
+                  };
+                  var response = CalltoApiController('@Url.Action("GetProjectType", "api/ProjectTypeApi")', obj);
+                  BindTable(response);
+                  }
         }
 
      
