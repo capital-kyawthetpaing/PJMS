@@ -84,18 +84,25 @@
             location.href = url;
         }
 
-        function ProjectTypeListDelete(ProjectTypeCD) {
-            
-            //location.href = '@Url.Action("ProjectTypeList", "ProjectType")?ProjectTypeCD=' + data["ProjectTypeCD"] + '&Mode=Delete';
-            ShowConfirmMessage("Q102", "DeleteConfirm", ProjectTypeCD)
+        function ProjectTypeListDelete(row) {
+            var currentRow = $(row).closest("tr");
+            var data = $('#tblProjectType').DataTable().row(currentRow).data();
+            var obj = {
+                ProjectTypeCD: data["ProjectTypeCD"],
+                Mode: 'Delete',
+                UpdatedBy: $("#LoginID").val(),
+                };
+            var response = CalltoApiController('@Url.Action("ProjectTypeCUD", "api/ProjectTypeApi")', obj);
+                var data = JSON.parse(response);
+            if (data == true) {
+                var obj = {
+                    ProjectTypeCD: '',
+                    };
+                    var response = CalltoApiController('@Url.Action("GetProjectType", "api/ProjectTypeApi")', obj);
+                    BindTable(response);
+                        }
         }
 
-        //function DeleteConfirm(ProjectTypeCD) {
-        //    DoProcess(ProjectTypeCD);
-        //}
-
-        function DeleteConfirm(ProjectTypeCD) {
-            $(ProjectTypeCD).parents("tr").remove();
-        }
+     
     </script>
 }
