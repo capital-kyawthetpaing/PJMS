@@ -531,14 +531,14 @@
             $("#ProjectName").val(data[0].ProjectName);
             $("#CompanyName").val(data[0].CompanyName);
             $("#PersonInCharge").val(data[0].PersonInCharge);
-            $("#ProjectType").val(data[0].ProjectTypeName);
+            $("#ProjectType").val(data[0].ProjectTypeCD).change();
             $("#RelatedCompanyName").val(data[0].RelatedCompanyName);
             $("#ContractDate").val(data[0].ContractDate);
             $("#DeliveryDate").val(data[0].DeliveryDate);
             $("#StartDate").val(data[0].StartDate);
             $("#PlanEndDate").val(data[0].PlanEndDate);
             $("#EndDate").val(data[0].EndDate);
-            $("#Progress").val(data[0].ProgressName);
+            $("#Progress").val(data[0].ProgressCD).change();
             $("#ProgressRate").val(data[0].ProgressRate);
             $("#ContractAmount").val(data[0].ContractAmount);
             $("#PhoneNo").val(data[0].PhoneNo);
