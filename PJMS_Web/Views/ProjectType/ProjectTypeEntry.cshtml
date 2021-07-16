@@ -72,26 +72,13 @@
 
              else if ('@Model.Mode' == 'Delete') {
                 $("#btnText").html('削除');
-                $("#btnSave").css('background-color', 'red');
+                $("#btnSave").css('background-color', '#FF3B30');
+                $('button i').removeClass("fa fa-save").addClass("fa fa-trash");
                 $("#txtProjectTypeCD").attr('disabled', 'disabled');;
                 $("#txtProjectTypeName").attr('disabled', 'disabled');;
                 setDataFunction();
-                $("#btnSave").click(function (e) {
-                    ShowConfirmMessage("Q102", "DeleteConfirm", e)
-                    var obj = {
-                        ProjectTypeCD: data["ProjectTypeCD"],
-                        Mode: 'Delete',
-                        UpdatedBy: $("#LoginID").val(),
-                    };
-                    @*var response = CalltoApiController('@Url.Action("ProjectTypeCUD", "api/ProjectTypeApi")', obj);
-                    var data = JSON.parse(response);
-                    if (data == true) {
-                        var obj = {
-                            ProjectTypeCD: '',
-                        };
-                        var response = CalltoApiController('@Url.Action("GetProjectType", "api/ProjectTypeApi")', obj);
-                        BindTable(response);
-                    }*@
+                $("#btnSave").click(function (data) {
+                    ShowConfirmMessage("Q102", "DeleteConfirm", data);
                 });
             }
             

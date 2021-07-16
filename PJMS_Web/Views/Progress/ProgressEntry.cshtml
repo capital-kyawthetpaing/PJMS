@@ -75,8 +75,8 @@
                 $("#txtProgressCD").attr('disabled', 'disabled');;
                 $("#txtProgressName").attr('disabled', 'disabled');;
                 setDataFunction();
-                $("#btnSave").click(function (e) {
-                    ShowConfirmMessage("Q102", "DeleteConfirm", e)
+                $("#btnSave").click(function (data) {
+                    ShowConfirmMessage("Q102", "DeleteConfirm", data)
                     var obj = {
                         ProgressCD: data["ProgressCD"],
                         Mode: 'Delete',
