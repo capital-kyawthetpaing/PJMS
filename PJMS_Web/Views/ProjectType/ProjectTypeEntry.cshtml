@@ -77,27 +77,36 @@
                 $("#txtProjectTypeCD").attr('disabled', 'disabled');;
                 $("#txtProjectTypeName").attr('disabled', 'disabled');;
                 setDataFunction();
-                $("#btnSave").click(function (data) {
-                    ShowConfirmMessage("Q102", "DeleteConfirm", data);
-                });
             }
             
         });
 
         function SaveClick() {
-            if (ErrorCheckOnSave('divEntry')) {
-                var obj = {
-                Mode:'@Model.Mode',
+            var obj = {
+                Mode: '@Model.Mode',
                 ProjectTypeCD: $("#txtProjectTypeCD").val(),
                 ProjectTypeName: $("#txtProjectTypeName").val(),
                 UpdatedBy: $("#LoginID").val(),
-                };
-                CalltoApiController('@Url.Action("ProjectTypeCUD", "api/ProjectTypeApi")', obj);
-                if ('@Model.Mode' == 'New') {
-                    Clear();
+            };
+
+            if ('@Model.Mode' == 'Edit' || '@Model.Mode' == 'New') {
+                if (ErrorCheckOnSave('divEntry')) {
+                    CalltoApiController('@Url.Action("ProjectTypeCUD", "api/ProjectTypeApi")', obj);
+                    if ('@Model.Mode' == 'New') {
+                        Clear();
+                    }
+                    ShowMessage('I101');
                 }
-                ShowMessage('I101');
             }
+            else if ('@Model.Mode' == 'Delete') {
+                ShowConfirmMessage("Q102", "DeleteConfirm", obj);
+            }
+        }
+
+        function DeleteConfirm(obj) {
+            CalltoApiController('@Url.Action("ProjectTypeCUD", "api/ProjectTypeApi")', obj);
+            var url = '@Url.Action("ProjectTypeList", "ProjectType")';
+            location.href = url;
         }
 
         function SetErrorCheck() {

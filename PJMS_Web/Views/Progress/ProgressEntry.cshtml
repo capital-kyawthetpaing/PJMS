@@ -78,11 +78,6 @@
                 setDataFunction();
                 $("#btnSave").click(function (data) {
                     ShowConfirmMessage("Q102", "DeleteConfirm", data)
-                    var obj = {
-                        ProgressCD: data["ProgressCD"],
-                        Mode: 'Delete',
-                        UpdatedBy: $("#LoginID").val(),
-                    };
                 });
             }
 
