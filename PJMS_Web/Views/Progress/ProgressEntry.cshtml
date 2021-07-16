@@ -73,17 +73,17 @@
                 $("#btnText").html('削除');
                 $("#btnSave").css('background-color', 'red');
                 $('button i').removeClass("fa fa-save").addClass("fa fa-trash");
-                $("#txtProgressCD").attr('disabled', 'disabled');;
-                $("#txtProgressName").attr('disabled', 'disabled');;
+                $("#txtProgressCD").attr('disabled', 'disabled');
+                $("#txtProgressName").attr('disabled', 'disabled');
                 setDataFunction();
-                $("#btnSave").click(function (e) {
+                @*$("#btnSave").click(function (e) {
                     ShowConfirmMessage("Q102", "DeleteConfirm", e)
                     var obj = {
                         ProgressCD: data["ProgressCD"],
                         Mode: 'Delete',
                         UpdatedBy: $("#LoginID").val(),
                     };
-                });
+                });*@
             }
 
         });
