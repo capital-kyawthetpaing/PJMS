@@ -26,6 +26,7 @@
     </div>
 </div>
 
+
 @section Scripts
 {
     <script type="text/javascript">
@@ -51,15 +52,23 @@
                 "ordering": true,
                 "columns": [
                     { "data": "ProgressCD", "className": "align-center"},
-                    { "data": "ProgressCD", "className": "align-center"},
+                    { "data": "ProgressCD", "className": "align-center" },
                     { "data": "ProgressName", "className": "align-center"},
                 ],
                 "columnDefs": [{
                     "targets": 0,
                     "data": "ProgressCD",
                     "render": function (data) {
-                        return '<button type="button" class="btn btn-info" style="width:50px;margin:3px;padding-top:3px;" title="変更" onclick="ProgressEdit(this)">変更</button><button type="button" class="btn btn-danger" style="width:50px;margin:3px;padding-top:3px;" title="削除" onclick="ProgressDelete(this)">削除</button>'
+                        return '<button type="button" class="btn btn-info" style="width:50px;margin:3px;padding-top:3px;" title="変更" onclick="ProgressEdit(this)">変更<button type="button" class="btn btn-danger" style="width:50px;margin:3px;padding-top:3px;" title="削除" onclick="ProgressDelete(this)">削除</button>'
+
                     },
+                    //"columnDefs": [{
+                    //    "targets": 0,
+                    //    "data": "ProjectTypeCD",
+                    //    "render": function (data) {
+                    //        return '<button type="button" class="btn btn-danger" title="削除" onclick="ProjectTypeDelete(this)">削除</button>'
+                    //    },
+
                 }],
                 "oLanguage": {
                     "sSearch": "検索条件"
@@ -75,16 +84,12 @@
             location.href = url;
         }
 
-        @*function ProgressDelete(row) {
+        function ProgressDelete(row) {
             var currentRow = $(row).closest("tr");
             var data = $('#tblProgress').DataTable().row(currentRow).data();
             var url = '@Url.Action("ProgressEntry", "Progress")?ProgressCD=' + data["ProgressCD"] + '&Mode=Delete';
             location.href = url;
-        }*@
-        function ProgressDelete(row) {
-            var currentRow = $(row).closest("tr");
-            var data = $('#tblProgress').DataTable().row(currentRow).data();
-                var obj = {
+                @*var obj = {
                     ProgressCD: data["ProgressCD"],
                     Mode: 'Delete',
                     UpdatedBy: $("#LoginID").val(),
@@ -97,11 +102,9 @@
                         };
                   var response = CalltoApiController('@Url.Action("GetProgress", "api/ProgressApi")', obj);
                   BindTable(response);
-                }
+                }*@
         }
 
-       
+
     </script>
 }
-
-
