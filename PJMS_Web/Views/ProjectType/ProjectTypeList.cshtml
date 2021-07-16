@@ -87,20 +87,20 @@
         function ProjectTypeListDelete(row) {
             var currentRow = $(row).closest("tr");
             var data = $('#tblProjectType').DataTable().row(currentRow).data();
-            var obj = {
-                ProjectTypeCD: data["ProjectTypeCD"],
-                Mode: 'Delete',
-                UpdatedBy: $("#LoginID").val(),
+                var obj = {
+                    ProjectTypeCD: data["ProjectTypeCD"],
+                    Mode: 'Delete',
+                    UpdatedBy: $("#LoginID").val(),
                 };
-            var response = CalltoApiController('@Url.Action("ProjectTypeCUD", "api/ProjectTypeApi")', obj);
+                var response = CalltoApiController('@Url.Action("ProjectTypeCUD", "api/ProjectTypeApi")', obj);
                 var data = JSON.parse(response);
                 if (data == true) {
-                    var obj = {
-                    ProjectTypeCD: '',
-                  };
+                        var obj = {
+                            ProjectTypeCD: '',
+                        };
                   var response = CalltoApiController('@Url.Action("GetProjectType", "api/ProjectTypeApi")', obj);
                   BindTable(response);
-                  }
+                }
         }
 
      
