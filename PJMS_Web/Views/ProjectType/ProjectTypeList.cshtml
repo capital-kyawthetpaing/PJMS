@@ -87,7 +87,9 @@
         function ProjectTypeListDelete(row) {
             var currentRow = $(row).closest("tr");
             var data = $('#tblProjectType').DataTable().row(currentRow).data();
-                var obj = {
+            var url = '@Url.Action("ProjectTypeEntry", "ProjectType")?ProjectTypeCD=' + data["ProjectTypeCD"] + '&Mode=Delete';
+            location.href = url;
+                @*var obj = {
                     ProjectTypeCD: data["ProjectTypeCD"],
                     Mode: 'Delete',
                     UpdatedBy: $("#LoginID").val(),
@@ -100,7 +102,7 @@
                         };
                   var response = CalltoApiController('@Url.Action("GetProjectType", "api/ProjectTypeApi")', obj);
                   BindTable(response);
-                }
+                }*@
         }
 
      

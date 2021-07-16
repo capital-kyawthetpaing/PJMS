@@ -52,11 +52,7 @@
         $(document).ready(function () {
             SetErrorCheck();
             $("#txtProjectTypeCD").focus();
-            if ('@Model.Mode' == 'Edit') {
-
-                $("#btnText").html('更新');
-                $("#txtProjectTypeCD").attr('disabled', 'disabled');;
-                $("#txtProjectTypeName").focus();
+            function setDataFunction(){
                 var obj = {
                     ProjectTypeCD: '@Model.ProjectTypeCD',
                 };
@@ -65,6 +61,38 @@
                 if (data.length > 0) {
                     SetData(data)
                 }
+            }
+                
+            if ('@Model.Mode' == 'Edit') {
+                $("#btnText").html('更新');
+                $("#txtProjectTypeCD").attr('disabled', 'disabled');;
+                $("#txtProjectTypeName").focus();
+                setDataFunction();
+            }
+
+             else if ('@Model.Mode' == 'Delete') {
+                $("#btnText").html('削除');
+                $("#btnSave").css('background-color', 'red');
+                $("#txtProjectTypeCD").attr('disabled', 'disabled');;
+                $("#txtProjectTypeName").attr('disabled', 'disabled');;
+                setDataFunction();
+                $("#btnSave").click(function (e) {
+                    ShowConfirmMessage("Q102", "DeleteConfirm", e)
+                    var obj = {
+                        ProjectTypeCD: data["ProjectTypeCD"],
+                        Mode: 'Delete',
+                        UpdatedBy: $("#LoginID").val(),
+                    };
+                    @*var response = CalltoApiController('@Url.Action("ProjectTypeCUD", "api/ProjectTypeApi")', obj);
+                    var data = JSON.parse(response);
+                    if (data == true) {
+                        var obj = {
+                            ProjectTypeCD: '',
+                        };
+                        var response = CalltoApiController('@Url.Action("GetProjectType", "api/ProjectTypeApi")', obj);
+                        BindTable(response);
+                    }*@
+                });
             }
             
         });

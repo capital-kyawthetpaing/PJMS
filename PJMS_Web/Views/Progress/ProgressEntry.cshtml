@@ -72,8 +72,8 @@
             else if ('@Model.Mode' == 'Delete') {
                 $("#btnText").html('削除');
                 $("#btnSave").css('background-color', 'red');
-                $("#txtProgressCD").attr('disabled', 'disabled');
-                $("#txtProgressName").attr('disabled', 'disabled');
+                $("#txtProgressCD").attr('disabled', 'disabled');;
+                $("#txtProgressName").attr('disabled', 'disabled');;
                 setDataFunction();
                 $("#btnSave").click(function () {
                     ShowConfirmMessage("Q102", "DeleteConfirm", e);
