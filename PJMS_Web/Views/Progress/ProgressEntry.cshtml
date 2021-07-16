@@ -72,6 +72,7 @@
             else if ('@Model.Mode' == 'Delete') {
                 $("#btnText").html('削除');
                 $("#btnSave").css('background-color', 'red');
+                $('button i').removeClass("fa fa-save").addClass("fa fa-trash");
                 $("#txtProgressCD").attr('disabled', 'disabled');;
                 $("#txtProgressName").attr('disabled', 'disabled');;
                 setDataFunction();
