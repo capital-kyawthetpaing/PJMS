@@ -51,7 +51,6 @@
 {
     <script type="text/javascript">
         $(document).ready(function () {
-
             SetErrorCheck();
             $("#txtProgressCD").focus();
             function setDataFunction(){
@@ -73,30 +72,13 @@
             else if ('@Model.Mode' == 'Delete') {
                 $("#btnText").html('削除');
                 $("#btnSave").css('background-color', 'red');
-                $("#txtProgressCD").attr('disabled', 'disabled');;
-                $("#txtProgressName").attr('disabled', 'disabled');;
+                $("#txtProgressCD").attr('disabled', 'disabled');
+                $("#txtProgressName").attr('disabled', 'disabled');
                 setDataFunction();
-                $("#btnSave").click(function (e) {
-                    ShowConfirmMessage("Q102", "DeleteConfirm", e)
+                $("#btnSave").click(function () {
+                    ShowConfirmMessage("Q102", "DeleteConfirm", e);
                 });
-                function DeleteConfirm(e) {
-                    var obj = {
-                        ProgressCD: data["ProgressCD"],
-                        Mode: 'Delete',
-                        UpdatedBy: $("#LoginID").val(),
-                    };
-                    var response = CalltoApiController('@Url.Action("ProgressCUD", "api/ProgressApi")', obj);
-                    var data = JSON.parse(response);
-                    if (data == true) {
-                        var obj = {
-                            ProgressCD: '',
-                        };
-                        var response = CalltoApiController('@Url.Action("GetProgress", "api/ProgressApi")', obj);
-                        BindTable(response);
-                    }
-                }
             }
-           
         });
 
         function SaveClick() {
