@@ -73,31 +73,37 @@
                 $("#btnText").html('削除');
                 $("#btnSave").css('background-color', 'red');
                 $('button i').removeClass("fa fa-save").addClass("fa fa-trash");
-                $("#txtProgressCD").attr('disabled', 'disabled');;
-                $("#txtProgressName").attr('disabled', 'disabled');;
+                $("#txtProgressCD").attr('disabled', 'disabled');
+                $("#txtProgressName").attr('disabled', 'disabled');
                 setDataFunction();
-                $("#btnSave").click(function (data) {
-                    ShowConfirmMessage("Q102", "DeleteConfirm", data)
-                });
             }
-
         });
 
         function SaveClick() {
-            if (ErrorCheckOnSave('divEntry')) {
                 var obj = {
-                Mode:'@Model.Mode',
-                ProgressCD: $("#txtProgressCD").val(),
-                ProgressName: $("#txtProgressName").val(),
-                UpdatedBy: $("#LoginID").val(),
+                    Mode:'@Model.Mode',
+                    ProgressCD: $("#txtProgressCD").val(),
+                    ProgressName: $("#txtProgressName").val(),
+                    UpdatedBy: $("#LoginID").val(),
                 };
-                CalltoApiController('@Url.Action("ProgressCUD", "api/ProgressApi")', obj);
-                if ('@Model.Mode' == 'New') {
-                    Clear();
+                if ('@Model.Mode' == 'Edit' || '@Model.Mode' == 'New') {
+                    if (ErrorCheckOnSave('divEntry')) {
+                        CalltoApiController('@Url.Action("ProgressCUD", "api/ProgressApi")', obj);
+                        if ('@Model.Mode' == 'New') {
+                            Clear();
+                        }
+                        ShowMessage('I101');
+                    }
                 }
-                ShowMessage('I101');
-            }
+                else if ('@Model.Mode' == 'Delete') {
+                    ShowConfirmMessage("Q102", "DeleteConfirm", obj);
+                }
         }
+         function DeleteConfirm(obj) {
+            CalltoApiController('@Url.Action("ProgressCUD", "api/ProgressApi")', obj);
+            var url = '@Url.Action("ProgressList", "Progress")';
+            location.href = url;
+         }
 
         function SetErrorCheck() {
             if ('@Model.Mode' == 'New') {
